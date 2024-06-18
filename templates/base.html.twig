@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}prout{% endblock %}</title>
+        <link rel="icon" href="{{ asset('images/minii.png')}}">
+        {% block stylesheets %}
+        <!--Import Google Icon Font-->  
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Custom styles-->
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/styles.css') }}"  media="screen,projection"/>
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>
