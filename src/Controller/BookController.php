@@ -8,8 +8,14 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class BookController extends AbstractController
 {
-    #[Route('/', name: 'app_book')]
+    #[Route('/', name: 'app_index')]
     public function index(): Response
+    {
+        return $this->render('index.html.twig');
+    }
+
+    #[Route('/', name: 'app_book')]
+    public function book(): Response
     {
         return $this->render('book/index.html.twig', [
             'controller_name' => 'bookController',

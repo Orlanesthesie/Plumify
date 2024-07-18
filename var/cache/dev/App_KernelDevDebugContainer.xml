@@ -6720,13 +6720,13 @@
       <argument type="collection">
         <argument key="login_path">app_login</argument>
         <argument key="check_path">app_login</argument>
-        <argument key="enable_csrf">true</argument>
         <argument key="use_forward">false</argument>
         <argument key="require_previous_session">false</argument>
         <argument key="username_parameter">_username</argument>
         <argument key="password_parameter">_password</argument>
         <argument key="csrf_parameter">_csrf_token</argument>
         <argument key="csrf_token_id">authenticate</argument>
+        <argument key="enable_csrf">false</argument>
         <argument key="post_only">true</argument>
         <argument key="form_only">false</argument>
       </argument>

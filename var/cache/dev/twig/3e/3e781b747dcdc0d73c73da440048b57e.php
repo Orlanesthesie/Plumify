@@ -90,9 +90,9 @@ class __TwigTemplate_6349a3bf2a416a6663f49c5f06bf99f8 extends Template
         yield "    ";
         if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 6, $this->source); })())) {
             // line 7
-            yield "        <div>";
+            yield "         <div>";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 7, $this->source); })()), "messageKey", [], "any", false, false, false, 7), CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 7, $this->source); })()), "messageData", [], "any", false, false, false, 7), "security"), "html", null, true);
-            yield "</div>
+            yield "</div> 
     ";
         }
         // line 9
@@ -107,7 +107,7 @@ class __TwigTemplate_6349a3bf2a416a6663f49c5f06bf99f8 extends Template
         <input type=\"text\" id=\"username\" name=\"_username\" value=\"";
         // line 14
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 14, $this->source); })()), "html", null, true);
-        yield "\" required>
+        yield "\" />
 
         <label for=\"password\">Password:</label>
         <input type=\"password\" id=\"password\" name=\"_password\" required>
@@ -159,14 +159,14 @@ class __TwigTemplate_6349a3bf2a416a6663f49c5f06bf99f8 extends Template
 
 {% block body %}
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div> 
     {% endif %}
 
 <h2>THIS IS THE LOGIN BITCH!</h2>
 
     <form action=\"{{ path('app_login') }}\" method=\"post\">
         <label for=\"username\">Email:</label>
-        <input type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" required>
+        <input type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" />
 
         <label for=\"password\">Password:</label>
         <input type=\"password\" id=\"password\" name=\"_password\" required>
