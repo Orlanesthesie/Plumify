@@ -96,7 +96,7 @@ class __TwigTemplate_f31ee67d8b265e48c20ae1cbf67bdace extends Template
         <input type=\"text\" id=\"firstname\" name=\"firstname\" required>
 
         <label for=\"password\">Password:</label>
-        <input type=\"password\" id=\"password\" name=\"password\">
+        <input type=\"password\" id=\"password\" name=\"password\" required>
 
         ";
         // line 16
@@ -150,7 +150,7 @@ class __TwigTemplate_f31ee67d8b265e48c20ae1cbf67bdace extends Template
         <input type=\"text\" id=\"firstname\" name=\"firstname\" required>
 
         <label for=\"password\">Password:</label>
-        <input type=\"password\" id=\"password\" name=\"password\">
+        <input type=\"password\" id=\"password\" name=\"password\" required>
 
         {# If you want to control the URL the user is redirected to on success
         <input type=\"hidden\" name=\"_target_path\" value=\"/account\"> #}

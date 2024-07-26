@@ -246,3 +246,11 @@ ff4d64,127.0.0.1,GET,https://127.0.0.1:8001/logout,1721293590,,302,request
 7462f2,127.0.0.1,GET,https://127.0.0.1:8001/login,1721293590,,200,request
 4a1df3,127.0.0.1,GET,https://127.0.0.1:8001/css/styles.css,1721293590,2b34c4,404,request
 2b34c4,127.0.0.1,GET,https://127.0.0.1:8001/css/styles.css,1721293590,,404,request
+3634d7,127.0.0.1,GET,https://127.0.0.1:8000/admin,1721996683,19d7dd,404,request
+19d7dd,127.0.0.1,GET,https://127.0.0.1:8000/admin,1721996683,,404,request
+1cf5a4,127.0.0.1,GET,https://127.0.0.1:8000/admin,1721996715,,200,request
+52c607,127.0.0.1,GET,https://127.0.0.1:8000/favicon.ico,1721996715,69571d,404,request
+69571d,127.0.0.1,GET,https://127.0.0.1:8000/favicon.ico,1721996715,,404,request
+7ac744,127.0.0.1,GET,https://127.0.0.1:8000/admin,1722001524,4b8880,500,request
+4b8880,127.0.0.1,GET,https://127.0.0.1:8000/admin,1722001524,,500,request
+4cfc7a,127.0.0.1,GET,https://127.0.0.1:8000/admin,1722001539,,200,request
