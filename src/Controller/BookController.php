@@ -14,7 +14,7 @@ class BookController extends AbstractController
         return $this->render('index.html.twig');
     }
 
-    #[Route('/', name: 'app_book')]
+    #[Route('/book', name: 'app_book')]
     public function book(): Response
     {
         return $this->render('book/index.html.twig', [

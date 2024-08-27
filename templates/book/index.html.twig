@@ -1,8 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Books{% endblock %}
+{% block title %}Book{% endblock %}
 
 {% block body %}
-<h1> coucou, c'est book->index</h1>
+<h1>Bienvenue sur la page de detail d'un livre !</h1>
+<h3>MAIN SECTION</h3>
+<div id="book">
+  <!-- Le livre sera affiché ici -->
+</div>
+<h3>FOOTER</h3>
+
 <a href="{{ path('app_logout') }}">logout</a>
+<a href="{{ path('app_index') }}">home</a>
+
+<script>
+  fetch('https://freetestapi.com/api/v1/books/1')
+    .then(response => response.json())
+    .then(data => {
+      const booksContainer = document.getElementById('book');
+
+      data.forEach(book => {
+        // Créer un élément div pour chaque livre
+        const bookElement = document.createElement('div');
+        bookElement.className = 'book';
+
+        // Remplir le contenu du livre
+        bookElement.innerHTML = `
+          <h3>${book.title}</h3>
+          <p><strong>Auteur:</strong> ${book.author}</p>
+          <p><strong>Description:</strong> ${book.description}</p>
+          <p><strong>Genre:</strong> ${book.genre.join(', ')}</p>
+          <p><strong>Publication Date:</strong> ${book.publication_year}</p>
+          <img src="${book.cover_image}" alt="Couverture de ${book.title}" style="width:200px; height:auto;">
+        `;
+
+        // Ajouter l'élément du livre au conteneur des livres
+        booksContainer.appendChild(bookElement);
+      });
+    })
+    .catch(error => console.error('Error:', error));
+</script>
 {% endblock %}

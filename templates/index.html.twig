@@ -1,9 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Première Page{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-<h1> coucou, c'est la première page->index</h1>
+<h1>Bienvenue sur la page d'accueil</h1>
 <a href="{{ path('app_login') }}">login</a>
 <a href="{{ path('app_logout') }}">logout</a>
+<a href="{{ path('app_registration') }}">registration</a>
+
+<h3>MAIN SECTION</h3>
+
+<section>
+<h3>NEWS SECTION</h3>
+<div id="books-news">
+  <!-- Les livres seront insérés ici -->
+</div>
+</section>
+<h3>CATEGORY SECTION</h3>
+<h3>MOST BORROWED BOOKS SECTION</h3>
+<h3>FOOTER</h3>
+
+
+
+<script>
+  fetch('https://freetestapi.com/api/v1/books?limit=5')
+    .then(response => response.json())
+    .then(data => {
+      const booksContainer = document.getElementById('books-news');
+
+      data.forEach(book => {
+        // Créer un élément div pour chaque livre
+        const bookElement = document.createElement('div');
+        bookElement.className = 'book';
+
+        // Remplir le contenu du livre
+        bookElement.innerHTML = `
+          <h3>${book.title}</h3>
+          <p><strong>Auteur:</strong> ${book.author}</p>
+          <p><strong>Description:</strong> ${book.description}</p>
+          <p><strong>Genre:</strong> ${book.genre.join(', ')}</p>
+          <p><strong>Publication Date:</strong> ${book.publication_year}</p>
+          <img src="${book.cover_image}" alt="Couverture de ${book.title}" style="width:200px; height:auto;">
+          <a href="{{path('app_book')}}">voir plus</a>
+        `;
+
+        // Ajouter l'élément du livre au conteneur des livres
+        booksContainer.appendChild(bookElement);
+      });
+    })
+    .catch(error => console.error('Error:', error));
+</script>
 {% endblock %}

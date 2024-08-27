@@ -15,27 +15,31 @@ class RegistrationController extends AbstractController
     #[Route(path: '/registration', name: 'app_registration')]
     public function registration(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
-        //  user creation
+
         if ($request->isMethod('POST')) {
-            // dd($request);
-            // Retrieve form data
+
+            // Parcourir la requete
             $firstname = $request->request->get('firstname');
+            $lastname = $request->request->get('lastname');
+            $email = $request->request->get('email');
             $plainPassword = $request->request->get('password');
 
-            // Create a new User entity
+            // Creer le user
             $user = new User();
             $user->setFirstname($firstname);
+            $user->setLastname($lastname);
+            $user->setEmail($email);
+            $user->setRoles(['ROLE_USER']);
 
-            // Hash the plain password
+            // Hasher le mdp
             $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
             $user->setPassword($hashedPassword);
 
-            // Persist the user entity
+            // Persist + flush
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Redirect to a success page or do something else
-            return $this->redirectToRoute('app_book');
+            return $this->redirectToRoute('app_home');
         }
 
         // Render the registration form
