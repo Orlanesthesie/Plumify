@@ -19,14 +19,11 @@ class Book
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $summary = null;
 
-    #[ORM\Column]
-    private ?bool $available = null;
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?bool $available = true;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
     #[ORM\JoinColumn(nullable: false)]
@@ -42,7 +39,13 @@ class Book
     private Collection $category;
 
     #[ORM\Column]
-    private ?int $Isbn = null;
+    private ?string $publicationYear = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $coverImage = null;
 
     public function __construct()
     {
@@ -62,18 +65,6 @@ class Book
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): static
-    {
-        $this->date = $date;
 
         return $this;
     }
@@ -155,14 +146,38 @@ class Book
         return $this;
     }
 
-    public function getIsbn(): ?int
+    public function getPublicationYear(): ?string
     {
-        return $this->Isbn;
+        return $this->publicationYear;
     }
 
-    public function setIsbn(int $Isbn): static
+    public function setPublicationYear(string $publicationYear): static
     {
-        $this->Isbn = $Isbn;
+        $this->publicationYear = $publicationYear;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(string $coverImage): static
+    {
+        $this->coverImage = $coverImage;
 
         return $this;
     }

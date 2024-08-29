@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '4a70d0e2b4403aa55d448a1929237bb7eeec9e10',
+        'reference' => 'de42ce1eb7688361bcd439cdc55a7d9702949c17',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '4a70d0e2b4403aa55d448a1929237bb7eeec9e10',
+            'reference' => 'de42ce1eb7688361bcd439cdc55a7d9702949c17',
             'dev_requirement' => false,
         ),
         'composer/semver' => array(
@@ -813,12 +813,12 @@
             'dev_requirement' => false,
         ),
         'symfony/http-client' => array(
-            'pretty_version' => 'v6.4.8',
-            'version' => '6.4.8.0',
+            'pretty_version' => 'v6.4.10',
+            'version' => '6.4.10.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/http-client',
             'aliases' => array(),
-            'reference' => '61faba993e620fc22d4f0ab3b6bcf8fbb0d44b05',
+            'reference' => 'b5e498f763e0bf5eed8dcd946e50a3b3f71d4ded',
             'dev_requirement' => false,
         ),
         'symfony/http-client-contracts' => array(

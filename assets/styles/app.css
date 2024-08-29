@@ -1,3 +1,45 @@
-body {
-    background-color: #b57a31;
+/* COULEURS */
+
+.rose {
+    color: #dd71a0;
+}
+
+.bg-rose {
+    background-color: #dd71a0;
+}
+
+.lavande {
+    color: #7c86c2;
+}
+
+.bg-lavande {
+    background-color: #7c86c2;
+}
+
+.lila {
+    color: #b1adde;
+}
+
+.bg-lila {
+    background-color: #b1adde;
+}
+
+.creme {
+    color: #ede9de;
+}
+
+.bg-creme {
+    background-color: #ede9de;
+}
+
+/* LOGO */
+.svg {
+    height: 100px;
+}
+
+/* TITRE */
+.plumify {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
 }

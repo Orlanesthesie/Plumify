@@ -21,10 +21,7 @@ final class Version20240808125343 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE author (id INT AUTO_INCREMENT NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, birthdate DATE NOT NULL, biography VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE book_category (book_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_1FB30F9816A2B381 (book_id), INDEX IDX_1FB30F9812469DE2 (category_id), PRIMARY KEY(book_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, roman TINYINT(1) NOT NULL, comic TINYINT(1) NOT NULL, thriller TINYINT(1) NOT NULL, history TINYINT(1) NOT NULL, drama TINYINT(1) NOT NULL, cook TINYINT(1) NOT NULL, romance TINYINT(1) NOT NULL, child TINYINT(1) NOT NULL, religion TINYINT(1) NOT NULL, sport TINYINT(1) NOT NULL, scholar TINYINT(1) NOT NULL, sf TINYINT(1) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE book_category ADD CONSTRAINT FK_1FB30F9816A2B381 FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE book_category ADD CONSTRAINT FK_1FB30F9812469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE comment DROP FOREIGN KEY FK_9474526CA76ED395');
         $this->addSql('ALTER TABLE comment DROP FOREIGN KEY FK_9474526C16A2B381');
         $this->addSql('ALTER TABLE comment DROP FOREIGN KEY FK_9474526C9D86650F');

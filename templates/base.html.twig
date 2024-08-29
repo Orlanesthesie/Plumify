@@ -3,19 +3,54 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}prout{% endblock %}</title>
-        <link rel="icon" href="{{ asset('images/final 1.png')}}">
+        <link rel="icon" href="{{ asset('images/final.svg')}}">
         {% block stylesheets %}
-        <!--Import Google Icon Font-->  
+        <!-- Import Google Icon Font -->  
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Custom styles-->
-        <link type="text/css" rel="stylesheet" href="{{ asset('css/styles.css') }}"  media="screen,projection"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+        <!-- Import Bootstrap -->  
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- Custom styles -->
+        <link type="text/css" rel="stylesheet" href="{{ asset('styles/app.css') }}"  media="screen,projection"/>
         {% endblock %}
-
         {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             {% block importmap %}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {# NAVBAR #}
+    <nav class="navbar navbar-expand-lg navbar-light bg-lila">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="{{ path('app_home') }}">
+                <img src="{{ asset('images/final.svg') }}" alt="Logo" style="height: 40px;">
+                <h1 class="ms-3 mb-0 plumify">Plumify</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content flex-end" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_home') }}">Search</a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_registration') }}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn bg-lavande" href="{{ path('app_login') }}">LogIn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        {% block body %} {% endblock %}
     </body>
 </html>
