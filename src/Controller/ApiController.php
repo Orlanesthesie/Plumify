@@ -79,8 +79,9 @@ class ApiController extends AbstractController
         }
 
         // Initialisation des tableaux pour stocker les auteurs et les livres
-        $authors = [];
         $books = [];
+        $categories = [];
+        $authors = [];
 
         // Parcourir les éléments et les enregistrer dans la base de données
         foreach ($data as $item) {
@@ -89,59 +90,65 @@ class ApiController extends AbstractController
             $authorNameParts = explode(' ', $authorName);
             $firstname = ucfirst(strtolower(trim($authorNameParts[0])));
             $lastname = ucfirst(strtolower(trim($authorNameParts[1] ?? '')));
+            $book = new Book();
+            $book->setTitle($item['title']);
+            $book->setPublicationYear($item['publication_year']);
+            $book->setDescription($item['description']);
+            $book->setCoverImage($item['cover_image']);
+
 
             // Rechercher ou créer l'auteur
             $author = $this->entityManager->getRepository(Author::class)
                 ->findOneBy(['lastname' => $lastname, 'firstname' => $firstname]);
 
             if (!$author) {
+                $author = array_filter($authors, function ($checkauthor) use ($lastname) {
+                    return $checkauthor->getLastname() === $lastname;
+                });
+
                 // Si l'auteur n'existe pas, le créer
-                $author = new Author();
-                $author->setFirstname($firstname);
-                $author->setLastname($lastname);
-                $this->entityManager->persist($author);
-                $authors[] = $author;
+                if (!count($author)) {
+                    $author = new Author();
+                    $author->setFirstname($firstname);
+                    $author->setLastname($lastname);
+                    $this->entityManager->persist($author);
+                    $book->setAuthor($author);
+                    array_push($authors, $author);
+                } else {
+                    $author = array_values($author);
+                    $book->setAuthor($author[0]);
+                }
             }
 
-            // Vérifier si le livre existe déjà pour cet auteur
-            $existingBook = $this->entityManager->getRepository(Book::class)
-                ->findOneBy(['title' => $item['title'], 'author' => $author]);
 
-            if (!$existingBook) {
-                // Créer le livre seulement s'il n'existe pas déjà
-                $book = new Book();
-                $book->setTitle($item['title']);
-                $book->setPublicationYear($item['publication_year']);
-                $book->setDescription($item['description']);
-                $book->setCoverImage($item['cover_image']);
-                $book->setAuthor($author);
-                // Ajouter les catégories au livre
-                foreach ($item['genre'] as $genreName) {
-                    $category = $this->entityManager->getRepository(Category::class)
-                    ->findOneBy(['name' => $item['genre']]);
-                    if (!$category) {
+
+            // Ajouter les catégories au livre
+            foreach ($item['genre'] as $genreName) {
+                $category = $this->entityManager->getRepository(Category::class)
+                ->findOneBy(['name' => $item['genre']]);
+                if (!$category) {
+                    $category = array_filter($categories, function ($checkCategory) use ($genreName) {
+                        return $checkCategory->getName() === $genreName;
+                    });
+                    if (!count($category)) {
                         $category = new Category();
                         $category->setName($genreName);
                         $this->entityManager->persist($category);
+                        array_push($categories, $category);
+                        $book->addCategory($category);
+                    } else {
+                        $category = array_values($category);
+                        $book->addCategory($category[0]);
                     }
-                    $book->addCategory($category);
                 }
-
-                $this->entityManager->persist($book);
-                $books[] = $book;
             }
+
+            $this->entityManager->persist($book);
+            $books[] = $book;
+            
         }
 
         // Exécuter l'enregistrement en base de données
-        $this->entityManager->flush();
-
-        // Mise à jour des IDs des livres pour chaque auteur
-        foreach ($authors as $author) {
-            $author->updateBooksIds();
-            $this->entityManager->persist($author);
-        }
-
-        // Sauvegarde des auteurs avec leurs booksIds mis à jour
         $this->entityManager->flush();
 
         return new JsonResponse(['status' => 'success', 'message' => 'Les données JSON ont été importées dans la base de données avec succès.']);

@@ -29,9 +29,6 @@ class Author
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(type: Types::JSON, nullable: true)]
-    private ?array $booksIds = [];
-
     /**
      * @var Collection<int, Book>
      */
@@ -47,7 +44,6 @@ class Author
     public function __construct()
     {
         $this->books = new ArrayCollection();
-        $this->booksIds = [];
     }
 
     public function getId(): ?int
@@ -91,23 +87,6 @@ class Author
         return $this;
     }
 
-    public function updateBooksIds(): void
-    {
-        $this->booksIds = $this->books->map(function (Book $book) {
-            return $book->getId();
-        })->toArray();
-    }
-
-    public function getBooksIds(): ?array
-    {
-        return $this->booksIds;
-    }
-
-    public function setBooksIds(array $booksIds): void
-    {
-        $this->booksIds = $booksIds;
-    }
-
     /**
      * @return Collection<int, Book>
      */
@@ -121,7 +100,6 @@ class Author
         if (!$this->books->contains($book)) {
             $this->books->add($book);
             $book->setAuthor($this);
-            $this->updateBooksIds(); // Mise à jour de la colonne booksIds
         }
 
         return $this;
@@ -134,7 +112,6 @@ class Author
             if ($book->getAuthor() === $this) {
                 $book->setAuthor(null);
             }
-            $this->updateBooksIds(); // Mise à jour de la colonne booksIds
         }
 
         return $this;
