@@ -113,6 +113,7 @@ class ApiController extends AbstractController
                     $author->setLastname($lastname);
                     $this->entityManager->persist($author);
                     $book->setAuthor($author);
+                    // Push dans le tableau authors
                     array_push($authors, $author);
                 } else {
                     $author = array_values($author);
@@ -134,6 +135,7 @@ class ApiController extends AbstractController
                         $category = new Category();
                         $category->setName($genreName);
                         $this->entityManager->persist($category);
+                        // Push dans le tableau categories
                         array_push($categories, $category);
                         $book->addCategory($category);
                     } else {
