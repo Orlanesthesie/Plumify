@@ -8,7 +8,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
+
+#[ORM\Table(name: '`author`')]
+#[ORM\UniqueConstraint(name: 'UNIQ_LASTNAME', fields: ['lastname'])]
 class Author
 {
     #[ORM\Id]

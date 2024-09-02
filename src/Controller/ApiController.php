@@ -115,18 +115,15 @@ class ApiController extends AbstractController
                 $book->setDescription($item['description']);
                 $book->setCoverImage($item['cover_image']);
                 $book->setAuthor($author);
-
                 // Ajouter les catégories au livre
                 foreach ($item['genre'] as $genreName) {
                     $category = $this->entityManager->getRepository(Category::class)
-                        ->findOneBy(['name' => $genreName]);
-
+                    ->findOneBy(['name' => $item['genre']]);
                     if (!$category) {
                         $category = new Category();
                         $category->setName($genreName);
                         $this->entityManager->persist($category);
                     }
-
                     $book->addCategory($category);
                 }
 
