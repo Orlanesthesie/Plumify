@@ -1,35 +1,11 @@
 /* COULEURS */
 
-.rose {
-    color: #dd71a0;
+.main-color {
+    color: #B57CFF;
 }
 
-.bg-rose {
-    background-color: #dd71a0;
-}
-
-.lavande {
-    color: #7c86c2;
-}
-
-.bg-lavande {
-    background-color: #7c86c2;
-}
-
-.lila {
-    color: #b1adde;
-}
-
-.bg-lila {
-    background-color: #b1adde;
-}
-
-.creme {
-    color: #ede9de;
-}
-
-.bg-creme {
-    background-color: #ede9de;
+.second-color {
+    background-color: rgba(181, 124, 255, 0.5);
 }
 
 /* LOGO */
@@ -43,3 +19,126 @@
     font-weight: 400;
     font-style: normal;
 }
+
+/* FIN TITRE */
+
+/* SEARCHBAR */
+.search-container {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding-left: 15px;
+    border-radius: 50px;
+}
+
+.search-btn {
+    background-color: #c49ce1;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-btn i {
+    color: white;
+    font-size: 16px;
+}
+
+.search-container:focus-within {
+    border-color: #c49ce1;
+}
+
+.search-input::placeholder {
+    color: #888;
+}
+
+/* FIN SEARCHBAR */
+
+
+/* SIDEBAR */
+body {
+    height: 100vh;
+}
+
+.sf-toolbar {
+    position: fixed;
+}
+
+/* Sidebar styles */
+.sidebar {
+    min-height: 100vh;
+    width: 220px;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    padding-left: 10px;
+    position: fixed;
+    border-right: 1px solid #e0e0e0;
+    /* Light border for separation */
+}
+
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar .logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.category-title {
+    font-weight: 600;
+    color: #777;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-link i {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #555;
+}
+
+.nav-link:hover {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+}
+
+/* To ensure the main content shifts right when the sidebar is fixed */
+.content {
+    margin-left: 240px;
+    /* Slightly larger than sidebar width for spacing */
+    padding: 20px;
+}
+/* FIN SIDEBAR */

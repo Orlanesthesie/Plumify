@@ -1,51 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
-<h1>Bienvenue sur la page d'accueil</h1>
 
-<h3>MAIN SECTION</h3>
-
-{# <img src="{{ asset('images/to_kill_a_mockingbird.jpg') }}"> #}
-
-<section>
-<h3 class="">NEWS SECTION</h3>
-<div id="books-news">
-  <!-- Les livres seront insérés ici -->
-</div>
-</section>
-<h3>CATEGORY SECTION</h3>
-<h3>MOST BORROWED BOOKS SECTION</h3>
-<h3>FOOTER</h3>
+	<section>
+		<h3>Popular Books</h3>
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel"></section>
 
 
-<script>
-  fetch('https://freetestapi.com/api/v1/books?limit=5')
-    .then(response => response.json())
-    .then(data => {
-      const booksContainer = document.getElementById('books-news');
+		<section>
+			<h3 class="">Newest</h3>
+			<div id="books-news" class="p-5">
+				{% for book in newBooks %}
+					<div class="card mb-5 second-color d-flex flex-column  rounded rounded-5">
+						<div class="row g-0 flex-grow-1">
+							<div class="col-md-4 ">
 
-      data.forEach(book => {
-        // Créer un élément div pour chaque livre
-        const bookElement = document.createElement('div');
-        bookElement.className = 'book';
+								<img src="{{ asset('images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
+							</div>
+							<div class="col-md-8 d-flex flex-column">
+								<div class="card-body d-flex flex-column flex-grow-1">
+									<p class="card-text mb-0"></p>
+									<small class="text-body-secondary">{{ book.author.firstname }}
+										{{ book.author.lastname }}</small>
+								</p>
+								<h5 class="card-title mt-2 ">{{book.title}}</h5>
+								<p class="card-text mt-2 flex-grow-1">{{book.description}}</p>
+								<div class="mt-auto">
+									{% for category in book.category %}
+										<button class="btn btn-outline-dark mx-2">
+											{{ category.name }}
+										</button>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 
-        // Remplir le contenu du livre
-        bookElement.innerHTML = `
-          <h3>${book.title}</h3>
-          <p><strong>Auteur:</strong> ${book.author}</p>
-          <p><strong>Description:</strong> ${book.description}</p>
-          <p><strong>Genre:</strong> ${book.genre.join(', ')}</p>
-          <p><strong>Publication Date:</strong> ${book.publication_year}</p>
-          <img src="{{ asset('images/books/${book.cover_image}') }}" alt="Couverture de ${book.title}" style="width:200px; height:auto;">
-          <a href="{{path('app_book')}}">voir plus</a>
-        `;
 
-        // Ajouter l'élément du livre au conteneur des livres
-        booksContainer.appendChild(bookElement);
-      });
-    })
-    .catch(error => console.error('Error:', error));
-</script>
+		</div>
+	</section>
+
+	<h3>FOOTER</h3>
+
+
 {% endblock %}
+

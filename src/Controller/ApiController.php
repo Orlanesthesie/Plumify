@@ -95,6 +95,7 @@ class ApiController extends AbstractController
             $book->setPublicationYear($item['publication_year']);
             $book->setDescription($item['description']);
             $book->setCoverImage($item['cover_image']);
+            $book->setSummary($item['summary']);
 
 
             // Rechercher ou créer l'auteur

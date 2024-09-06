@@ -19,9 +19,6 @@ class Book
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $summary = null;
-
     #[ORM\Column(type: Types::BOOLEAN)]
     private ?bool $available = true;
 
@@ -47,6 +44,9 @@ class Book
     #[ORM\Column(length: 255)]
     private ?string $coverImage = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $summary = null;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -69,17 +69,6 @@ class Book
         return $this;
     }
 
-    public function getSummary(): ?string
-    {
-        return $this->summary;
-    }
-
-    public function setSummary(string $summary): static
-    {
-        $this->summary = $summary;
-
-        return $this;
-    }
 
     public function isAvailable(): ?bool
     {
@@ -178,6 +167,18 @@ class Book
     public function setCoverImage(string $coverImage): static
     {
         $this->coverImage = $coverImage;
+
+        return $this;
+    }
+
+    public function getSummary(): ?string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(string $summary): static
+    {
+        $this->summary = $summary;
 
         return $this;
     }

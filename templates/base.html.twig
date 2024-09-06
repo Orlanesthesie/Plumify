@@ -1,56 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}prout{% endblock %}</title>
-        <link rel="icon" href="{{ asset('images/final.svg')}}">
-        {% block stylesheets %}
-        <!-- Import Google Icon Font -->  
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-        <!-- Import Bootstrap -->  
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <!-- Custom styles -->
-        <link type="text/css" rel="stylesheet" href="{{ asset('styles/app.css') }}"  media="screen,projection"/>
-        {% endblock %}
-        {% block javascripts %}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-            {% block importmap %}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {# NAVBAR #}
-    <nav class="navbar navbar-expand-lg navbar-light bg-lila">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="{{ path('app_home') }}">
-                <img src="{{ asset('images/logos/final.svg') }}" alt="Logo" style="height: 40px;">
-                <h1 class="ms-3 mb-0 plumify">Plumify</h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-flex justify-content flex-end" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_home') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_home') }}">Search</a>
-                    </li>
-                    <hr>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_registration') }}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn bg-lavande" href="{{ path('app_login') }}">LogIn</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}prout
+			{% endblock %}
+		</title>
+		<link rel="icon" href="{{ asset('images/final.svg')}}">
+		{% block stylesheets %}
+			<!-- Import Google Icon Font -->
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link
+			href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+			<!-- Import Bootstrap -->
+			<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+			<!-- Custom styles -->
+			<link
+			type="text/css" rel="stylesheet" href="{{ asset('styles/app.css') }}" media="screen,projection"/>
+			<!-- Import Font Awesome-->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+		{% endblock %}
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+			{% block importmap %}{% endblock %}
+		{% endblock %}
+	</head>
+	<div class="d-flex flex-nowrap overflow-hidden">
+		<div class="d-flex flex-column flex-shrink-0 p-3 border border-danger" style="width: 280px;height: 100vh; overflow-y: auto;">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+				<img src="{{ asset('images/logos/final.svg')}}" style="height: 10vh;">
+				<span class="fs-4">Plumify</span>
+			</a>
+			<hr>
+			<div class="categories">
+				<div class="category-title">Categories</div>
+				<ul class="nav nav-pills flex-column mb-auto">
+					<li class="nav-item">
+						<a href="#" class="nav-link" aria-current="page">
+							<i class="fa-solid fa-circle-exclamation" style="color: #b57cff;"></i>
+							Newest
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link ">
+							<i class="fa-solid fa-heart" style="color: #b57cff;"></i>
+							Most liked
+						</a>
+					</li>
+				</ul>
+			</div>
+			<hr>
 
-        {% block body %} {% endblock %}
-    </body>
-</html>
+        <div class="categories">
+            <div class="category-title">Genres</div>
+				<ul class="nav nav-pills flex-column mb-auto">
+                    {% for category in categories %}
+					<li class="nav-item">
+						<a href="#" class="nav-link " aria-current="page">
+                            {{category.name}}
+						</a>
+					</li>
+                    {% endfor %}
+					</div>
+				</ul>
+				<button class="btn mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories">
+					<i class="fa-solid fa-chevron-down"></i>
+					Voir plus
+				</button>
+			</div> 
+		
+
+		<div class="d-flex flex-column overflow-scroll w-100 p-3">
+			{# SEARCHBAR #}
+			<div class="search-container d-flex align-items-center mx-auto">
+				<input type="text" class="form-control search-input" placeholder="Search a book here...">
+				<button class="btn search-btn">
+					<i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+				</button>
+			</div>
+
+			{% block body %}{% endblock %}
+		</div>
+	</div>
+
+	<div></div>
+</html></body></html>
+
