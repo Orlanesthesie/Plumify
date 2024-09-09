@@ -26,7 +26,6 @@
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="EasyAdminBundle">EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle</parameter>
-      <parameter key="ChartjsBundle">Symfony\UX\Chartjs\ChartjsBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -80,10 +79,6 @@
       <parameter key="EasyAdminBundle" type="collection">
         <parameter key="path">/home/garage404/Plumify/vendor/easycorp/easyadmin-bundle/src</parameter>
         <parameter key="namespace">EasyCorp\Bundle\EasyAdminBundle</parameter>
-      </parameter>
-      <parameter key="ChartjsBundle" type="collection">
-        <parameter key="path">/home/garage404/Plumify/vendor/symfony/ux-chartjs</parameter>
-        <parameter key="namespace">Symfony\UX\Chartjs</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -399,7 +394,6 @@
       <tag name="ea.dashboard_controller"/>
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
-      <argument type="service" id="chartjs.builder"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.EjdkWEU.App\Controller\Admin\DashboardController"/>
       </call>
@@ -1773,7 +1767,6 @@
     </service>
     <service id="asset_mapper.repository" class="Symfony\Component\AssetMapper\AssetMapperRepository">
       <argument type="collection">
-        <argument key="/home/garage404/Plumify/vendor/symfony/ux-chartjs/src/DependencyInjection/../../assets/dist">@symfony/ux-chartjs</argument>
         <argument key="/home/garage404/Plumify/vendor/symfony/ux-turbo/src/DependencyInjection/../../assets/dist">@symfony/ux-turbo</argument>
         <argument key="/home/garage404/Plumify/vendor/symfony/stimulus-bundle/src/DependencyInjection/../../assets/dist">@symfony/stimulus-bundle</argument>
         <argument key="assets/"></argument>
@@ -2484,7 +2477,6 @@
           <argument>/home/garage404/Plumify/vendor/symfony/security-bundle/translations</argument>
           <argument>/home/garage404/Plumify/vendor/symfony/monolog-bundle/translations</argument>
           <argument>/home/garage404/Plumify/vendor/symfony/maker-bundle/src/translations</argument>
-          <argument>/home/garage404/Plumify/vendor/symfony/ux-chartjs/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2505,7 +2497,6 @@
             <argument>vendor/symfony/security-bundle/translations</argument>
             <argument>vendor/symfony/monolog-bundle/translations</argument>
             <argument>vendor/symfony/maker-bundle/src/translations</argument>
-            <argument>vendor/symfony/ux-chartjs/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -5891,9 +5882,6 @@
         <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension"/>
       </call>
       <call method="addExtension">
-        <argument type="service" id="chartjs.twig_extension"/>
-      </call>
-      <call method="addExtension">
         <argument type="service" id="stimulus.twig_extension"/>
       </call>
       <call method="addGlobal">
@@ -7619,11 +7607,6 @@
       <tag name="assets.package" package="easyadmin.assets.package"/>
       <argument type="service" id="request_stack"/>
     </service>
-    <service id="chartjs.builder" class="Symfony\UX\Chartjs\Builder\ChartBuilder"/>
-    <service id="chartjs.twig_extension" class="Symfony\UX\Chartjs\Twig\ChartExtension">
-      <tag name="twig.extension"/>
-      <argument type="service" id="stimulus.helper"/>
-    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" autowire="true" abstract="true"/>
@@ -9036,10 +9019,10 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry">
       <argument>/home/garage404/Plumify/var/cache/dev</argument>
       <argument type="collection">
-        <argument key="App\Controller\Admin\DashboardController">6250f92</argument>
+        <argument key="App\Controller\Admin\DashboardController">2faf3d6</argument>
       </argument>
       <argument type="collection">
-        <argument key="6250f92">App\Controller\Admin\DashboardController</argument>
+        <argument key="2faf3d6">App\Controller\Admin\DashboardController</argument>
       </argument>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry">
@@ -9051,11 +9034,11 @@
         <argument key="App\Controller\Admin\UserCrudController">App\Entity\User</argument>
       </argument>
       <argument type="collection">
-        <argument key="App\Controller\Admin\AuthorCrudController">7d63cf9</argument>
-        <argument key="App\Controller\Admin\BookCrudController">77f0227</argument>
-        <argument key="App\Controller\Admin\CategoryCrudController">4c84687</argument>
-        <argument key="App\Controller\Admin\LoanCrudController">c16bf61</argument>
-        <argument key="App\Controller\Admin\UserCrudController">d8cfa42</argument>
+        <argument key="App\Controller\Admin\AuthorCrudController">2659b01</argument>
+        <argument key="App\Controller\Admin\BookCrudController">695423f</argument>
+        <argument key="App\Controller\Admin\CategoryCrudController">e02115a</argument>
+        <argument key="App\Controller\Admin\LoanCrudController">c221794</argument>
+        <argument key="App\Controller\Admin\UserCrudController">213e4fc</argument>
       </argument>
       <argument type="collection">
         <argument key="App\Entity\Author">App\Controller\Admin\AuthorCrudController</argument>
@@ -9065,11 +9048,11 @@
         <argument key="App\Entity\User">App\Controller\Admin\UserCrudController</argument>
       </argument>
       <argument type="collection">
-        <argument key="7d63cf9">App\Controller\Admin\AuthorCrudController</argument>
-        <argument key="77f0227">App\Controller\Admin\BookCrudController</argument>
-        <argument key="4c84687">App\Controller\Admin\CategoryCrudController</argument>
-        <argument key="c16bf61">App\Controller\Admin\LoanCrudController</argument>
-        <argument key="d8cfa42">App\Controller\Admin\UserCrudController</argument>
+        <argument key="2659b01">App\Controller\Admin\AuthorCrudController</argument>
+        <argument key="695423f">App\Controller\Admin\BookCrudController</argument>
+        <argument key="e02115a">App\Controller\Admin\CategoryCrudController</argument>
+        <argument key="c221794">App\Controller\Admin\LoanCrudController</argument>
+        <argument key="213e4fc">App\Controller\Admin\UserCrudController</argument>
       </argument>
     </service>
     <service id=".service_locator.yY.p4P7" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -10956,7 +10939,6 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Menu\MenuItemMatcherInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Menu\MenuItemMatcher"/>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
-    <service id="Symfony\UX\Chartjs\Builder\ChartBuilderInterface" alias="chartjs.builder"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.HgDvlLh"/>

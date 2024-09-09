@@ -46,7 +46,6 @@ class ComposerStaticInit88b80f0cbaea39b60f47e59ed24c88cd
         array (
             'Symfony\\UX\\Turbo\\' => 17,
             'Symfony\\UX\\StimulusBundle\\' => 26,
-            'Symfony\\UX\\Chartjs\\' => 19,
             'Symfony\\Runtime\\Symfony\\Component\\' => 34,
             'Symfony\\Polyfill\\Uuid\\' => 22,
             'Symfony\\Polyfill\\Php83\\' => 23,
@@ -195,10 +194,6 @@ class ComposerStaticInit88b80f0cbaea39b60f47e59ed24c88cd
         'Symfony\\UX\\StimulusBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/stimulus-bundle/src',
-        ),
-        'Symfony\\UX\\Chartjs\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/ux-chartjs/src',
         ),
         'Symfony\\Runtime\\Symfony\\Component\\' => 
         array (

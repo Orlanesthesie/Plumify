@@ -37,7 +37,7 @@ class Book
     private Collection $category;
 
     #[ORM\Column]
-    private ?string $publicationYear = null;
+    private ?int $publicationYear = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
@@ -142,12 +142,12 @@ class Book
         return $this;
     }
 
-    public function getPublicationYear(): ?string
+    public function getPublicationYear(): ?int
     {
         return $this->publicationYear;
     }
 
-    public function setPublicationYear(string $publicationYear): static
+    public function setPublicationYear(int $publicationYear): static
     {
         $this->publicationYear = $publicationYear;
 

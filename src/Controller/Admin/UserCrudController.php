@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
@@ -17,10 +18,12 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             // Définir les champs que tu veux afficher, par exemple :
+            ArrayField::new('roles'),
             TextField::new('email'),
             TextField::new('firstname'),
             TextField::new('lastname'),
-            // Ajoute d'autres champs en fonction des besoins
+            TextField::new('address'),
+            TextField::new('birthdate'),
         ];
     }
 }

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'c7acf1951c4a8c2da13470337cbb6ab2f087df26',
+        'reference' => '449ec23fc11cb9ddefb6ed296d21b67044471053',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'c7acf1951c4a8c2da13470337cbb6ab2f087df26',
+            'reference' => '449ec23fc11cb9ddefb6ed296d21b67044471053',
             'dev_requirement' => false,
         ),
         'composer/semver' => array(
@@ -1239,15 +1239,6 @@
             'install_path' => __DIR__ . '/../symfony/uid',
             'aliases' => array(),
             'reference' => '35904eca37a84bb764c560cbfcac9f0ac2bcdbdf',
-            'dev_requirement' => false,
-        ),
-        'symfony/ux-chartjs' => array(
-            'pretty_version' => 'v2.18.0',
-            'version' => '2.18.0.0',
-            'type' => 'symfony-bundle',
-            'install_path' => __DIR__ . '/../symfony/ux-chartjs',
-            'aliases' => array(),
-            'reference' => 'be3e054914217a5c6dc8fed02cebec346d7ed2ae',
             'dev_requirement' => false,
         ),
         'symfony/ux-turbo' => array(

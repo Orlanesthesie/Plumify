@@ -12,7 +12,6 @@ return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Symfony\\UX\\Turbo\\' => array($vendorDir . '/symfony/ux-turbo/src'),
     'Symfony\\UX\\StimulusBundle\\' => array($vendorDir . '/symfony/stimulus-bundle/src'),
-    'Symfony\\UX\\Chartjs\\' => array($vendorDir . '/symfony/ux-chartjs/src'),
     'Symfony\\Runtime\\Symfony\\Component\\' => array($vendorDir . '/symfony/runtime/Internal'),
     'Symfony\\Polyfill\\Uuid\\' => array($vendorDir . '/symfony/polyfill-uuid'),
     'Symfony\\Polyfill\\Php83\\' => array($vendorDir . '/symfony/polyfill-php83'),

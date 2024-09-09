@@ -1,0 +1,12 @@
+.custom-dashboard {
+    padding: 20px;
+}
+
+.custom-dashboard .card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.custom-dashboard .card h5 {
+    font-family: 'Great Vibes', cursive;
+}

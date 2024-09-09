@@ -84,9 +84,14 @@
 						</button>
 					</form>
 				</div>
-
 				{% block body %}{% endblock %}
 			</div>
+
+			<div class="col-md-2 d-flex flex-column p-3 border border-danger">
+					<section>
+					<p>You can <a href="{{ path('app_registration') }}">register here</a> </p>
+					</section>
+				</div>
 		</div>
 	</body>
 </html>
