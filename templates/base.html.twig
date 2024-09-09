@@ -6,7 +6,7 @@
 			{% block title %}prout
 			{% endblock %}
 		</title>
-		<link rel="icon" href="{{ asset('images/final.svg')}}">
+		<link rel="icon" href="{{ asset('images/final.svg') }}">
 		{% block stylesheets %}
 			<!-- Import Google Icon Font -->
 			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,64 +28,66 @@
 			{% block importmap %}{% endblock %}
 		{% endblock %}
 	</head>
-	<div class="d-flex flex-nowrap overflow-hidden">
-		<div class="d-flex flex-column flex-shrink-0 p-3 border border-danger" style="width: 280px;height: 100vh; overflow-y: auto;">
-			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-				<img src="{{ asset('images/logos/final.svg')}}" style="height: 10vh;">
-				<span class="fs-4">Plumify</span>
-			</a>
-			<hr>
-			<div class="categories">
-				<div class="category-title">Categories</div>
-				<ul class="nav nav-pills flex-column mb-auto">
-					<li class="nav-item">
-						<a href="#" class="nav-link" aria-current="page">
-							<i class="fa-solid fa-circle-exclamation" style="color: #b57cff;"></i>
-							Newest
-						</a>
-					</li>
-					<li>
-						<a href="#" class="nav-link ">
-							<i class="fa-solid fa-heart" style="color: #b57cff;"></i>
-							Most liked
-						</a>
-					</li>
-				</ul>
-			</div>
-			<hr>
+	<body>
+		<div class="d-flex flex-nowrap overflow-hidden">
+			<div class="d-flex flex-column flex-shrink-0 p-3 border border-danger" style="width: 280px; height: 100vh; overflow-y: auto;">
+				<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+					<img src="{{ asset('images/logos/final.svg') }}" style="height: 10vh;">
+					<span class="fs-4">Plumify</span>
+				</a>
+				<hr>
+				<div class="categories">
+					<div class="category-title">Categories</div>
+					<ul class="nav nav-pills flex-column mb-auto">
+						<li class="nav-item">
+							<a href="#" class="nav-link" aria-current="page">
+								<i class="fa-solid fa-circle-exclamation" style="color: #b57cff;"></i>
+								Newest
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link ">
+								<i class="fa-solid fa-heart" style="color: #b57cff;"></i>
+								Most liked
+							</a>
+						</li>
+					</ul>
+				</div>
+				<hr>
 
-        <div class="categories">
-            <div class="category-title">Genres</div>
-				<ul class="nav nav-pills flex-column mb-auto">
-                    {% for category in categories %}
-					<li class="nav-item">
-						<a href="#" class="nav-link " aria-current="page">
-                            {{category.name}}
-						</a>
-					</li>
-                    {% endfor %}
-					</div>
-				</ul>
-				<button class="btn mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories">
-					<i class="fa-solid fa-chevron-down"></i>
-					Voir plus
-				</button>
-			</div> 
-		
-
-		<div class="d-flex flex-column overflow-scroll w-100 p-3">
-			{# SEARCHBAR #}
-			<div class="search-container d-flex align-items-center mx-auto">
-				<input type="text" class="form-control search-input" placeholder="Search a book here...">
-				<button class="btn search-btn">
-					<i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-				</button>
+				<div class="categories">
+					<div class="category-title">Genres</div>
+					<ul class="nav nav-pills flex-column mb-auto">
+						{% for category in categories %}
+							<li class="nav-item">
+								<a href="#" class="nav-link " aria-current="page">
+									{{ category.name }}
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+					<button class="btn mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories">
+						<i class="fa-solid fa-chevron-down"></i>
+						Voir plus
+					</button>
+				</div>
 			</div>
 
-			{% block body %}{% endblock %}
+			<div
+				class="d-flex flex-column overflow-scroll w-100 p-3">
+				{# SEARCHBAR #}
+				<div class="search-container d-flex align-items-center mx-auto">
+					<form action="{{ path('book_search') }}" method="get" class="d-flex w-100">
+						<input type="text" name="query" class="form-control search-input" placeholder="Search a book here..." style="flex: 1;">
+						<button class="btn search-btn" type="submit" style="margin-left: 10px;">
+							<i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+						</button>
+					</form>
+				</div>
+
+				{% block body %}{% endblock %}
+			</div>
 		</div>
-	</div>
-
-	<div></div>
-</html></body></html>
+	</body>
+</html>
 

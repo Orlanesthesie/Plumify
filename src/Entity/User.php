@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Book;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -43,6 +46,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
+
+    /**
+     * @var Collection<int, Book>
+     */
+    #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'likedByUsers')]
+    private Collection $likedBooks;
+
+    public function __construct()
+    {
+        $this->likedBooks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -163,6 +177,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAddress(?string $address): static
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Book>
+     */
+    public function getLikedBooks(): Collection
+    {
+        return $this->likedBooks;
+    }
+
+    public function addLikedBook(Book $book): static
+    {
+        if (!$this->likedBooks->contains($book)) {
+            $this->likedBooks->add($book);
+            $book->addLikedByUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedBook(Book $book): static
+    {
+        if ($this->likedBooks->removeElement($book)) {
+            $book->removeLikedByUser($this);
+        }
 
         return $this;
     }

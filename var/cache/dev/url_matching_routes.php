@@ -18,6 +18,7 @@ return [
         '/import-json' => [[['_route' => 'import_json', '_controller' => 'App\\Controller\\ApiController::importJsonToDatabase'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\BookController::index'], null, null, null, false, false, null]],
         '/book' => [[['_route' => 'app_book', '_controller' => 'App\\Controller\\BookController::book'], null, null, null, false, false, null]],
+        '/search' => [[['_route' => 'book_search', '_controller' => 'App\\Controller\\BookController::search'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\RegistrationController::registration'], null, null, null, false, false, null]],
@@ -43,6 +44,10 @@ return [
                         .')'
                     .')'
                 .')'
+                .'|/book/([^/]++)(?'
+                    .'|(*:219)'
+                    .'|/like(*:232)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -53,8 +58,10 @@ return [
         148 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        191 => [
-            [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
+        191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+        219 => [[['_route' => 'book_show', '_controller' => 'App\\Controller\\BookController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        232 => [
+            [['_route' => 'book_like', '_controller' => 'App\\Controller\\BookController::like'], ['id'], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

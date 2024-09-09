@@ -46,6 +46,11 @@ class Author
         $this->books = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->firstname . ' ' . $this->lastname;    // Concaténation !
+    }
+
     public function getId(): ?int
     {
         return $this->id;

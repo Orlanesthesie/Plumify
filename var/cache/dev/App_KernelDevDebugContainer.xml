@@ -371,6 +371,30 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="ea.crud_controller"/>
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.3YFBJbt.App\Controller\Admin\AuthorCrudController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Admin\BookCrudController" class="App\Controller\Admin\BookCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="ea.crud_controller"/>
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.3YFBJbt.App\Controller\Admin\BookCrudController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="ea.crud_controller"/>
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.3YFBJbt.App\Controller\Admin\CategoryCrudController"/>
+      </call>
+    </service>
     <service id="App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" public="true" autowire="true" autoconfigure="true">
       <tag name="ea.dashboard_controller"/>
       <tag name="controller.service_arguments"/>
@@ -378,6 +402,22 @@
       <argument type="service" id="chartjs.builder"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.EjdkWEU.App\Controller\Admin\DashboardController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Admin\LoanCrudController" class="App\Controller\Admin\LoanCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="ea.crud_controller"/>
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.3YFBJbt.App\Controller\Admin\LoanCrudController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="ea.crud_controller"/>
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.3YFBJbt.App\Controller\Admin\UserCrudController"/>
       </call>
     </service>
     <service id="App\Controller\ApiController" class="App\Controller\ApiController" public="true" autowire="true" autoconfigure="true">
@@ -463,7 +503,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.IVQrN6s"/>
+      <argument type="service" id=".service_locator.HgDvlLh"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3419,7 +3459,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.IVQrN6s"/>
+      <argument type="service" id=".service_locator.HgDvlLh"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7584,10 +7624,30 @@
       <tag name="twig.extension"/>
       <argument type="service" id="stimulus.helper"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\AuthorCrudController" class="App\Controller\Admin\AuthorCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\BookCrudController" class="App\Controller\Admin\BookCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\BookCrudController" class="App\Controller\Admin\BookCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\BookCrudController" class="App\Controller\Admin\BookCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\BookCrudController" class="App\Controller\Admin\BookCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\LoanCrudController" class="App\Controller\Admin\LoanCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\LoanCrudController" class="App\Controller\Admin\LoanCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\LoanCrudController" class="App\Controller\Admin\LoanCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\LoanCrudController" class="App\Controller\Admin\LoanCrudController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ApiController" class="App\Controller\ApiController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ApiController" class="App\Controller\ApiController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ApiController" class="App\Controller\ApiController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8105,6 +8165,72 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.Nb584vp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="crud" type="service_closure" id=".errored..service_locator.Nb584vp.EasyCorp\Bundle\EasyAdminBundle\Config\Crud"/>
+      </argument>
+    </service>
+    <service id=".service_locator.wvbCcwL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="assets" type="service_closure" id=".errored..service_locator.wvbCcwL.EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
+      </argument>
+    </service>
+    <service id=".service_locator.UrOEf8r" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="actions" type="service_closure" id=".errored..service_locator.UrOEf8r.EasyCorp\Bundle\EasyAdminBundle\Config\Actions"/>
+      </argument>
+    </service>
+    <service id=".service_locator.kud45L1" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="filters" type="service_closure" id=".errored..service_locator.kud45L1.EasyCorp\Bundle\EasyAdminBundle\Config\Filters"/>
+      </argument>
+    </service>
+    <service id=".service_locator.t9B7cZ4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="context" type="service_closure" id=".errored..service_locator.t9B7cZ4.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext"/>
+      </argument>
+    </service>
+    <service id=".service_locator.jwjltq_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="batchActionDto" type="service_closure" id=".errored..service_locator.jwjltq_.EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto"/>
+        <argument key="context" type="service_closure" id=".errored..service_locator.jwjltq_.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext"/>
+      </argument>
+    </service>
+    <service id=".service_locator.yR6jqeD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityDto" type="service_closure" id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto"/>
+        <argument key="fields" type="service_closure" id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection"/>
+        <argument key="filters" type="service_closure" id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection"/>
+        <argument key="searchDto" type="service_closure" id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto"/>
+      </argument>
+    </service>
+    <service id=".service_locator.CsMkqUa" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.jG5xrFj" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="context" type="service_closure" id=".errored..service_locator.jG5xrFj.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext"/>
+        <argument key="entityDto" type="service_closure" id=".errored..service_locator.jG5xrFj.EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto"/>
+        <argument key="formOptions" type="service_closure" id=".errored..service_locator.jG5xrFj.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
+      </argument>
+    </service>
+    <service id=".service_locator.vMUOjiq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="responseParameters" type="service_closure" id=".errored..service_locator.vMUOjiq.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
+      </argument>
+    </service>
     <service id=".service_locator.t7nLwyX" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8125,6 +8251,27 @@
         <argument key="bookRepository" type="service_closure" id="App\Repository\BookRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.CBqZAGC" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="book" type="service_closure" id=".errored..service_locator.CBqZAGC.App\Entity\Book"/>
+        <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.LG7ntvO" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="book" type="service_closure" id=".errored..service_locator.LG7ntvO.App\Entity\Book"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.AHGni2Z" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
     <service id=".service_locator.rSTd.nA" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8138,21 +8285,237 @@
         <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
       </argument>
     </service>
-    <service id=".service_locator.IVQrN6s" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.HgDvlLh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\Admin\AuthorCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\BookCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController::batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\BookCrudController::configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\BookCrudController::configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\BookCrudController::configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\BookCrudController::configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\BookCrudController::configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\BookCrudController::createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\BookCrudController::createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController::delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController::deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\BookCrudController::detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController::edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController::index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController::new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController::persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\BookCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.t7nLwyX"/>
+        <argument key="App\Controller\Admin\LoanCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController::batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\LoanCrudController::configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\LoanCrudController::configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\LoanCrudController::configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\LoanCrudController::configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\LoanCrudController::configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\LoanCrudController::createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\LoanCrudController::createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController::delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController::deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\LoanCrudController::detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController::edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController::index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController::new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController::persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\LoanCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\UserCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController::batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\UserCrudController::configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\UserCrudController::configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\UserCrudController::configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\UserCrudController::configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\UserCrudController::configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\UserCrudController::createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\UserCrudController::createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController::delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController::deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\UserCrudController::detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController::edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController::index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController::new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\BookController::book" type="service_closure" id=".service_locator.E86grY4"/>
         <argument key="App\Controller\BookController::index" type="service_closure" id=".service_locator.sA2VAj7"/>
+        <argument key="App\Controller\BookController::like" type="service_closure" id=".service_locator.LG7ntvO"/>
+        <argument key="App\Controller\BookController::search" type="service_closure" id=".service_locator.AHGni2Z"/>
+        <argument key="App\Controller\BookController::show" type="service_closure" id=".service_locator.CBqZAGC"/>
         <argument key="App\Controller\LoginController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\RegistrationController::registration" type="service_closure" id=".service_locator.ESgEUJd"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\Admin\AuthorCrudController:autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\AuthorCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\BookCrudController:autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController:batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\BookCrudController:configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\BookCrudController:configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\BookCrudController:configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\BookCrudController:configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\BookCrudController:configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\BookCrudController:createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\BookCrudController:createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\BookCrudController:delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController:deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\BookCrudController:detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController:edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController:index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController:new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController:persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\BookCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\BookCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\CategoryCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\DashboardController:configureUserMenu" type="service_closure" id=".service_locator.t7nLwyX"/>
+        <argument key="App\Controller\Admin\LoanCrudController:autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController:batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\LoanCrudController:configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\LoanCrudController:configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\LoanCrudController:configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\LoanCrudController:configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\LoanCrudController:configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\LoanCrudController:createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\LoanCrudController:createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\LoanCrudController:delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController:deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\LoanCrudController:detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController:edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController:index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController:new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController:persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\LoanCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\LoanCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\UserCrudController:autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController:batchDelete" type="service_closure" id=".service_locator.jwjltq_"/>
+        <argument key="App\Controller\Admin\UserCrudController:configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\UserCrudController:configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\UserCrudController:configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\UserCrudController:configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\UserCrudController:configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\UserCrudController:createEditForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.yR6jqeD"/>
+        <argument key="App\Controller\Admin\UserCrudController:createNewForm" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.jG5xrFj"/>
+        <argument key="App\Controller\Admin\UserCrudController:delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController:deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\UserCrudController:detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController:edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController:index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController:new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\BookController:book" type="service_closure" id=".service_locator.E86grY4"/>
         <argument key="App\Controller\BookController:index" type="service_closure" id=".service_locator.sA2VAj7"/>
+        <argument key="App\Controller\BookController:like" type="service_closure" id=".service_locator.LG7ntvO"/>
+        <argument key="App\Controller\BookController:search" type="service_closure" id=".service_locator.AHGni2Z"/>
+        <argument key="App\Controller\BookController:show" type="service_closure" id=".service_locator.CBqZAGC"/>
         <argument key="App\Controller\LoginController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\RegistrationController:registration" type="service_closure" id=".service_locator.ESgEUJd"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -8680,10 +9043,34 @@
       </argument>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry">
-      <argument type="collection"/>
-      <argument type="collection"/>
-      <argument type="collection"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="App\Controller\Admin\AuthorCrudController">App\Entity\Author</argument>
+        <argument key="App\Controller\Admin\BookCrudController">App\Entity\Book</argument>
+        <argument key="App\Controller\Admin\CategoryCrudController">App\Entity\Category</argument>
+        <argument key="App\Controller\Admin\LoanCrudController">App\Entity\Loan</argument>
+        <argument key="App\Controller\Admin\UserCrudController">App\Entity\User</argument>
+      </argument>
+      <argument type="collection">
+        <argument key="App\Controller\Admin\AuthorCrudController">7d63cf9</argument>
+        <argument key="App\Controller\Admin\BookCrudController">77f0227</argument>
+        <argument key="App\Controller\Admin\CategoryCrudController">4c84687</argument>
+        <argument key="App\Controller\Admin\LoanCrudController">c16bf61</argument>
+        <argument key="App\Controller\Admin\UserCrudController">d8cfa42</argument>
+      </argument>
+      <argument type="collection">
+        <argument key="App\Entity\Author">App\Controller\Admin\AuthorCrudController</argument>
+        <argument key="App\Entity\Book">App\Controller\Admin\BookCrudController</argument>
+        <argument key="App\Entity\Category">App\Controller\Admin\CategoryCrudController</argument>
+        <argument key="App\Entity\Loan">App\Controller\Admin\LoanCrudController</argument>
+        <argument key="App\Entity\User">App\Controller\Admin\UserCrudController</argument>
+      </argument>
+      <argument type="collection">
+        <argument key="7d63cf9">App\Controller\Admin\AuthorCrudController</argument>
+        <argument key="77f0227">App\Controller\Admin\BookCrudController</argument>
+        <argument key="4c84687">App\Controller\Admin\CategoryCrudController</argument>
+        <argument key="c16bf61">App\Controller\Admin\LoanCrudController</argument>
+        <argument key="d8cfa42">App\Controller\Admin\UserCrudController</argument>
+      </argument>
     </service>
     <service id=".service_locator.yY.p4P7" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8797,6 +9184,53 @@
         <argument>0</argument>
       </call>
     </service>
+    <service id=".service_locator.3YFBJbt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Factory\ActionFactory" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Factory\ActionFactory" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Factory\ControllerFactory" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Factory\ControllerFactory" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Factory\EntityFactory" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Factory\EntityFactory" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Factory\FilterFactory" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Factory\FilterFactory" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Factory\FormFactory" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Factory\FormFactory" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Factory\PaginatorFactory" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Factory\PaginatorFactory" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityUpdater" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityUpdater" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Provider\FieldProvider" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Provider\FieldProvider" on-invalid="ignore"/>
+        <argument key="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator" on-invalid="ignore"/>
+        <argument key="doctrine" type="service_closure" id="doctrine" on-invalid="ignore"/>
+        <argument key="event_dispatcher" type="service_closure" id="debug.event_dispatcher" on-invalid="ignore"/>
+        <argument key="form.factory" type="service_closure" id="form.factory" on-invalid="ignore"/>
+        <argument key="http_kernel" type="service_closure" id="http_kernel" on-invalid="ignore"/>
+        <argument key="parameter_bag" type="service_closure" id="parameter_bag" on-invalid="ignore"/>
+        <argument key="request_stack" type="service_closure" id="request_stack" on-invalid="ignore"/>
+        <argument key="router" type="service_closure" id="router.default" on-invalid="ignore"/>
+        <argument key="security.authorization_checker" type="service_closure" id="security.authorization_checker" on-invalid="ignore"/>
+        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.token_manager" on-invalid="ignore"/>
+        <argument key="security.token_storage" type="service_closure" id="security.token_storage" on-invalid="ignore"/>
+        <argument key="serializer" type="service_closure" id="debug.serializer" on-invalid="ignore"/>
+        <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
+        <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
+      </argument>
+    </service>
+    <service id=".service_locator.3YFBJbt.App\Controller\Admin\AuthorCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\AuthorCrudController"/>
+      <argument>App\Controller\Admin\AuthorCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.3YFBJbt" method="withContext"/>
+    </service>
+    <service id=".service_locator.3YFBJbt.App\Controller\Admin\BookCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\BookCrudController"/>
+      <argument>App\Controller\Admin\BookCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.3YFBJbt" method="withContext"/>
+    </service>
+    <service id=".service_locator.3YFBJbt.App\Controller\Admin\CategoryCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\CategoryCrudController"/>
+      <argument>App\Controller\Admin\CategoryCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.3YFBJbt" method="withContext"/>
+    </service>
     <service id=".service_locator.EjdkWEU" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8819,6 +9253,18 @@
       <argument>App\Controller\Admin\DashboardController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.EjdkWEU" method="withContext"/>
+    </service>
+    <service id=".service_locator.3YFBJbt.App\Controller\Admin\LoanCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\LoanCrudController"/>
+      <argument>App\Controller\Admin\LoanCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.3YFBJbt" method="withContext"/>
+    </service>
+    <service id=".service_locator.3YFBJbt.App\Controller\Admin\UserCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\UserCrudController"/>
+      <argument>App\Controller\Admin\UserCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.3YFBJbt" method="withContext"/>
     </service>
     <service id=".service_locator.O2p6Lk7" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9036,7 +9482,12 @@
       <call method="allowControllers">
         <argument type="collection">
           <argument>App\Kernel</argument>
+          <argument>App\Controller\Admin\AuthorCrudController</argument>
+          <argument>App\Controller\Admin\BookCrudController</argument>
+          <argument>App\Controller\Admin\CategoryCrudController</argument>
           <argument>App\Controller\Admin\DashboardController</argument>
+          <argument>App\Controller\Admin\LoanCrudController</argument>
+          <argument>App\Controller\Admin\UserCrudController</argument>
           <argument>App\Controller\ApiController</argument>
           <argument>App\Controller\BookController</argument>
           <argument>App\Controller\LoginController</argument>
@@ -9245,8 +9696,59 @@
     <service id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.y4_Zrx.&quot;: it needs an instance of &quot;Symfony\Component\Config\Loader\LoaderInterface&quot; but this type has been excluded from autowiring."/>
     </service>
+    <service id=".errored..service_locator.Nb584vp.EasyCorp\Bundle\EasyAdminBundle\Config\Crud" class="EasyCorp\Bundle\EasyAdminBundle\Config\Crud">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.Nb584vp&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Config\Crud&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.wvbCcwL.EasyCorp\Bundle\EasyAdminBundle\Config\Assets" class="EasyCorp\Bundle\EasyAdminBundle\Config\Assets">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.wvbCcwL&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Config\Assets&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.UrOEf8r.EasyCorp\Bundle\EasyAdminBundle\Config\Actions" class="EasyCorp\Bundle\EasyAdminBundle\Config\Actions">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.UrOEf8r&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Config\Actions&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.kud45L1.EasyCorp\Bundle\EasyAdminBundle\Config\Filters" class="EasyCorp\Bundle\EasyAdminBundle\Config\Filters">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.kud45L1&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Config\Filters&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.t9B7cZ4.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext" class="EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.t9B7cZ4&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.jwjltq_.EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.jwjltq_&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.jwjltq_.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext" class="EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.jwjltq_&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.yR6jqeD&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection" class="EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.yR6jqeD&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection" class="EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.yR6jqeD&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.yR6jqeD.EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.yR6jqeD&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.jG5xrFj.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext" class="EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.jG5xrFj&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.jG5xrFj.EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.jG5xrFj&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.jG5xrFj.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.jG5xrFj&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore&quot; but no such service exists."/>
+    </service>
+    <service id=".errored..service_locator.vMUOjiq.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.vMUOjiq&quot;: it references class &quot;EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore&quot; but no such service exists."/>
+    </service>
     <service id=".errored..service_locator.t7nLwyX.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.t7nLwyX&quot;: it references interface &quot;Symfony\Component\Security\Core\User\UserInterface&quot; but no such service exists. Did you create a class that implements this interface?"/>
+    </service>
+    <service id=".errored..service_locator.CBqZAGC.App\Entity\Book" class="App\Entity\Book">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.CBqZAGC&quot;: it needs an instance of &quot;App\Entity\Book&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.LG7ntvO.App\Entity\Book" class="App\Entity\Book">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.LG7ntvO&quot;: it needs an instance of &quot;App\Entity\Book&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -10457,7 +10959,7 @@
     <service id="Symfony\UX\Chartjs\Builder\ChartBuilderInterface" alias="chartjs.builder"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.IVQrN6s"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.HgDvlLh"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10482,13 +10984,18 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.Mo0FXEU" alias="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     <service id=".service_locator.bJ.4HC5" alias=".service_locator.w7.f4fT"/>
+    <service id=".service_locator.twrFs.m" alias=".service_locator.jwjltq_"/>
+    <service id=".service_locator.lng3o3t" alias=".service_locator.yR6jqeD"/>
+    <service id=".service_locator.Lazlz4J" alias=".service_locator.jG5xrFj"/>
     <service id=".service_locator.UMTOIg_" alias=".service_locator.sA2VAj7"/>
+    <service id=".service_locator.e8iMPwg" alias=".service_locator.AHGni2Z"/>
     <service id=".service_locator.qrNhk2c" alias=".service_locator.ESgEUJd"/>
-    <service id=".service_locator.3pC3RLQ" alias=".service_locator.IVQrN6s"/>
+    <service id=".service_locator.eI9pBNr" alias=".service_locator.HgDvlLh"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.3l1LkXo" alias=".service_locator.ZWFYuib"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
+    <service id=".service_locator.ZP92gqz" alias=".service_locator.3YFBJbt"/>
     <service id=".service_locator.yTMp7CA" alias=".service_locator.EjdkWEU"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
     <service id="validator" alias="debug.validator"/>
@@ -10511,11 +11018,25 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
+    <service id=".service_locator.b4Agcrj" alias=".service_locator.Nb584vp"/>
+    <service id=".service_locator.rr8g6a9" alias=".service_locator.wvbCcwL"/>
+    <service id=".service_locator.1aiqmLQ" alias=".service_locator.UrOEf8r"/>
+    <service id=".service_locator.A1CG8fu" alias=".service_locator.kud45L1"/>
+    <service id=".service_locator.AMJoP_V" alias=".service_locator.t9B7cZ4"/>
+    <service id=".service_locator.bznA3Sd" alias=".service_locator.jwjltq_"/>
+    <service id=".service_locator.4MX1q0S" alias=".service_locator.yR6jqeD"/>
+    <service id=".service_locator.9e2t_lq" alias=".service_locator.CsMkqUa"/>
+    <service id=".service_locator.dMQbl2t" alias=".service_locator.jG5xrFj"/>
+    <service id=".service_locator.z_typH5" alias=".service_locator.vMUOjiq"/>
     <service id=".service_locator.uoBNKjJ" alias=".service_locator.t7nLwyX"/>
     <service id=".service_locator.mnJ_mTn" alias=".service_locator.sA2VAj7"/>
     <service id=".service_locator.Zjp7QLN" alias=".service_locator.E86grY4"/>
+    <service id=".service_locator.F4YksJZ" alias=".service_locator.CBqZAGC"/>
+    <service id=".service_locator.XOwqkJD" alias=".service_locator.LG7ntvO"/>
+    <service id=".service_locator.7nlB0nd" alias=".service_locator.AHGni2Z"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.GEFQPA3" alias=".service_locator.ESgEUJd"/>
+    <service id=".service_locator.Tvu22ko" alias=".service_locator.3YFBJbt"/>
     <service id=".service_locator.8dJpptH" alias=".service_locator.EjdkWEU"/>
     <service id=".service_locator.Q1z.f9O" alias=".service_locator.O2p6Lk7"/>
     <service id=".service_locator.k22e_lh" alias=".service_locator.BSVJ08h"/>

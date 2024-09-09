@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
@@ -47,9 +48,16 @@ class Book
     #[ORM\Column(type: Types::TEXT)]
     private ?string $summary = null;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likedBooks')]
+    private Collection $likedByUsers;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
+        $this->likedByUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,7 +76,6 @@ class Book
 
         return $this;
     }
-
 
     public function isAvailable(): ?bool
     {
@@ -179,6 +186,30 @@ class Book
     public function setSummary(string $summary): static
     {
         $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedByUsers(): Collection
+    {
+        return $this->likedByUsers;
+    }
+
+    public function addLikedByUser(User $user): static
+    {
+        if (!$this->likedByUsers->contains($user)) {
+            $this->likedByUsers->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedByUser(User $user): static
+    {
+        $this->likedByUsers->removeElement($user);
 
         return $this;
     }

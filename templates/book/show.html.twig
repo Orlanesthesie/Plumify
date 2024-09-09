@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ book.title }}
+{% endblock %}
+
+{% block body %}
+	<h3>{{ book.title }}</h3>
+	<p>{{ book.description }}</p>
+
+	<p>Année de publication :
+		{{ book.publicationYear }}</p>
+	<p>Auteur :
+		{{ book.author.firstname }}
+		{{ book.author.lastname }}</p>
+
+	<!-- Ajouter un bouton like -->
+	<button data-book-id="{{ book.id }}" class="like-button">
+		{{ book.getLikedByUsers().contains(app.user) ? 'Unlike' : 'Like' }}
+	</button>
+
+	<!-- Afficher le nombre de likes -->
+	<p id="likes-count">{{ book.getLikedByUsers()|length }}
+		likes</p>
+
+	<!-- Zone de script pour AJAX -->
+	<script>
+		document.querySelector('.like-button').addEventListener('click', function () {
+const bookId = this.getAttribute('data-book-id');
+
+fetch (`/book/${bookId}/like`, {
+method: 'POST',
+headers: {
+'X-Requested-With': 'XMLHttpRequest',
+'Content-Type': 'application/json'
+}
+}).then(response => {
+if (!response.ok) {
+throw new Error('Erreur lors de la requête.');
+}
+return response.json();
+}).then(data => { // Mettre à jour le texte du bouton entre 'Like' et 'Unlike'
+this.textContent = this.textContent === 'Like' ? 'Unlike' : 'Like';
+
+// Mettre à jour le nombre de likes en temps réel
+document.getElementById('likes-count').textContent = `${
+data.likes
+} likes`;
+}).catch(error => console.error('Erreur:', error));
+});
+	</script>
+
+{% endblock %}
+

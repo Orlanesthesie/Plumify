@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de recherche
+{% endblock %}
+
+{% block body %}
+	<h2>Résultats de recherche pour "{{ searchTerm }}"</h2>
+
+	{% if books is empty %}
+		<p>Aucun livre trouvé.</p>
+	{% else %}
+		<ul>
+			{% for book in books %}
+				<li>
+					<h3>{{ book.title }}</h3>
+					<p>{{ book.description }}</p>
+					<p>
+						<strong>Auteur :</strong>
+						{{ book.author.firstname }}
+						{{ book.author.lastname }}</p>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock %}
+
