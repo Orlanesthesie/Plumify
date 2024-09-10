@@ -1,26 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Résultats de recherche
-{% endblock %}
+{% block title %}Search Results{% endblock %}
 
 {% block body %}
-	<h2>Résultats de recherche pour "{{ searchTerm }}"</h2>
+	<h2>Results for "{{ searchTerm }}"</h2>
 
 	{% if books is empty %}
 		<p>Aucun livre trouvé.</p>
 	{% else %}
-		<ul>
-			{% for book in books %}
-				<li>
-					<h3>{{ book.title }}</h3>
-					<p>{{ book.description }}</p>
-					<p>
-						<strong>Auteur :</strong>
-						{{ book.author.firstname }}
-						{{ book.author.lastname }}</p>
-				</li>
-			{% endfor %}
-		</ul>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th></th>
+					<th>Category</th>
+					<th>Publication Year</th>
+					<th>Likes</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for book in books %}
+					<tr>
+						<td>
+							<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" alt="{{ book.title }}" style="width: 50px; height: 75px;">
+						</td>
+						<td>
+							<strong>{{ book.title }}</strong><br>
+							<small>{{ book.author.firstname }} {{ book.author.lastname }}</small>
+						</td>
+
+						<td>
+							{% for category in book.category %}
+								{{ category.name }}{% if not loop.last %}, {% endif %}
+							{% endfor %}
+						</td>
+						<td>{{ book.publicationYear }}</td>
+						<td>
+							<i class="fa fa-heart" style="color: #b57cff;"></i> {{ book.likes|default(0) }}
+						</td>
+						
+						<!-- Bouton de prévisualisation -->
+						<td>
+							<a href="{{ path('book_show', { id: book.id }) }}" class="btn btn-outline-lavender">Preview</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	{% endif %}
 {% endblock %}
-

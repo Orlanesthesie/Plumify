@@ -23,9 +23,13 @@ class BookController extends AbstractController
         // dd($newBooks);
         $categories = $categoryRepository->findAll();
 
+        $randomBooks = $bookRepository->findRandomBooks(5);
+        // dd($randomBooks);
+
         return $this->render('index.html.twig', [
             'categories' => $categories,
-            'newBooks' => $newBooks
+            'newBooks' => $newBooks,
+            'randomBooks' => $randomBooks
         ]);
     }
 
@@ -40,12 +44,15 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/{id}', name: 'book_show', methods: ['GET'])]
-    public function show(Book $book, CategoryRepository $categoryRepository): Response
+    public function show(Book $book, CategoryRepository $categoryRepository, BookRepository $bookRepository): Response
     {
         $categories = $categoryRepository->findAll();
+        $randomBooks = $bookRepository->findRandomBooks(5);
+
         return $this->render('book/show.html.twig', [
             'categories' => $categories,
             'book' => $book,
+            'randomBooks' => $randomBooks
         ]);
     }
 
@@ -75,10 +82,12 @@ class BookController extends AbstractController
     }
 
     #[Route('/search', name: 'book_search', methods: ['GET', 'POST'])]
-    public function search(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
+    public function search(Request $request, EntityManagerInterface $entityManager, BookRepository $bookRepository, CategoryRepository $categoryRepository): Response
     {
         $searchTerm = $request->query->get('query');  // Récupérer la recherche de l'utilisateur
         $categories = $categoryRepository->findAll();
+        $randomBooks = $bookRepository->findRandomBooks(5);
+
 
         // Rechercher dans la base de données par titre
         $books = $entityManager->getRepository(Book::class)->createQueryBuilder('b')
@@ -90,7 +99,8 @@ class BookController extends AbstractController
         return $this->render('search/search_results.html.twig', [
             'categories' => $categories,
             'books' => $books,
-            'searchTerm' => $searchTerm
+            'searchTerm' => $searchTerm,
+            'randomBooks' => $randomBooks
         ]);
     }
 }

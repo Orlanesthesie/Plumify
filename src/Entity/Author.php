@@ -35,10 +35,10 @@ class Author
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Book::class)]
     private Collection $books;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $birthdate = null;
+    #[ORM\Column]
+    private ?int $birthyear = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
     public function __construct()
@@ -122,14 +122,14 @@ class Author
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getBirthyear(): ?int
     {
-        return $this->birthdate;
+        return $this->birthyear;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): static
+    public function setBirthyear(int $birthyear): static
     {
-        $this->birthdate = $birthdate;
+        $this->birthyear = $birthyear;
 
         return $this;
     }

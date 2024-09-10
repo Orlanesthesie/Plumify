@@ -1,11 +1,9 @@
-{% block title %}Log in!{% endblock %}
-
 {% block body %}
     {% if error %}
          <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div> 
     {% endif %}
 
-<h2>Login</h2>
+<h2>Welcome to the Login Page</h2>
 
     <form action="{{ path('app_login') }}" method="post">
         <label for="username">Email:</label>
@@ -20,7 +18,8 @@
         <button type="submit">login</button>
     </form>
 
-    <a href="{{path('app_registration')}}">register</a>
-    <a href="{{path('app_home')}}">home</a>
+    <p>You d'ont have an account ? <a href="{{path('app_registration')}}">Click here</a></p>
+	<button onclick="window.history.back()" class="btn btn-secondary mt-3">Retour</button>
+
 
 {% endblock %}
