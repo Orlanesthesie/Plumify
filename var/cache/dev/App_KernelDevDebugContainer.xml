@@ -430,6 +430,13 @@
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\BookController"/>
       </call>
     </service>
+    <service id="App\Controller\LoanController" class="App\Controller\LoanController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\LoanController"/>
+      </call>
+    </service>
     <service id="App\Controller\LoginController" class="App\Controller\LoginController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -497,7 +504,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.TIzpYuf"/>
+      <argument type="service" id=".service_locator.X2AwACP"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3450,7 +3457,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.TIzpYuf"/>
+      <argument type="service" id=".service_locator.X2AwACP"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7637,6 +7644,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BookController" class="App\Controller\BookController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BookController" class="App\Controller\BookController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\BookController" class="App\Controller\BookController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LoanController" class="App\Controller\LoanController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LoanController" class="App\Controller\LoanController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\LoanController" class="App\Controller\LoanController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8257,6 +8267,23 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
+    <service id=".service_locator.l5dz8g6" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="bookRepository" type="service_closure" id="App\Repository\BookRepository"/>
+        <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.DRvW2WI" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="bookRepository" type="service_closure" id="App\Repository\BookRepository"/>
+        <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+        <argument key="loanRepository" type="service_closure" id="App\Repository\LoanRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.rSTd.nA" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8270,7 +8297,7 @@
         <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
       </argument>
     </service>
-    <service id=".service_locator.TIzpYuf" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.X2AwACP" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AuthorCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
@@ -8384,6 +8411,8 @@
         <argument key="App\Controller\BookController::like" type="service_closure" id=".service_locator.LG7ntvO"/>
         <argument key="App\Controller\BookController::search" type="service_closure" id=".service_locator.3UJ2Lxl"/>
         <argument key="App\Controller\BookController::show" type="service_closure" id=".service_locator.lwB6yZ7"/>
+        <argument key="App\Controller\LoanController::listLoans" type="service_closure" id=".service_locator.DRvW2WI"/>
+        <argument key="App\Controller\LoanController::newLoan" type="service_closure" id=".service_locator.l5dz8g6"/>
         <argument key="App\Controller\LoginController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\RegistrationController::registration" type="service_closure" id=".service_locator.ESgEUJd"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -8501,6 +8530,8 @@
         <argument key="App\Controller\BookController:like" type="service_closure" id=".service_locator.LG7ntvO"/>
         <argument key="App\Controller\BookController:search" type="service_closure" id=".service_locator.3UJ2Lxl"/>
         <argument key="App\Controller\BookController:show" type="service_closure" id=".service_locator.lwB6yZ7"/>
+        <argument key="App\Controller\LoanController:listLoans" type="service_closure" id=".service_locator.DRvW2WI"/>
+        <argument key="App\Controller\LoanController:newLoan" type="service_closure" id=".service_locator.l5dz8g6"/>
         <argument key="App\Controller\LoginController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\RegistrationController:registration" type="service_closure" id=".service_locator.ESgEUJd"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -9279,6 +9310,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\LoanController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\LoanController"/>
+      <argument>App\Controller\LoanController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
     <service id=".service_locator.O2p6Lk7.App\Controller\LoginController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\LoginController"/>
       <argument>App\Controller\LoginController</argument>
@@ -9475,6 +9512,7 @@
           <argument>App\Controller\Admin\UserCrudController</argument>
           <argument>App\Controller\ApiController</argument>
           <argument>App\Controller\BookController</argument>
+          <argument>App\Controller\LoanController</argument>
           <argument>App\Controller\LoginController</argument>
           <argument>App\Controller\RegistrationController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
@@ -10943,7 +10981,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.TIzpYuf"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.X2AwACP"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10974,8 +11012,10 @@
     <service id=".service_locator.UMTOIg_" alias=".service_locator.sA2VAj7"/>
     <service id=".service_locator.h2LEZHx" alias=".service_locator.lwB6yZ7"/>
     <service id=".service_locator.PUZ6PHD" alias=".service_locator.3UJ2Lxl"/>
+    <service id=".service_locator.upX8Nfs" alias=".service_locator.l5dz8g6"/>
+    <service id=".service_locator.3rIhDkA" alias=".service_locator.DRvW2WI"/>
     <service id=".service_locator.qrNhk2c" alias=".service_locator.ESgEUJd"/>
-    <service id=".service_locator.RXIPY__" alias=".service_locator.TIzpYuf"/>
+    <service id=".service_locator.gFoGd_Y" alias=".service_locator.X2AwACP"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.3l1LkXo" alias=".service_locator.ZWFYuib"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
@@ -11019,6 +11059,8 @@
     <service id=".service_locator.LJ.ZEkS" alias=".service_locator.lwB6yZ7"/>
     <service id=".service_locator.XOwqkJD" alias=".service_locator.LG7ntvO"/>
     <service id=".service_locator.DFZRn9v" alias=".service_locator.3UJ2Lxl"/>
+    <service id=".service_locator.oSLH0zN" alias=".service_locator.l5dz8g6"/>
+    <service id=".service_locator.ElRgPBi" alias=".service_locator.DRvW2WI"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.GEFQPA3" alias=".service_locator.ESgEUJd"/>
     <service id=".service_locator.Tvu22ko" alias=".service_locator.3YFBJbt"/>

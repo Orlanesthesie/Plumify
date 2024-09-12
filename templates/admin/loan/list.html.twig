@@ -1,0 +1,81 @@
+{# templates/admin/loan/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Active Loans{% endblock %}
+
+{% block body %}
+    <h2>List of Active Loans</h2>
+
+    <a href="{{ path('admin_loan_new')}}"> add </a>
+
+    {% if activeloans is empty %}
+        <p>No active loans at the moment.</p>
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Borrower</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Return Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for loan in activeloans %}
+                    <tr>
+                        <td>{{ loan.book.title }}</td>
+                        <td>{{ loan.user.firstname }} {{ loan.user.lastname }}</td>
+                        <td>{{ loan.startDate|date('Y-m-d') }}</td>
+                        <td>{{ loan.endDate|date('Y-m-d') }}</td>
+                        <td>{{ loan.returnDate ? loan.returnDate|date('Y-m-d') : 'Not returned yet' }}</td>
+                        <td>
+                            <!-- Button to mark the loan as returned -->
+                            {# <form action="{{ path('admin_loan_return', { 'id': loan.id }) }}" method="post"> #}
+                                <button type="submit" class="btn btn-success">Mark as Returned</button>
+                            {# </form> #}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <h2>List of Past Loans</h2>
+    {% if pastloans is empty %}
+        <p>No past loans at the moment.</p>
+    {% else %}
+    <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Borrower</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Return Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for loan in pastloans %}
+                    <tr>
+                        <td>{{ loan.book.title }}</td>
+                        <td>{{ loan.user.firstname }} {{ loan.user.lastname }}</td>
+                        <td>{{ loan.startDate|date('Y-m-d') }}</td>
+                        <td>{{ loan.endDate|date('Y-m-d') }}</td>
+                        <td>{{ loan.returnDate ? loan.returnDate|date('Y-m-d') : 'Not returned yet' }}</td>
+                        <td>
+                            <!-- Button to mark the loan as returned -->
+                            {# <form action="{{ path('admin_loan_return', { 'id': loan.id }) }}" method="post"> #}
+                                <button type="submit" class="btn btn-success">Mark as Returned</button>
+                            {# </form> #}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+{% endblock %}

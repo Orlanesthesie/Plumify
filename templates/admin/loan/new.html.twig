@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Loan and return{% endblock %}
+
+{% block body %}
+    <h2>New Loan</h2>
+
+    <form action="{{ path('admin_loan_new') }}" method="post">
+        <div class="form-group">
+            <label for="book">Select a book</label>
+            <select id="book" name="book" class="form-control select2" required>
+                <option value="" disabled selected></option>
+                {% for book in availableBooks %}
+                    <option value="{{ book.id }}">{{ book.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="user">Slect a user</label>
+            <select id="user" name="user" class="form-control select2" required>
+                <option value="" disabled selected></option>
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.firstname }} {{ user.lastname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Create the Loan</button>
+    </form>
+{% endblock %}

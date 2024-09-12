@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Author;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -22,9 +23,11 @@ class AuthorCrudController extends AbstractCrudController
         return [
             TextField::new('Firstname'),
             TextField::new('Lastname'),
-            TextField::new('Image'),
             IntegerField::new('Birthyear'),
             TextareaField::new('Biography'),
+            ImageField::new('Image')
+                ->setUploadDir('public/assets/images/books')
+                ->setBasePath('/assets/images/books'),
         ];
     }
     

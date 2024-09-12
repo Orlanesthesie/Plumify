@@ -19,6 +19,8 @@ return [
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\BookController::index'], null, null, null, false, false, null]],
         '/book' => [[['_route' => 'app_book', '_controller' => 'App\\Controller\\BookController::book'], null, null, null, false, false, null]],
         '/search' => [[['_route' => 'book_search', '_controller' => 'App\\Controller\\BookController::search'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/admin/loan/new' => [[['_route' => 'admin_loan_new', '_controller' => 'App\\Controller\\LoanController::newLoan'], null, null, null, false, false, null]],
+        '/admin/loan/list' => [[['_route' => 'admin_loan_list', '_controller' => 'App\\Controller\\LoanController::listLoans'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\RegistrationController::registration'], null, null, null, false, false, null]],
