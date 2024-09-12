@@ -14,10 +14,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class LoanController extends AbstractController
 {
+    private $csrfTokenManager;
+
+    public function __construct(CsrfTokenManagerInterface $csrfTokenManager)
+    {
+        $this->csrfTokenManager = $csrfTokenManager;
+    }
+
     #[Route('/admin/loan/new', name: 'admin_loan_new')]
     #[IsGranted('ROLE_ADMIN')] // Seuls les admins peuvent accéder à cette route
     public function newLoan(BookRepository $bookRepository, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
@@ -72,21 +80,21 @@ class LoanController extends AbstractController
     }
 
     #[Route('/admin/loan/list', name: 'admin_loan_list')]
-    #[IsGranted('ROLE_ADMIN')] // Seuls les admins peuvent accéder à cette route
+    #[IsGranted('ROLE_ADMIN')] 
     public function listLoans(LoanRepository $loanRepository, BookRepository $bookRepository, CategoryRepository $categoryRepository, Request $request): Response
     {
         $searchTerm = $request->query->get('query');  // Récupérer la recherche de l'utilisateur
         $categories = $categoryRepository->findAll();
         $randomBooks = $bookRepository->findRandomBooks(5);
 
-        // Récupérer tous les prêts en cours (où endDate est null)
+        // Récupérer tous les prêts en cours (où returnDate est null)
         $activeloans = $loanRepository->findBy(['returnDate' => null]);
 
         // Récupérer tous les prêts terminés (où returnDate n'est pas null)
-        $pastloans = $loanRepository->findBy(['returnDate' => ['IS NOT NULL']]);
+        $pastloans = $loanRepository->findCompletedLoans();
 
         // $loans = $loanRepository->findAll();
-        // dd($loans);
+        // dd($pastloans);
 
         return $this->render('admin/loan/list.html.twig', [
             'activeloans' => $activeloans,
@@ -95,5 +103,23 @@ class LoanController extends AbstractController
             'searchTerm' => $searchTerm,
             'randomBooks' => $randomBooks
         ]);
+    }
+
+    #[Route('/admin/loan/{id}/return', name: 'admin_loan_return', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function returnLoan(Loan $loan, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        // Définir la date de retour sur la date actuelle
+        $loan->setReturnDate(new \DateTime());
+
+        // Rendre le livre disponible à nouveau
+        $loan->getBook()->setAvailable(true);
+
+        // Sauvegarder les modifications dans la base de données
+        $entityManager->persist($loan);
+        $entityManager->flush();
+
+        // Rediriger vers la liste des prêts en cours
+        return $this->redirectToRoute('admin_loan_list');
     }
 }

@@ -33,9 +33,9 @@
                         <td>{{ loan.returnDate ? loan.returnDate|date('Y-m-d') : 'Not returned yet' }}</td>
                         <td>
                             <!-- Button to mark the loan as returned -->
-                            {# <form action="{{ path('admin_loan_return', { 'id': loan.id }) }}" method="post"> #}
+                            <form action="{{ path('admin_loan_return', { 'id': loan.id }) }}" method="post">
                                 <button type="submit" class="btn btn-success">Mark as Returned</button>
-                            {# </form> #}
+                            </form>
                         </td>
                     </tr>
                 {% endfor %}
@@ -55,27 +55,21 @@
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Return Date</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {% for loan in pastloans %}
+                {% for pastloan in pastloans %}
                     <tr>
-                        <td>{{ loan.book.title }}</td>
-                        <td>{{ loan.user.firstname }} {{ loan.user.lastname }}</td>
-                        <td>{{ loan.startDate|date('Y-m-d') }}</td>
-                        <td>{{ loan.endDate|date('Y-m-d') }}</td>
-                        <td>{{ loan.returnDate ? loan.returnDate|date('Y-m-d') : 'Not returned yet' }}</td>
-                        <td>
-                            <!-- Button to mark the loan as returned -->
-                            {# <form action="{{ path('admin_loan_return', { 'id': loan.id }) }}" method="post"> #}
-                                <button type="submit" class="btn btn-success">Mark as Returned</button>
-                            {# </form> #}
-                        </td>
+                        <td>{{ pastloan.book.title }}</td>
+                        <td>{{ pastloan.user.firstname }} {{ pastloan.user.lastname }}</td>
+                        <td>{{ pastloan.startDate|date('Y-m-d') }}</td>
+                        <td>{{ pastloan.endDate|date('Y-m-d') }}</td>
+                        <td>{{ pastloan.returnDate|date('Y-m-d') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        {% endif %}
+    {% endif %}
+        
 
 {% endblock %}

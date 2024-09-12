@@ -40,4 +40,13 @@ class LoanRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    // Méthode personnalisée pour récupérer les prêts terminés
+    public function findCompletedLoans()
+    {
+        return $this->createQueryBuilder('l')
+            ->where('l.returnDate IS NOT NULL')
+            ->getQuery()
+            ->getResult();
+    }
 }
