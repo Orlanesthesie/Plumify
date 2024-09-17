@@ -6,6 +6,7 @@ use App\Entity\Book;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +26,9 @@ class BookController extends AbstractController
 
         $randomBooks = $bookRepository->findRandomBooks(5);
         // dd($randomBooks);
+
+        $allbooks = $bookRepository->findAll();
+        // dd($allbooks);
 
         return $this->render('index.html.twig', [
             'categories' => $categories,
@@ -48,11 +52,15 @@ class BookController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
         $randomBooks = $bookRepository->findRandomBooks(5);
+        $category = $book->getCategory();
+        // dd($category);
+        // $relatedBooks; 
 
         return $this->render('book/show.html.twig', [
             'categories' => $categories,
             'book' => $book,
-            'randomBooks' => $randomBooks
+            'randomBooks' => $randomBooks,
+            // 'relatedBooks' => $relatedBooks,
         ]);
     }
 
@@ -61,8 +69,13 @@ class BookController extends AbstractController
     {
         $user = $this->getUser();
 
+        // Vérifie si l'utilisateur est connecté
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return new JsonResponse(['error' => 'You must be logged in to like a book.'], 403);
+        }
+
+        // Si l'utilisateur a déjà liké ce livre, on enlève le like
         if ($book->isLikedByUser($user)) {
-            // Si l'utilisateur a déjà liké ce livre, on enlève le like
             $book->removeLikedByUser($user);
         } else {
             // Sinon, on ajoute le like
@@ -73,6 +86,7 @@ class BookController extends AbstractController
 
         return new JsonResponse(['likes' => $book->getLikedByUsers()->count()]);
     }
+
 
     #[Route('/search', name: 'book_search', methods: ['GET', 'POST'])]
     public function search(Request $request, EntityManagerInterface $entityManager, BookRepository $bookRepository, CategoryRepository $categoryRepository): Response

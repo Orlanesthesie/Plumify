@@ -3,17 +3,29 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\BookRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 
 class RegistrationController extends AbstractController
 {
+    private Security $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route(path: '/registration', name: 'app_registration')]
-    public function registration(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    public function registration(Request $request, UserPasswordHasherInterface $passwordHasher, BookRepository $bookRepository, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager): Response
     {
         // Créer une instance de User
         $user = new User();
@@ -54,11 +66,22 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Message de succès
-            $this->addFlash('success', 'Inscription réussie ! Vous pouvez maintenant vous connecter.');
+            // // Message de succès
+            // $this->addFlash('success', 'Inscription réussie ! Vous pouvez maintenant vous connecter.');
 
-            // Redirection vers la page d'accueil ou de login
-            return $this->redirectToRoute('app_home');
+            // Authentifier l'utilisateur après l'inscription
+            $this->security->login($user);
+
+            $categories = $categoryRepository->findAll();
+            $newBooks = $bookRepository->findBy([], ['publicationYear' => 'DESC'], 5, 0);
+            $randomBooks = $bookRepository->findRandomBooks(5);
+
+
+            return $this->render('index.html.twig', [
+                'categories' => $categories,
+                'newBooks' => $newBooks,
+                'randomBooks' => $randomBooks
+            ]);
         }
 
         // Afficher le formulaire d'inscription

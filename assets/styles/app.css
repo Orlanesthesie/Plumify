@@ -135,10 +135,52 @@ body {
     margin-bottom: 10px;
 }
 
-/* To ensure the main content shifts right when the sidebar is fixed */
 .content {
     margin-left: 240px;
-    /* Slightly larger than sidebar width for spacing */
     padding: 20px;
 }
 /* FIN SIDEBAR */
+/* RESPONSIVE */
+/* Largeur par défaut pour les grands écrans */
+.left-column {
+    width: 280px;
+}
+
+.main-content {
+    margin-left: 280px;
+    margin-right: 20%;
+}
+
+.right-column {
+    width: 20%;
+}
+
+/* Responsive pour tablettes */
+@media (max-width: 1024px) {
+
+    .left-column,
+    .right-column {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+}
+
+/* Responsive pour smartphones */
+@media (max-width: 768px) {
+
+    .left-column,
+    .right-column {
+        width: 100px;
+    }
+
+    .main-content {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
+
+/* FIN RESPONSIVE */
