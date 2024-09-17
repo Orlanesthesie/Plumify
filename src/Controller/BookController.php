@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class BookController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository, AuthorRepository $authorRepository): Response
+    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository): Response
     {
         $newBooks = $bookRepository->findBy([], ['publicationYear' => 'DESC'], 5, 0);
         // dd($newBooks);
@@ -61,24 +61,17 @@ class BookController extends AbstractController
     {
         $user = $this->getUser();
 
-        // Vérifie que l'utilisateur est bien authentifié
-        // if (!$this->isGranted('ROLE_USER')) {
-        //     return $this->json(['message' => 'Unauthorized'], JsonResponse::HTTP_UNAUTHORIZED);
-        // }
-
-        // Ajouter ou retirer un like en fonction de l'état actuel
-        if ($book->getLikedByUsers()->contains($user)) {
+        if ($book->isLikedByUser($user)) {
+            // Si l'utilisateur a déjà liké ce livre, on enlève le like
             $book->removeLikedByUser($user);
         } else {
+            // Sinon, on ajoute le like
             $book->addLikedByUser($user);
         }
 
         $entityManager->flush();
 
-        // Retourner le nombre total de likes en JSON
-        return $this->json([
-            'likes' => count($book->getLikedByUsers()),
-        ]);
+        return new JsonResponse(['likes' => $book->getLikedByUsers()->count()]);
     }
 
     #[Route('/search', name: 'book_search', methods: ['GET', 'POST'])]

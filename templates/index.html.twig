@@ -8,39 +8,47 @@
 	<section>
 		<h3>Popular Books</h3>
 
-
 		<section>
 			<h3 class="">Newest</h3>
-			<div id="books-news" class="p-5">
-				{% for book in newBooks %}
-					<div class="card mb-5 second-color d-flex flex-column  rounded rounded-5">
-						<div class="row g-0 flex-grow-1">
-							<div class="col-md-4 ">
-								<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
-							</div>
-							<div class="col-md-8 d-flex flex-column">
-								<div class="card-body d-flex flex-column flex-grow-1">
-									<p class="card-text mb-0"></p>
-									<small class="text-body-secondary">{{ book.author.firstname }}
-										{{ book.author.lastname }}</small>
-								</p>
-								<h5 class="card-title mt-2 ">{{book.title}}</h5>
-								<p class="card-text mt-2 flex-grow-1">{{book.description}}</p>
-								<div class="mt-auto">
-									{% for category in book.category %}
-										<button class="btn btn-outline-dark mx-2">
-											{{ category.name }}
-										</button>
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
+		<div id="books-news" class="p-5">
+    {% for book in newBooks %}
+        <div class="card mb-5 second-color d-flex flex-column rounded rounded-5">
+            <div class="row g-0 flex-grow-1">
+                <div class="col-md-4">
+                    <a href="{{ path('book_show', { id: book.id }) }}">
+                        <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
+                    </a>
+                </div>
+                <div class="col-md-8 d-flex flex-column">
+                    <div class="card-body d-flex justify-content-between">
+                        <!-- Left section (Book info) -->
+                        <div class="d-flex flex-column">
+                            <small class="text-body-secondary">
+                                {{ book.author.firstname }} {{ book.author.lastname }}
+                            </small>
+                            <h5 class="card-title mt-2">{{ book.title }}</h5>
+                            <p class="card-text mt-2">{{ book.description }}</p>
+                            <div class="mt-auto">
+                                {% for category in book.category %}
+                                    <button class="btn btn-outline-dark mx-2">
+                                        {{ category.name }}
+                                    </button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="d-flex ">
+                            <p class="mt-2 mb-0" style="font-size: 1.2rem;">
+                                <i class="fa-solid fa-heart"></i>
+                                <span id="likes-count">{{ book.getLikedByUsers()|length }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 
-
-		</div>
 	</section>
 
 	<h3>FOOTER</h3>

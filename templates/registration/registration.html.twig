@@ -1,34 +1,73 @@
-{% block body %}
-	<h2>Welcome to the registration page</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Plumify</title>
+    {% block stylesheets %}
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-	{# Affichage des messages flash #}
-	{% for label, messages in app.flashes %}
-		<div class="alert alert-{{ label }}">
-			{% for message in messages %}
-				<p>{{ message }}</p>
-			{% endfor %}
-		</div>
-	{% endfor %}
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+    {% endblock %}
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="login-card card p-4 shadow-lg">
+            <div class="text-center">
+                <img src="{{ asset('images/logos/logo1.png') }}" alt="Plumify Logo" class="logo mb-5" width="80">
+            </div>
 
-	<form action="{{ path('app_registration') }}" method="post">
-		<label for="firstname">Firstname:</label>
-		<input type="text" id="firstname" name="firstname" required>
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <a onclick="window.history.back()" class="mr-2 chevron">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                <h2 class="mb-0">Welcome !</h2>
+            </div>
 
-		<label for="lastname">Lastname:</label>
-		<input type="text" id="lastname" name="lastname" required>
+            {# Affichage des messages flash #}
+            {% for label, messages in app.flashes %}
+                <div class="alert alert-{{ label }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
 
-		<label for="email">Email:</label>
-		<input type="text" id="email" name="email" required>
+            <form action="{{ path('app_registration') }}" method="post">
+                <div class="form-group">
+                    <label for="firstname">Firstname:</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" required>
+                </div>
 
-		<label for="password">Password:</label>
-		<input
-		type="password" id="password" name="password" required>
+                <div class="form-group">
+                    <label for="lastname">Lastname:</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" required>
+                </div>
 
-		<button type="submit">Register</button>
-	</form>
-	
-	<p>already have an account ? <a href="{{path('app_login')}}">Click here !</a> </p>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
 
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
 
-	<button onclick="window.history.back()" class="btn btn-secondary mt-3">Retour</button>
-{% endblock %}
+                <button type="submit" class="btn btn-login btn-block"><strong>Register</strong></button>
+
+            </form>
+
+            <div class="register-link text-center mt-3">
+                <p>Already have a member? <a href="{{ path('app_login') }}">SignIn</a></p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

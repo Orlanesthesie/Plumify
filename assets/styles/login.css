@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Quando&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quando&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(130deg, rgb(169, 103, 255), rgba(238, 174, 202, 0.2));
+    font-family: "Inter", sans-serif;
+}
+
+input {
+    border-color: #b57cff;
+}
+
+.login-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+    font-family: "Quando", serif;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: start;
+}
+
+.forgot-password {
+    margin-bottom: 1rem;
+}
+
+.forgot-password a {
+    color: #7b57d1;
+    text-decoration: none;
+}
+
+.btn-login {
+    width: 100%;
+    background-color: #b57cff;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #7b57d1;
+    color: #ccc;
+}
+
+.register-link {
+    margin-top: 1rem;
+}
+
+.register-link a {
+    color: #7b57d1;
+    text-decoration: none;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+.title-container a {
+    margin-right: 30px;
+    text-decoration: none;
+}
+
+.title-container i {
+    font-size: 1.5rem;
+    color: #7b57d1;
+}
+
+.title-container h2 {
+    font-size: 24px;
+}
+
+.chevron {
+    color: black;
+}

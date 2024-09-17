@@ -46,18 +46,16 @@ class BookRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        // Requête SQL native
         $sql = 'SELECT*, firstname AS author_firstname, lastname AS author_lastname
         FROM book
         INNER JOIN author ON book.author_id = author.id
         ORDER BY RAND()
         LIMIT 5';
 
-        // Exécuter la requête avec executeQuery et fournir directement le paramètre
         $stmt = $conn->executeQuery($sql, ['limit' => $limit]);
 
-        // Retourner les résultats en tant que tableau associatif
+        // Retourne tableau associatif
         return $stmt->fetchAllAssociative();
     }
-    
+
 }

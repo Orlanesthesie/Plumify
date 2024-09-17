@@ -108,7 +108,7 @@
         {% if app.user %}
             <p>Hi, {{ app.user.firstname }}!</p>
         {% else %}
-            <p>You can <a href="{{ path('app_registration') }}">register here</a></p>
+            <p>You can <a href="{{ path('app_login') }}">login here</a></p>
         {% endif %}
 
         <h4>Suggestions</h4>
@@ -117,8 +117,10 @@
                 <div class="card mb-1 second-color d-flex flex-column rounded rounded-3">
                     <div class="row g-0 flex-grow-1">
                         <div class="col-md-4 ">
+						<a href="{{ path('book_show', { id: book.id }) }}">
                             <img src="{{ asset('/assets/images/books/' ~ book.cover_image) }}" class="rounded rounded-3" alt="Couverture de {{ book.title }}" style="width:90px; height:130px;">
-                        </div>
+                        </a>
+						</div>
                         <div class="col-md-8 d-flex flex-column">
                             <div class="card-body d-flex flex-column flex-grow-1">
                                 <p class="card-text mb-0"></p>

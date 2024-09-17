@@ -30,23 +30,23 @@ class Book
     #[ORM\OneToOne(mappedBy: 'book', cascade: ['persist', 'remove'])]
     private ?Loan $loan = null;
 
+    #[ORM\Column]
+    private ?int $publicationYear = null;
+    
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+    
+    #[ORM\Column(length: 255)]
+    private ?string $coverImage = null;
+    
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $summary = null;
+
     /**
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'books')]
     private Collection $category;
-
-    #[ORM\Column]
-    private ?int $publicationYear = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $coverImage = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $summary = null;
 
     /**
      * @var Collection<int, User>
@@ -217,6 +217,11 @@ class Book
         $this->likedByUsers->removeElement($user);
 
         return $this;
+    }
+
+    public function isLikedByUser(User $user): bool
+    {
+        return $this->likedByUsers->contains($user);
     }
 
 }
