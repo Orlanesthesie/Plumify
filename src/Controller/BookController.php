@@ -24,36 +24,41 @@ class BookController extends AbstractController
         // dd($newBooks);
         $categories = $categoryRepository->findAll();
 
-        $randomBooks = $bookRepository->findRandomBooks(5);
-        // dd($randomBooks);
+        $randomBooks = $bookRepository->findAll();
+        shuffle($randomBooks);
+        $randomBooks = array_slice($randomBooks, 0, 5);
 
-        $allbooks = $bookRepository->findAll();
-        // dd($allbooks);
+        $popularBooks = $bookRepository->findPopularBooks();
+        // dd($popularBooks);
+
 
         return $this->render('index.html.twig', [
             'categories' => $categories,
             'newBooks' => $newBooks,
-            'randomBooks' => $randomBooks
+            'randomBooks' => $randomBooks,
+            'popularBooks' => $popularBooks
         ]);
     }
 
-    #[Route('/book', name: 'app_book')]
-    public function book(BookRepository $bookRepository): Response
-    {
-        $book = $bookRepository->findOneBy([]);
+    // #[Route('/book', name: 'app_book')]
+    // public function book(BookRepository $bookRepository): Response
+    // {
+    //     $book = $bookRepository->findOneBy([]);
 
-        return $this->render('book/index.html.twig', [
-            'controller_name' => 'bookController',
-        ]);
-    }
+    //     return $this->render('book/index.html.twig', [
+    //         'controller_name' => 'bookController',
+    //     ]);
+    // }
 
     #[Route('/book/{id}', name: 'book_show', methods: ['GET'])]
     public function show(Book $book, CategoryRepository $categoryRepository, BookRepository $bookRepository): Response
     {
         $categories = $categoryRepository->findAll();
-        $randomBooks = $bookRepository->findRandomBooks(5);
+        $randomBooks = $bookRepository->findAll();
+        shuffle($randomBooks);
+        $randomBooks = array_slice($randomBooks, 0, 5);
         $category = $book->getCategory();
-        // dd($category);
+        // dd($book->getLikedByUsers());
         // $relatedBooks; 
 
         return $this->render('book/show.html.twig', [
@@ -93,7 +98,10 @@ class BookController extends AbstractController
     {
         $searchTerm = $request->query->get('query');  // Récupérer la recherche de l'utilisateur
         $categories = $categoryRepository->findAll();
-        $randomBooks = $bookRepository->findRandomBooks(5);
+
+        $randomBooks = $bookRepository->findAll();
+        shuffle($randomBooks);
+        $randomBooks = array_slice($randomBooks, 0, 5);
 
 
         // Rechercher dans la base de données par titre

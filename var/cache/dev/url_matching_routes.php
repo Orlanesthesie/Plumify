@@ -17,7 +17,6 @@ return [
         '/admin' => [[['_route' => 'admin', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], null, null, null, false, false, null]],
         '/import-json' => [[['_route' => 'import_json', '_controller' => 'App\\Controller\\ApiController::importJsonToDatabase'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\BookController::index'], null, null, null, false, false, null]],
-        '/book' => [[['_route' => 'app_book', '_controller' => 'App\\Controller\\BookController::book'], null, null, null, false, false, null]],
         '/search' => [[['_route' => 'book_search', '_controller' => 'App\\Controller\\BookController::search'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/admin/loan/new' => [[['_route' => 'admin_loan_new', '_controller' => 'App\\Controller\\LoanController::newLoan'], null, null, null, false, false, null]],
         '/admin/loan/list' => [[['_route' => 'admin_loan_list', '_controller' => 'App\\Controller\\LoanController::listLoans'], null, null, null, false, false, null]],

@@ -42,20 +42,23 @@ class BookRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function findRandomBooks(int $limit = 5): array
+
+    public function findPopularBooks()
     {
-        $conn = $this->getEntityManager()->getConnection();
-
-        $sql = 'SELECT*, firstname AS author_firstname, lastname AS author_lastname
-        FROM book
-        INNER JOIN author ON book.author_id = author.id
-        ORDER BY RAND()
-        LIMIT 5';
-
-        $stmt = $conn->executeQuery($sql, ['limit' => $limit]);
-
-        // Retourne tableau associatif
-        return $stmt->fetchAllAssociative();
+        return $this->createQueryBuilder('b')
+            ->join('b.likedByUsers', 'bu')
+            ->groupBy('b.id')
+            ->orderBy('COUNT(bu)', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
     }
+
+    // SELECT book.*, COUNT(book_user.book_id) as count_likes FROM book 
+    // JOIN book_user
+    // ON book_user.book_id = book.id
+    // GROUP BY book.id
+    // ORDER BY count_likes DESC;
 
 }

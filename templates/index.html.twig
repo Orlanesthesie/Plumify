@@ -12,11 +12,16 @@
 			</div>
 		{% endfor %}
 		
-	<section id="popular">
-		<h3>Popular Books</h3>
-		{# {% for book in popularBooks %}
-		{% endfor %} #}
-	</section>	
+	<section id="popular" class="mb-5">
+            <h3>Popular Books</h3>
+            <div class="row">
+                {% for book in popularBooks %}
+                    <div class="col-md-2 d-flex justify-content-around">
+                        <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="mx-auto p-2" alt="{{ book.title }}" style="height: 300px; width: 200px">
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
 
 	<section id="newest">
 		<h3 class="">Newest</h3>
