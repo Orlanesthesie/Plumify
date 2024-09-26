@@ -14,9 +14,9 @@
 		
 	<section id="popular" class="mb-5">
             <h3>Popular Books</h3>
-            <div class="row">
+            <div class="row d-flex justify-content-around">
                 {% for book in popularBooks %}
-                    <div class="col-md-2 d-flex justify-content-around">
+                    <div class="col-md-2 ">
                         <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="mx-auto p-2" alt="{{ book.title }}" style="height: 300px; width: 200px">
                     </div>
                 {% endfor %}
