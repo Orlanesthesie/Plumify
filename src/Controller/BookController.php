@@ -40,16 +40,6 @@ class BookController extends AbstractController
         ]);
     }
 
-    // #[Route('/book', name: 'app_book')]
-    // public function book(BookRepository $bookRepository): Response
-    // {
-    //     $book = $bookRepository->findOneBy([]);
-
-    //     return $this->render('book/index.html.twig', [
-    //         'controller_name' => 'bookController',
-    //     ]);
-    // }
-
     #[Route('/book/{id}', name: 'book_show', methods: ['GET'])]
     public function show(Book $book, CategoryRepository $categoryRepository, BookRepository $bookRepository): Response
     {

@@ -49,7 +49,8 @@ return [
                     .'|(*:219)'
                     .'|/like(*:232)'
                 .')'
-                .'|/admin/loan/([^/]++)/return(*:268)'
+                .'|/category/([^/]++)(*:259)'
+                .'|/admin/loan/([^/]++)/return(*:294)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -63,7 +64,8 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         219 => [[['_route' => 'book_show', '_controller' => 'App\\Controller\\BookController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         232 => [[['_route' => 'book_like', '_controller' => 'App\\Controller\\BookController::like'], ['id'], ['POST' => 0], null, false, false, null]],
-        268 => [
+        259 => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], ['id'], null, null, false, true, null]],
+        294 => [
             [['_route' => 'admin_loan_return', '_controller' => 'App\\Controller\\LoanController::returnLoan'], ['id'], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],

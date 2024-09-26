@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#popular" class="nav-link">
+                        <a href="/" class="nav-link">
                             <i class="fa-solid fa-heart" style="color: #b57cff;"></i>
                             Popular Books
                         </a>
@@ -60,9 +60,9 @@
                 {% else %}
                     <div class="category-title">Genres</div>
                     <ul class="nav nav-pills flex-column mb-auto">
-                        {% for category in categories %}
+                        {% for category in categories|slice(0, 5) %}
                             <li class="nav-item">
-                                <a href="#" class="nav-link">{{ category.name }}</a>
+                                <a href="{{ path('category_show', { 'id': category.id }) }}" class="nav-link">{{ category.name }}</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -70,6 +70,15 @@
                         <i class="fa-solid fa-chevron-down"></i>
                         Voir plus
                     </button>
+                    <div class="collapse" id="moreCategories">
+                        <ul class="nav nav-pills flex-column mt-2">
+                            {% for category in categories|slice(5, categories|length - 5) %}
+                                <li class="nav-item">
+                                    <a href="{{ path('category_show', { 'id': category.id }) }}" class="nav-link">{{ category.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 {% endif %}
             </div>
         </div>

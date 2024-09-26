@@ -7,7 +7,7 @@
 {% block body %}
     <h2>List of Active Loans</h2>
 
-    <a href="{{ path('admin_loan_new')}}"> add </a>
+    <a href="{{ path('admin_loan_new')}}"><i class="fa-solid fa-plus"></i></a>
 
     {% if activeloans is empty %}
         <p>No active loans at the moment.</p>

@@ -78,7 +78,6 @@ body {
     position: fixed;
 }
 
-/* Sidebar styles */
 .sidebar {
     min-height: 100vh;
     width: 220px;
@@ -87,7 +86,6 @@ body {
     padding-left: 10px;
     position: fixed;
     border-right: 1px solid #e0e0e0;
-    /* Light border for separation */
 }
 
 .sidebar .logo {
@@ -140,6 +138,11 @@ body {
     padding: 20px;
 }
 /* FIN SIDEBAR */
+.img-fixed {
+    height: 500px;
+    object-fit: cover;
+    width: 100%;
+}
 /* RESPONSIVE */
 /* Largeur par défaut pour les grands écrans */
 .left-column {

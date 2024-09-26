@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books in {{ category.name }}{% endblock %}
+
+{% block body %}
+    <h1>{{ category.name }}</h1>
+
+    <div class="row mt-5">
+        {% for book in books %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <a href="{{ path('book_show', { 'id': book.id }) }}">
+                        <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="card-img-top img-fixed" alt="{{ book.title }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="text-muted">{{ book.author }}</p>
+                        <p class="card-text">{{ book.publicationYear }}</p>
+                        <p class="card-text">{{ book.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>No books found in this category.</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

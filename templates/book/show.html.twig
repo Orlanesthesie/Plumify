@@ -18,17 +18,19 @@
                         <div class="card-body">
                             <h5 class="card-title fs-2">{{ book.title }}</h5>
                             <p class="text-muted">{{ book.author.firstname }} {{ book.author.lastname }}</p>
+                            <p class="card-text">{{ book.publicationYear }}</p>
                             <div class="mb-3">
-                                <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-hat-wizard"></i> Magical</span>
-                                <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-heart"></i> Romance</span>
+                                {% for category in book.category %}
+											<a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark mx-2">{{ category.name }}</a>
+								{% endfor %}
                             </div>
                             <p>{{ book.summary }}</p>
-                            <button data-book-id="{{ book.id }}" class="btn btn-outline-dark like-button">
+                            
+                            <p class="mt-2">
+                                <button data-book-id="{{ book.id }}" class="btn">
                                 <i class="fa-solid fa-heart"></i> {{ book.getLikedByUsers().contains(app.user) ? 'Unlike' : 'Like' }}
                             </button>
-                            <p class="mt-2">
-                                <i class="fa-solid fa-heart"></i>
-                                <span id="likes-count">{{ book.getLikedByUsers()|length }}</span> likes
+                                <span id="likes-count">{{ book.getLikedByUsers()|length }}</span>
                             </p>
                         </div>
                     </div>

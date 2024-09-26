@@ -33,7 +33,10 @@ class LoanController extends AbstractController
         //Récuperer la liste des catégories des livres
         $searchTerm = $request->query->get('query');  // Récupérer la recherche de l'utilisateur
         $categories = $categoryRepository->findAll();
-        $randomBooks = $bookRepository->findRandomBooks(5);
+
+        $randomBooks = $bookRepository->findAll();
+        shuffle($randomBooks);
+        $randomBooks = array_slice($randomBooks, 0, 5);
 
         // Récupérer la liste des livres disponibles à l'emprunt
         $availableBooks = $bookRepository->findBy(['available' => true]);
@@ -85,7 +88,10 @@ class LoanController extends AbstractController
     {
         $searchTerm = $request->query->get('query');  // Récupérer la recherche de l'utilisateur
         $categories = $categoryRepository->findAll();
-        $randomBooks = $bookRepository->findRandomBooks(5);
+
+        $randomBooks = $bookRepository->findAll();
+        shuffle($randomBooks);
+        $randomBooks = array_slice($randomBooks, 0, 5);
 
         // Récupérer tous les prêts en cours (où returnDate est null)
         $activeloans = $loanRepository->findBy(['returnDate' => null]);
