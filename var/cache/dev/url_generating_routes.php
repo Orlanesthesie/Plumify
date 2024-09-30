@@ -29,6 +29,7 @@ return [
     'admin_loan_return' => [['id'], ['_controller' => 'App\\Controller\\LoanController::returnLoan'], [], [['text', '/return'], ['variable', '/', '[^/]++', 'id', true], ['text', '/admin/loan']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\LoginController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\LoginController::logout'], [], [['text', '/logout']], [], [], []],
+    'modal_test' => [[], ['_controller' => 'App\\Controller\\ModalTestController::index'], [], [['text', '/modal-test']], [], [], []],
     'app_registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::registration'], [], [['text', '/registration']], [], [], []],
     'api_download_json' => [[], ['_controller' => 'App\\Controller\\ApiController::downloadJson'], [], [['text', '/download-json']], [], [], []],
     'App\Controller\Admin\DashboardController::index' => [[], ['_controller' => 'App\\Controller\\Admin\\DashboardController::index'], [], [['text', '/admin']], [], [], []],
@@ -43,5 +44,6 @@ return [
     'App\Controller\LoanController::returnLoan' => [['id'], ['_controller' => 'App\\Controller\\LoanController::returnLoan'], [], [['text', '/return'], ['variable', '/', '[^/]++', 'id', true], ['text', '/admin/loan']], [], [], []],
     'App\Controller\LoginController::login' => [[], ['_controller' => 'App\\Controller\\LoginController::login'], [], [['text', '/login']], [], [], []],
     'App\Controller\LoginController::logout' => [[], ['_controller' => 'App\\Controller\\LoginController::logout'], [], [['text', '/logout']], [], [], []],
+    'App\Controller\ModalTestController::index' => [[], ['_controller' => 'App\\Controller\\ModalTestController::index'], [], [['text', '/modal-test']], [], [], []],
     'App\Controller\RegistrationController::registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::registration'], [], [['text', '/registration']], [], [], []],
 ];

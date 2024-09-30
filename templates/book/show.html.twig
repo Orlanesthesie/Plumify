@@ -9,29 +9,40 @@
     <div class="row">
         <!-- Détails du livre -->
         <div class="col-md-12">
-            <div class="card mb-4 p-3 shadow-sm" style="background-color: #E9D7FF;">
+            <div class="card mb-4 p-2 shadow-sm rounded rounded-5" style="background-color: #E9D7FF;">
                 <div class="row no-gutters">
-                    <div class="col-md-3">
-                        <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="img-fluid rounded" alt="{{ book.title }}">
+                    <div class="col-md-3" style="position: relative;">
+                        <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" 
+                             class="img-fluid p-4" 
+                             alt="{{ book.title }}" 
+                             style="width: 100%; height: auto;">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <h5 class="card-title fs-2">{{ book.title }}</h5>
-                            <p class="text-muted">{{ book.author.firstname }} {{ book.author.lastname }}</p>
-                            <p class="card-text">{{ book.publicationYear }}</p>
-                            <div class="mb-3">
-                                {% for category in book.category %}
-											<a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark mx-2">{{ category.name }}</a>
-								{% endfor %}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Titre et Auteur -->
+                                <div>
+                                    <p class="text-muted mb-3">{{ book.author.firstname }} {{ book.author.lastname }}</p>
+                                    <h2 class="card-title fs-2 quando mb-3">{{ book.title }}</h2>
+                                </div>
+
+                                <!-- Bouton like -->
+                                <div>
+                                    <button data-book-id="{{ book.id }}" class="btn btn-outline-dark">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                    <span id="likes-count" class="ms-2">{{ book.getLikedByUsers()|length }}</span>
+                                </div>
                             </div>
+
+                            <p class="card-text">{{ book.publicationYear }}</p>
                             <p>{{ book.summary }}</p>
                             
-                            <p class="mt-2">
-                                <button data-book-id="{{ book.id }}" class="btn">
-                                <i class="fa-solid fa-heart"></i> {{ book.getLikedByUsers().contains(app.user) ? 'Unlike' : 'Like' }}
-                            </button>
-                                <span id="likes-count">{{ book.getLikedByUsers()|length }}</span>
-                            </p>
+                        <div class="mb-3">
+                            {% for category in book.category %}
+                                <a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark">{{ category.name }}</a>
+                            {% endfor %}
+                        </div>
                         </div>
                     </div>
                 </div>

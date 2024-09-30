@@ -13,7 +13,7 @@
 		{% endfor %}
 		
 	<section id="popular" class="mb-5">
-            <h3>Popular Books</h3>
+            <h2 class="quando">Popular Books</h2>
             <div class="row d-flex justify-content-around">
                 {% for book in popularBooks %}
                     <div class="col-md-2 ">
@@ -26,8 +26,8 @@
         </section>
 
 	<section id="newest">
-		<h3 class="">Newest</h3>
-			<div id="books-news" class="p-5">
+		<h2 class="quando">Newest</h2>
+			<div id="books-news" class="px-5">
 			{% for book in newBooks %}
 				<div class="card mb-5 second-color d-flex flex-column rounded rounded-5">
 					<div class="row g-0 flex-grow-1">
@@ -38,12 +38,13 @@
 						</div>
 						<div class="col-md-8 d-flex flex-column">
 							<div class="card-body d-flex justify-content-between">
-								<!-- Left section (Book info) -->
 								<div class="d-flex flex-column">
 									<small class="text-body-secondary">
 										{{ book.author.firstname }} {{ book.author.lastname }}
 									</small>
-									<h5 class="card-title mt-2">{{ book.title }}</h5>
+									<a href="{{ path('book_show', { id: book.id }) }}">
+									<h3 class="card-title mt-2 quando">{{ book.title }}</h3>
+									</a>
 									<p class="card-text mt-2">{{ book.description }}</p>
 									<div class="mt-auto">
 										{% for category in book.category %}

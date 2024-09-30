@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\User;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
@@ -36,7 +37,7 @@ class BookController extends AbstractController
             'categories' => $categories,
             'newBooks' => $newBooks,
             'randomBooks' => $randomBooks,
-            'popularBooks' => $popularBooks
+            'popularBooks' => $popularBooks,
         ]);
     }
 

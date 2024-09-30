@@ -1,3 +1,6 @@
+body {
+    font-family: "Inter", sans-serif;
+}
 /* COULEURS */
 
 .main-color {
@@ -13,11 +16,13 @@
     height: 100px;
 }
 
-/* TITRE */
-.plumify {
-    font-family: "Great Vibes", cursive;
-    font-weight: 400;
-    font-style: normal;
+/* POLICE */
+.inter {
+    font-family: "Inter", sans-serif;
+}
+
+.quando {
+    font-family: "Quando", serif;
 }
 
 /* FIN TITRE */

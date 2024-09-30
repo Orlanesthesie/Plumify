@@ -22,6 +22,7 @@ return [
         '/admin/loan/list' => [[['_route' => 'admin_loan_list', '_controller' => 'App\\Controller\\LoanController::listLoans'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
+        '/modal-test' => [[['_route' => 'modal_test', '_controller' => 'App\\Controller\\ModalTestController::index'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\RegistrationController::registration'], null, null, null, false, false, null]],
         '/download-json' => [[['_route' => 'api_download_json', '_controller' => 'App\\Controller\\ApiController::downloadJson'], null, null, null, false, false, null]],
     ],
