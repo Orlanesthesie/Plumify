@@ -7,10 +7,15 @@ use App\Entity\User;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
+use Doctrine\DBAL\Types\DateType;
+use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class BookController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository): Response
+    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository,): Response
     {
         $newBooks = $bookRepository->findBy([], ['publicationYear' => 'DESC'], 5, 0);
         // dd($newBooks);
@@ -30,8 +35,9 @@ class BookController extends AbstractController
         $randomBooks = array_slice($randomBooks, 0, 5);
 
         $popularBooks = $bookRepository->findPopularBooks();
-        // dd($popularBooks);
 
+        $user = $this->getUser();
+        // dd($user);
 
         return $this->render('index.html.twig', [
             'categories' => $categories,
@@ -39,6 +45,11 @@ class BookController extends AbstractController
             'randomBooks' => $randomBooks,
             'popularBooks' => $popularBooks,
         ]);
+    }
+
+    public function edit(User $user)
+    {
+        dd($user);
     }
 
     #[Route('/book/{id}', name: 'book_show', methods: ['GET'])]
@@ -109,4 +120,5 @@ class BookController extends AbstractController
             'randomBooks' => $randomBooks
         ]);
     }
+
 }
