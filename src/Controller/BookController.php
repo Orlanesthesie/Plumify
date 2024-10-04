@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Entity\User;
+use App\Form\UserType;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
@@ -12,6 +13,7 @@ use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilder;
@@ -47,10 +49,24 @@ class BookController extends AbstractController
         ]);
     }
 
-    public function edit(User $user)
+    #[Route('/profile/edit/{id}', name: 'user_edit')]
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        dd($user);
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        // Passe le formulaire à la vue 
+        return $this->render('base.html.twig', [
+            'form' => $form,
+        ]);
     }
+
 
     #[Route('/book/{id}', name: 'book_show', methods: ['GET'])]
     public function show(Book $book, CategoryRepository $categoryRepository, BookRepository $bookRepository): Response

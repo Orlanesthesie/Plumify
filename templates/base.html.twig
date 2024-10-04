@@ -105,19 +105,17 @@
             <section>
 			{# App.user permet de savoir si un utilisateur est connecté #}
                 {% if app.user %}
-                    <h4 class="quando py-5">
-                        Hi, <a href="#">{{ app.user.firstname }}!</a>
+                    <h4 class="quando py-3">
+                        Hi, <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        {{ app.user.firstname }}!
+                        </a>
                         <a href="{{ path('app_logout') }}" class="me-2">
                             <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
+                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Edit Profile
+                        </a>
                     </h4>
-
-                    <div class="container mt-5">
-                        <!-- Button modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Open Profile Modal
-                        </button>
-                     </div>
                 {% else %}
                     <p>You can <a href="{{ path('app_login') }}">login here</a></p>
                 {% endif %}
@@ -145,7 +143,8 @@
             </section>
         </div>
     </div>
-     <!-- Modal -->
+        {% if app.user %}
+            <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -155,19 +154,21 @@
                             </div>
                             <div class="modal-body">
                                 <p>Firstname:{{app.user.firstname}}</p>
-                                <p>lastname:{{app.user.lastname}}</p>
+                                <p>Lastname:{{app.user.lastname}}</p>
                                 <p>Email: {{app.user.email}}</p>
                                 <p>Birthdate: {{ app.user.birthdate ? app.user.birthdate|date('Y-m-d') : 'N/A' }}</p>
-                                <p>Adress:{{app.user.address}}</p> 
+                                <p>Address:{{app.user.address}}</p> 
+                                {{ include('user/_form.html.twig')}}
                                 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
+        {% endif %}
+
 
     {% block javascripts %}
         <!-- Import Bootstrap -->
