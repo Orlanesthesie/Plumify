@@ -46,13 +46,12 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/profile/edit/([^/]++)(*:224)'
                 .'|/book/([^/]++)(?'
-                    .'|(*:249)'
-                    .'|/like(*:262)'
+                    .'|(*:219)'
+                    .'|/like(*:232)'
                 .')'
-                .'|/category/([^/]++)(*:289)'
-                .'|/admin/loan/([^/]++)/return(*:324)'
+                .'|/category/([^/]++)(*:259)'
+                .'|/admin/loan/([^/]++)/return(*:294)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -64,11 +63,10 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        224 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\BookController::edit'], ['id'], null, null, false, true, null]],
-        249 => [[['_route' => 'book_show', '_controller' => 'App\\Controller\\BookController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        262 => [[['_route' => 'book_like', '_controller' => 'App\\Controller\\BookController::like'], ['id'], ['POST' => 0], null, false, false, null]],
-        289 => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], ['id'], null, null, false, true, null]],
-        324 => [
+        219 => [[['_route' => 'book_show', '_controller' => 'App\\Controller\\BookController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        232 => [[['_route' => 'book_like', '_controller' => 'App\\Controller\\BookController::like'], ['id'], ['POST' => 0], null, false, false, null]],
+        259 => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], ['id'], null, null, false, true, null]],
+        294 => [
             [['_route' => 'admin_loan_return', '_controller' => 'App\\Controller\\LoanController::returnLoan'], ['id'], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],

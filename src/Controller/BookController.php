@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class BookController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository,): Response
+    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $newBooks = $bookRepository->findBy([], ['publicationYear' => 'DESC'], 5, 0);
         // dd($newBooks);
@@ -39,31 +39,23 @@ class BookController extends AbstractController
         $popularBooks = $bookRepository->findPopularBooks();
 
         $user = $this->getUser();
-        // dd($user);
+        $form = $this->createForm(UserType::class, $user);
+        
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            
+
+            $this->addFlash('success', 'Profil mis à jour avec succès');
+            return $this->redirectToRoute('app_home');
+        }
 
         return $this->render('index.html.twig', [
             'categories' => $categories,
             'newBooks' => $newBooks,
             'randomBooks' => $randomBooks,
             'popularBooks' => $popularBooks,
-        ]);
-    }
-
-    #[Route('/profile/edit/{id}', name: 'user_edit')]
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_home');
-        }
-
-        // Passe le formulaire à la vue 
-        return $this->render('base.html.twig', [
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

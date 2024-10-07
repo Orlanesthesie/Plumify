@@ -112,8 +112,8 @@
                         <a href="{{ path('app_logout') }}" class="me-2">
                             <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
-                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Edit Profile
+                        <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Modifier le profil
                         </a>
                     </h4>
                 {% else %}
@@ -153,21 +153,16 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Firstname:{{app.user.firstname}}</p>
-                                <p>Lastname:{{app.user.lastname}}</p>
-                                <p>Email: {{app.user.email}}</p>
-                                <p>Birthdate: {{ app.user.birthdate ? app.user.birthdate|date('Y-m-d') : 'N/A' }}</p>
-                                <p>Address:{{app.user.address}}</p> 
-                                {{ include('user/_form.html.twig')}}
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                            {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            {{ form_end(form) }}  
                             </div>
                         </div>
                     </div>
                 </div>
         {% endif %}
+
 
 
     {% block javascripts %}

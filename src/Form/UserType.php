@@ -15,19 +15,12 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
-            ->add('password')
             ->add('firstname')
             ->add('lastname')
-            ->add('birthdate', null, [
+           ->add('birthdate', null, [
                 'widget' => 'single_text',
             ])
             ->add('address')
-            ->add('likedBooks', EntityType::class, [
-                'class' => Book::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
         ;
     }
 
