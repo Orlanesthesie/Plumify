@@ -4,17 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Entity\Category;
+use App\Form\UserType;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class CategoryController extends AbstractController
 {
     #[Route('/category/{id}', name: 'category_show')]
-    public function show(Category $category, EntityManagerInterface $entityManager, BookRepository $bookRepository, CategoryRepository $categoryRepository): Response
+    public function show(Category $category, EntityManagerInterface $entityManager, Request $request, BookRepository $bookRepository, CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
 
@@ -29,11 +31,22 @@ class CategoryController extends AbstractController
             throw new \Exception("No books found in this category.");
         }
 
+        // Modale update profile
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Profil mis à jour avec succès');
+            return $this->redirectToRoute('app_home');
+        }
+
         return $this->render('category/show.html.twig', [
             'category' => $category,
             'categories' => $categories,
             'books' => $books,
             'randomBooks' => $randomBooks,
+            'form' => $form->createView(),
         ]);
     }
 }

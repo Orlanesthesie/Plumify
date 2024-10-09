@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserType;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -74,13 +75,29 @@ class RegistrationController extends AbstractController
 
             $categories = $categoryRepository->findAll();
             $newBooks = $bookRepository->findBy([], ['publicationYear' => 'DESC'], 5, 0);
-            $randomBooks = $bookRepository->findRandomBooks(5);
+            $randomBooks = $bookRepository->findAll();
+            shuffle($randomBooks);
+            $randomBooks = array_slice($randomBooks, 0, 5);
+            $popularBooks = $bookRepository->findPopularBooks();
+
+            // Modale updtae profile
+            $user = $this->getUser();
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
+                $this->addFlash('success', 'Profil mis à jour avec succès');
+                return $this->redirectToRoute('app_home');
+            }
+
 
 
             return $this->render('index.html.twig', [
                 'categories' => $categories,
                 'newBooks' => $newBooks,
-                'randomBooks' => $randomBooks
+                'randomBooks' => $randomBooks,
+                'popularBooks' => $popularBooks,
+                'form' => $form->createView(),
             ]);
         }
 

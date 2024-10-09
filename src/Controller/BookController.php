@@ -38,14 +38,12 @@ class BookController extends AbstractController
 
         $popularBooks = $bookRepository->findPopularBooks();
 
+        // Modale update profile
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
-        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            
-
             $this->addFlash('success', 'Profil mis à jour avec succès');
             return $this->redirectToRoute('app_home');
         }
@@ -61,7 +59,7 @@ class BookController extends AbstractController
 
 
     #[Route('/book/{id}', name: 'book_show', methods: ['GET'])]
-    public function show(Book $book, CategoryRepository $categoryRepository, BookRepository $bookRepository): Response
+    public function show(Book $book, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager, BookRepository $bookRepository, Request $request): Response
     {
         $categories = $categoryRepository->findAll();
         $randomBooks = $bookRepository->findAll();
@@ -71,10 +69,21 @@ class BookController extends AbstractController
         // dd($book->getLikedByUsers());
         // $relatedBooks; 
 
+        // Modale update profile
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Profil mis à jour avec succès');
+            return $this->redirectToRoute('app_home');
+        }
+
         return $this->render('book/show.html.twig', [
             'categories' => $categories,
             'book' => $book,
             'randomBooks' => $randomBooks,
+            'form' => $form->createView(),
             // 'relatedBooks' => $relatedBooks,
         ]);
     }
@@ -113,6 +122,15 @@ class BookController extends AbstractController
         shuffle($randomBooks);
         $randomBooks = array_slice($randomBooks, 0, 5);
 
+        // Modale update profile
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Profil mis à jour avec succès');
+            return $this->redirectToRoute('app_home');
+        }
 
         // Rechercher dans la base de données par titre
         $books = $entityManager->getRepository(Book::class)->createQueryBuilder('b')
@@ -125,7 +143,8 @@ class BookController extends AbstractController
             'categories' => $categories,
             'books' => $books,
             'searchTerm' => $searchTerm,
-            'randomBooks' => $randomBooks
+            'randomBooks' => $randomBooks,
+            'form' => $form->createView(),
         ]);
     }
 

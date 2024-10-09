@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Plumify</title>
+    <link rel="icon" href="{{ asset('images/logos/icon.png') }}">
+
     {% block stylesheets %}
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -44,8 +46,7 @@
                 </div>
 
                 <div class="forgot-password mb-3">
-                    <p>forgot password ?</p>
-                    {# <a href="{{ path('app_forgot_password') }}">Forgot password?</a> #}
+                    <a href="{{ path('app_forgot_password_request') }}">Forgot password ?</a>
                 </div>
 
                 <button type="submit" class="btn btn-login btn-block"><strong>Login</strong></button>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password | Plumify</title>
+    <link rel="icon" href="{{ asset('images/logos/icon.png') }}">
+
+    {% block stylesheets %}
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+    {% endblock %}
+</head>
+<body>
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="login-card card p-4 shadow-lg">
+            <div class="text-center">
+            <a href="/">
+                <img src="{{ asset('images/logos/logo1.png') }}" alt="Plumify Logo" class="logo mb-5" width="80">
+            </a>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <a onclick="window.history.back()" class="mr-2 chevron">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                <h2 class="mb-0">Forgot password ?</h2>
+            </div>
+        <div class="text-body-secondary mb-3">
+        
+            <p>
+            If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+                This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+            </p>
+            <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+        </div>
+    </div>
+
+   
+</body>
+</html>
+

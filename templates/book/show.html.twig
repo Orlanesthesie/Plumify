@@ -20,10 +20,10 @@
                     <div class="col-md-9">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <!-- Titre et Auteur -->
                                 <div>
                                     <p class="text-muted mb-3">{{ book.author.firstname }} {{ book.author.lastname }}</p>
                                     <h2 class="card-title fs-2 quando mb-3">{{ book.title }}</h2>
+                                    {{book.available ? 'Disponible' : 'Indisponible'}}
                                 </div>
 
                                 <!-- Bouton like -->

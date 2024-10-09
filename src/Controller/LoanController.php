@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Entity\User;
 use App\Entity\Loan;
+use App\Form\UserType;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\LoanRepository;
@@ -71,6 +72,16 @@ class LoanController extends AbstractController
                 // Rediriger ou afficher un message de succès
                 return $this->redirectToRoute('admin_loan_list'); // Ou une autre route après le prêt
             }
+
+        // Modale update profile
+            $user = $this->getUser();
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
+                $this->addFlash('success', 'Profil mis à jour avec succès');
+                return $this->redirectToRoute('app_home');
+            }
         }
 
         return $this->render('admin/loan/new.html.twig', [
@@ -78,13 +89,14 @@ class LoanController extends AbstractController
             'users' => $users,
             'categories' => $categories,
             'searchTerm' => $searchTerm,
-            'randomBooks' => $randomBooks
+            'randomBooks' => $randomBooks,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/admin/loan/list', name: 'admin_loan_list')]
     #[IsGranted('ROLE_ADMIN')] 
-    public function listLoans(LoanRepository $loanRepository, BookRepository $bookRepository, CategoryRepository $categoryRepository, Request $request): Response
+    public function listLoans(LoanRepository $loanRepository, EntityManagerInterface $entityManager, BookRepository $bookRepository, CategoryRepository $categoryRepository, Request $request): Response
     {
         $searchTerm = $request->query->get('query');  // Récupérer la recherche de l'utilisateur
         $categories = $categoryRepository->findAll();
@@ -102,12 +114,23 @@ class LoanController extends AbstractController
         // $loans = $loanRepository->findAll();
         // dd($pastloans);
 
+        // Modale update profile
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Profil mis à jour avec succès');
+            return $this->redirectToRoute('app_home');
+        }
+
         return $this->render('admin/loan/list.html.twig', [
             'activeloans' => $activeloans,
             'pastloans' => $pastloans,
             'categories' => $categories,
             'searchTerm' => $searchTerm,
-            'randomBooks' => $randomBooks
+            'randomBooks' => $randomBooks,
+            'form' => $form->createView(),
         ]);
     }
 
