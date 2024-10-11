@@ -90,8 +90,6 @@ class RegistrationController extends AbstractController
                 return $this->redirectToRoute('app_home');
             }
 
-
-
             return $this->render('index.html.twig', [
                 'categories' => $categories,
                 'newBooks' => $newBooks,
