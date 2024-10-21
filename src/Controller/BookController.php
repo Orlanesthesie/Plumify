@@ -3,21 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Book;
-use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use App\Repository\CategoryRepository;
-use Doctrine\DBAL\Types\DateType;
-use Doctrine\DBAL\Types\TextType;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Id;
-use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,9 +34,11 @@ class BookController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $this->addFlash('success', 'Profil mis à jour avec succès');
+            $this->addFlash('success', 'Profile updated successfully');
             return $this->redirectToRoute('app_home');
         }
+
+        $user = $this->getUser();
 
         return $this->render('index.html.twig', [
             'categories' => $categories,
@@ -54,6 +46,7 @@ class BookController extends AbstractController
             'randomBooks' => $randomBooks,
             'popularBooks' => $popularBooks,
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 

@@ -7,6 +7,11 @@ a{
     color: #000;;
 }
 
+.btn-custom {
+    color: whitesmoke;
+    background-color: #b57cff ;
+}
+
 .btn-outline-custom {
     color: #b57cff;
     border: 1px solid #b57cff;
