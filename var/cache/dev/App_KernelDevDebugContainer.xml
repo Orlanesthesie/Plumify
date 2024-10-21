@@ -515,6 +515,9 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Security\AccessDeniedHandler" class="App\Security\AccessDeniedHandler" autowire="true" autoconfigure="true">
+      <argument type="service" id="router.default"/>
+    </service>
     <service id="App\Service\GoogleBooksApiService" class="App\Service\GoogleBooksApiService" autowire="true" autoconfigure="true">
       <tag name="container.error" message="Cannot autowire service &quot;App\Service\GoogleBooksApiService&quot;: argument &quot;$apiKey&quot; of method &quot;__construct()&quot; is type-hinted &quot;string&quot;, you should configure its value explicitly."/>
     </service>

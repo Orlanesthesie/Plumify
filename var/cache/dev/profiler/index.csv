@@ -359,3 +359,16 @@ e86eee,127.0.0.1,GET,http://127.0.0.1:8000/admin/loan/list,1729531535,,200,reque
 1466b5,127.0.0.1,GET,http://127.0.0.1:8000/admin/loan/new,1729531538,,200,request
 0d2c46,127.0.0.1,GET,http://127.0.0.1:8000/admin/loan/new,1729531542,c5eebb,500,request
 c5eebb,127.0.0.1,POST,http://127.0.0.1:8000/admin/loan/new,1729531542,,500,request
+e294aa,127.0.0.1,GET,http://127.0.0.1:8000/admin/loan/new,1729531691,,200,request
+19b0a9,127.0.0.1,GET,http://127.0.0.1:8000/admin/loan/new,1729531705,,200,request
+8c55fd,127.0.0.1,GET,http://127.0.0.1:8000/,1729531713,,200,request
+e1ba94,127.0.0.1,GET,http://127.0.0.1:8000/admin,1729531764,,200,request
+293b73,127.0.0.1,GET,http://127.0.0.1:8000/logout,1729531767,,302,request
+27a2a2,127.0.0.1,GET,http://127.0.0.1:8000/login,1729531767,,200,request
+740f15,127.0.0.1,POST,http://127.0.0.1:8000/login,1729531772,,302,request
+5e31f3,127.0.0.1,GET,http://127.0.0.1:8000/,1729531772,,200,request
+7cee11,127.0.0.1,GET,http://127.0.0.1:8000/admin,1729531777,1c2d07,403,request
+1c2d07,127.0.0.1,GET,http://127.0.0.1:8000/admin,1729531777,,403,request
+f89d1e,127.0.0.1,GET,http://127.0.0.1:8000/admin,1729531821,810465,403,request
+810465,127.0.0.1,GET,http://127.0.0.1:8000/admin,1729531821,,403,request
+2b203a,127.0.0.1,GET,http://127.0.0.1:8000/,1729532230,,200,request
