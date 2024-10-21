@@ -166,6 +166,44 @@ body {
     padding: 20px;
 }
 /* FIN SIDEBAR */
+
+/* HI, ADMIN */
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.profile-container h4 {
+    margin: 0;
+    font-size: 24px;
+    font-family: 'Quando', serif;
+}
+
+.profile-container img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logout-btn i {
+    font-size: 24px;
+    color: #B57CFF;
+}
+
+.btn-outline-custom {
+    border-color: #B57CFF;
+    color: #B57CFF;
+}
+
+.btn-outline-custom:hover {
+    background-color: #B57CFF;
+    color: white;
+}
+/* FIN HI, ADMIN */
+
 .img-fixed {
     height: 500px;
     object-fit: cover;

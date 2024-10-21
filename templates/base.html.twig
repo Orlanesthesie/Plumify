@@ -22,42 +22,6 @@
     <!-- Import Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 {% endblock %}
-    <style>
-        .profile-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-        .profile-container h4 {
-            margin: 0;
-            font-size: 24px;
-            font-family: 'Quando', serif;
-        }
-
-        .profile-container img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .logout-btn i {
-            font-size: 24px;
-            color: #B57CFF;
-        }
-
-        .btn-outline-custom {
-            border-color: #B57CFF;
-            color: #B57CFF;
-        }
-
-        .btn-outline-custom:hover {
-            background-color: #B57CFF;
-            color: white;
-        }
-    </style>
 </head>
 <body>
 
@@ -145,9 +109,7 @@
                     <div class="container mt-4">
                         <div class="profile-container">
                             <h4 class="quando py-3">
-                                Hi, <a data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    {{ app.user.firstname }} !
-                                </a>
+                                Hi, {{ app.user.firstname }} !
                             </h4>
                             {% if is_granted('ROLE_ADMIN') %}
                             <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -211,7 +173,7 @@
                         {% else %}
                             <img src="https://via.placeholder.com/100" alt="Profile Picture" class="rounded-circle">
                         {% endif %}
-                            <h5>{{user.firstname}} {{user.Lastname}}</h5>
+                            <h5>{{user.firstname}} {{user.lastname}}</h5>
                         </div>
 
                         <!-- Information Section -->

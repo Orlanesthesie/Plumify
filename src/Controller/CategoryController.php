@@ -27,6 +27,8 @@ class CategoryController extends AbstractController
         // Récupérer les livres associés à cette catégorie
         $books = $category->getBooks();
 
+        $user = $this->getUser();
+
         if ($books->isEmpty()) {
             throw new \Exception("No books found in this category.");
         }
@@ -47,6 +49,8 @@ class CategoryController extends AbstractController
             'books' => $books,
             'randomBooks' => $randomBooks,
             'form' => $form->createView(),
+            'user' => $user,
+
         ]);
     }
 }

@@ -16,7 +16,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class BookController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function index(CategoryRepository $categoryRepository, BookRepository $bookRepository,
+     Request $request, EntityManagerInterface $entityManager): Response
     {
         $newBooks = $bookRepository->findBy([], ['publicationYear' => 'DESC'], 5, 0);
         // dd($newBooks);
@@ -61,6 +62,8 @@ class BookController extends AbstractController
         $category = $book->getCategory();
         // dd($book->getLikedByUsers());
         // $relatedBooks; 
+        $user = $this->getUser();
+
 
         // Modale update profile
         $user = $this->getUser();
@@ -68,7 +71,7 @@ class BookController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $this->addFlash('success', 'Profil mis à jour avec succès');
+            $this->addFlash('success', 'Profile updated successfully');
             return $this->redirectToRoute('app_home');
         }
 
@@ -78,6 +81,8 @@ class BookController extends AbstractController
             'randomBooks' => $randomBooks,
             'form' => $form->createView(),
             // 'relatedBooks' => $relatedBooks,
+            'user' => $user,
+
         ]);
     }
 
@@ -115,13 +120,15 @@ class BookController extends AbstractController
         shuffle($randomBooks);
         $randomBooks = array_slice($randomBooks, 0, 5);
 
+        $user = $this->getUser();
+
         // Modale update profile
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $this->addFlash('success', 'Profil mis à jour avec succès');
+            $this->addFlash('success', 'Profile updated successfully');
             return $this->redirectToRoute('app_home');
         }
 
@@ -140,6 +147,8 @@ class BookController extends AbstractController
             'searchTerm' => $searchTerm,
             'randomBooks' => $randomBooks,
             'form' => $form->createView(),
+            'user' => $user,
+
         ]);
     }
 

@@ -5,6 +5,15 @@
 {% block title %}Active Loans{% endblock %}
 
 {% block body %}
+
+        {% for label, messages in app.flashes %}
+			<div class="mt-2 alert alert-{{ label }}">
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			</div>
+		{% endfor %}
+
    <div class="d-flex justify-content-between align-items-center mt-5">
     <h2 class="quando">List of Active Loans</h2>
     <a href="{{ path('admin_loan_new') }}" class="btn btn-outline-custom">

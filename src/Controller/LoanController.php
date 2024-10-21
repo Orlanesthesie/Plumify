@@ -72,8 +72,10 @@ class LoanController extends AbstractController
                 $entityManager->persist($book);
                 $entityManager->flush();
 
+                $this->addFlash('success', 'Loan created successfully');
+
                 // Rediriger ou afficher un message de succès
-                return $this->redirectToRoute('admin_loan_list'); // Ou une autre route après le prêt
+                return $this->redirectToRoute('admin_loan_list');
             }
 
         // Modale update profile
@@ -82,7 +84,7 @@ class LoanController extends AbstractController
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager->flush();
-                $this->addFlash('success', 'Profil mis à jour avec succès');
+                $this->addFlash('success', 'Profile updated successfully');
                 return $this->redirectToRoute('app_home');
             }
         }
@@ -94,6 +96,8 @@ class LoanController extends AbstractController
             'searchTerm' => $searchTerm,
             'randomBooks' => $randomBooks,
             'form' => $form->createView(),
+            'user' => $user,
+
         ]);
     }
 
@@ -123,7 +127,7 @@ class LoanController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $this->addFlash('success', 'Profil mis à jour avec succès');
+            $this->addFlash('success', 'Profile updated successfully');
             return $this->redirectToRoute('app_home');
         }
 
@@ -134,6 +138,8 @@ class LoanController extends AbstractController
             'searchTerm' => $searchTerm,
             'randomBooks' => $randomBooks,
             'form' => $form->createView(),
+            'user' => $user,
+
         ]);
     }
 
@@ -150,6 +156,9 @@ class LoanController extends AbstractController
         // Sauvegarder les modifications dans la base de données
         $entityManager->persist($loan);
         $entityManager->flush();
+
+        $this->addFlash('success', 'Book returned successfully');
+
 
         // Rediriger vers la liste des prêts en cours
         return $this->redirectToRoute('admin_loan_list');
