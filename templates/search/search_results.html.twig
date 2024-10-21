@@ -3,7 +3,7 @@
 {% block title %}Search Results{% endblock %}
 
 {% block body %}
-	<h2>Results for "{{ searchTerm }}"</h2>
+	<h2 class="quando">Results for <strong>"{{ searchTerm }}"</strong></h2>
 
 	{% if books is empty %}
 		<p>Aucun livre trouvé.</p>
@@ -11,38 +11,52 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Title</th>
-					<th></th>
-					<th>Category</th>
-					<th>Publication Year</th>
-					<th>Likes</th>
+					<th class="quando text-center">Available</th>
+					<th class="quando text-center">Cover</th>
+					<th class="quando text-center">Title</th>
+					<th class="quando text-center">Author</th>
+					<th class="quando text-center">Category</th>
+					<th class="quando text-center">Publication Year</th>
+					<th class="quando text-center">Likes</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for book in books %}
 					<tr>
-						<td>
-							<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" alt="{{ book.title }}" style="width: 50px; height: 75px;">
+						<td class="text-center align-middle">
+							{{ book.available ? '<i class="fas fa-check-circle" style="color: green;"></i>' : '<i class="fas fa-times-circle" style="color: red;"></i>'|raw }}
+
 						</td>
-						<td>
+						<td class="text-center">
+							<a href="{{ path('book_show', { id: book.id }) }}">
+							<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" alt="{{ book.title }}" style="width: 50px; height: 75px;">
+							</a>
+						</td>
+						<td class="text-center align-middle">
 							<strong>{{ book.title }}</strong><br>
-							<small>{{ book.author.firstname }} {{ book.author.lastname }}</small>
+						</td>
+						<td class="text-center align-middle">
+							{{ book.author.firstname }} {{ book.author.lastname }}
 						</td>
 
-						<td>
+						<td class="text-center align-middle">
 							{% for category in book.category %}
-								{{ category.name }}{% if not loop.last %}, {% endif %}
+							<!-- Condition qui vérifie si l'itération actuelle n'est pas la dernière de la boucle, si non on va a la ligne -->
+                                <a href="{{ path('category_show', { 'id': category.id }) }}"{{ category.name }}</a>
+								{{ category.name }}{% if not loop.last %} <br> {% endif %}
+								 
+                            
 							{% endfor %}
 						</td>
-						<td>{{ book.publicationYear }}</td>
-						<td>
+						<td class="text-center align-middle">{{ book.publicationYear }}</td>
+						<td class="text-center align-middle">
 							<i class="fa fa-heart" style="color: #b57cff;"></i> {{ book.likes|default(0) }}
 						</td>
 						
 						<!-- Bouton de prévisualisation -->
-						<td>
-							<a href="{{ path('book_show', { id: book.id }) }}" class="btn btn-outline-lavender">Preview</a>
+						<td class="text-center align-middle">
+							<a href="{{ path('book_show', { id: book.id }) }}" class="btn btn-outline-custom quando">Preview</a>
 						</td>
 					</tr>
 				{% endfor %}

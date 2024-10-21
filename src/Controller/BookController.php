@@ -132,13 +132,15 @@ class BookController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
+        
         // Rechercher dans la base de données par titre
         $books = $entityManager->getRepository(Book::class)->createQueryBuilder('b')
-            ->where('b.title LIKE :searchTerm')
-            ->setParameter('searchTerm', '%' . $searchTerm . '%')
-            ->getQuery()
-            ->getResult();
-
+        ->where('b.title LIKE :searchTerm')
+        ->setParameter('searchTerm', '%' . $searchTerm . '%')
+        ->getQuery()
+        ->getResult();
+        
+        // dd($books);
         return $this->render('search/search_results.html.twig', [
             'categories' => $categories,
             'books' => $books,

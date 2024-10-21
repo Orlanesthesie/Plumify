@@ -23,7 +23,9 @@
                                 <div>
                                     <p class="text-muted mb-3">{{ book.author.firstname }} {{ book.author.lastname }}</p>
                                     <h2 class="card-title fs-2 quando mb-3">{{ book.title }}</h2>
-                                    {{book.available ? 'Disponible' : 'Indisponible'}}
+                                    <p> Available: 
+                                    {{ book.available ? '<i class="fas fa-check-circle" style="color: green;"></i>' : '<i class="fas fa-times-circle" style="color: red;"></i>'|raw }}
+                                    </p>
                                 </div>
 
                                 <!-- Bouton like -->
@@ -78,30 +80,36 @@
 </div>
 
 <script>
-    document.querySelectorAll('.like-button').forEach(button => {
-        button.addEventListener('click', function () {
-            const bookId = this.getAttribute('data-book-id');
-            fetch(`/book/${bookId}/like`, {
-                method: 'POST',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Request error');
-                }
-                return response.json();
-            })
-            .then(data => {
-                this.textContent = this.textContent === 'Like' ? 'Unlike' : 'Like';
-                document.getElementById('likes-count').textContent = `${data.likes}`;
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    const likeButton = document.querySelector('[data-book-id="{{ book.id }}"]');
+    const likesCountSpan = document.getElementById('likes-count');
 
+    likeButton.addEventListener('click', function () {
+        const bookId = this.getAttribute('data-book-id');
+        fetch(`/book/${bookId}/like`, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Request error');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Mettre à jour le nombre de likes
+            likesCountSpan.textContent = data.likes;
+            
+            // Optionnel : changer l'apparence du bouton
+            this.classList.toggle('btn-outline-dark');
+            this.classList.toggle('btn-dark');
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
 </script>
 
 {% endblock %}

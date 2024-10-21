@@ -2,6 +2,24 @@ body {
     font-family: "Inter", sans-serif;
 }
 /* COULEURS */
+a{
+    /* text-decoration: none; */
+    color: #000;;
+}
+
+.btn-outline-custom {
+    color: #b57cff;
+    border: 1px solid #b57cff;
+    background-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+  
+.btn-outline-custom:hover {
+    color: #fff;
+    background-color: #b57cff;
+    border-color: #b57cff;
+}
+  
 
 .main-color {
     color: #B57CFF;

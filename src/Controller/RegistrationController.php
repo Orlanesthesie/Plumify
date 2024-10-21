@@ -47,7 +47,7 @@ class RegistrationController extends AbstractController
                 return $this->render('registration/registration.html.twig');
             }
 
-            // Validation simple de l'email (verifier si le fomrat est valide)
+            // Validation simple de l'email (verifier si le format est valide)
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $this->addFlash('error', 'Veuillez entrer une adresse email valide.');
                 return $this->render('registration/registration.html.twig');

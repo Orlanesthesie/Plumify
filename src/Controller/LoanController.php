@@ -45,6 +45,9 @@ class LoanController extends AbstractController
         // Récupérer la liste de tous les utilisateurs
         $users = $userRepository->findAll();
 
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+
         // Si le formulaire est soumis
         if ($request->isMethod('POST')) {
             $bookId = $request->request->get('book');
