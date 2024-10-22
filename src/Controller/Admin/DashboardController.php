@@ -20,7 +20,6 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        phpinfo();
         return $this->render('admin/dashboard.html.twig', [
             'url' => $adminUrlGenerator->setController(BookCrudController::class)->generateUrl(),
         ]);

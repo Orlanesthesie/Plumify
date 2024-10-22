@@ -67,10 +67,11 @@ class Loan
         return $this;
     }
 
-    public function getStartDate(): ?\DateTimeInterface
+    public function getFormattedStartDate(): string
     {
-        return $this->startDate;
+        return $this->startDate->format('Y-m-d H:i:s');
     }
+    
 
     public function setStartDate(\DateTimeInterface $startDate): static
     {
