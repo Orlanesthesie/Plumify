@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Book;
 use App\Entity\Category;
 use App\Form\UserType;
 use App\Repository\BookRepository;

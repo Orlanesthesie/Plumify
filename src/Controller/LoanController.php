@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Book;
-use App\Entity\User;
 use App\Entity\Loan;
 use App\Form\UserType;
 use App\Repository\BookRepository;
@@ -15,18 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class LoanController extends AbstractController
 {
-    private $csrfTokenManager;
-
-    public function __construct(CsrfTokenManagerInterface $csrfTokenManager)
-    {
-        $this->csrfTokenManager = $csrfTokenManager;
-    }
-
     #[Route('/admin/loan/new', name: 'admin_loan_new')]
     #[IsGranted('ROLE_ADMIN')] // Seuls les admins peuvent accéder à cette route
     public function newLoan(BookRepository $bookRepository, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
@@ -158,7 +148,6 @@ class LoanController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'Book returned successfully');
-
 
         // Rediriger vers la liste des prêts en cours
         return $this->redirectToRoute('admin_loan_list');
