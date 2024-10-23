@@ -32,6 +32,13 @@
                 </a>
                 <h2 class="mb-0">Welcome !</h2>
             </div>
+            {% for label, messages in app.flashes %}
+                <div class="alert alert-{{ label }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
 
             <form action="{{ path('app_registration') }}" method="post">
                 <div class="form-group">

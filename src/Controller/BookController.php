@@ -93,7 +93,9 @@ class BookController extends AbstractController
 
         // Vérifie si l'utilisateur est connecté
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return new JsonResponse(['error' => 'You must be logged in to like a book.'], 403);
+            return new JsonResponse([
+                'error' => "You must be logged in to like a book. Please sign up or log in."], 403);
+            
         }
 
         // Si l'utilisateur a déjà liké ce livre, on enlève le like

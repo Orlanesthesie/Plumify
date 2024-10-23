@@ -5,79 +5,80 @@
 {% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-    <div class="row">
-        <!-- Détails du livre -->
-        <div class="col-md-12">
-            <div class="card mb-4 p-2 shadow-sm rounded rounded-5" style="background-color: #E9D7FF;">
-                <div class="row no-gutters">
-                    <div class="col-md-3" style="position: relative;">
-                        <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" 
-                             class="img-fluid p-4" 
-                             alt="{{ book.title }}" 
-                             style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-3">{{ book.author.firstname }} {{ book.author.lastname }}</p>
-                                    <h2 class="card-title fs-2 quando mb-3">{{ book.title }}</h2>
-                                    <p> Available: 
-                                    {{ book.available ? '<i class="fas fa-check-circle" style="color: green;"></i>' : '<i class="fas fa-times-circle" style="color: red;"></i>'|raw }}
-                                    </p>
-                                </div>
+    <div id="error-message" class="alert alert-danger mt-2" style="display: none;"></div>
+        <div class="container mt-2">
+            <div class="row">
+                <!-- Détails du livre -->
+                <div class="col-md-12">
+                    <div class="card mb-4 p-2 shadow-sm rounded rounded-5" style="background-color: #E9D7FF;">
+                        <div class="row no-gutters">
+                            <div class="col-md-3" style="position: relative;">
+                                <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" 
+                                    class="img-fluid p-4" 
+                                    alt="{{ book.title }}" 
+                                    style="width: 100%; height: auto;">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <p class="text-muted mb-3">{{ book.author.firstname }} {{ book.author.lastname }}</p>
+                                            <h2 class="card-title fs-2 quando mb-3">{{ book.title }}</h2>
+                                            <p> Available: 
+                                            {{ book.available ? '<i class="fas fa-check-circle" style="color: green;"></i>' : '<i class="fas fa-times-circle" style="color: red;"></i>'|raw }}
+                                            </p>
+                                        </div>
 
-                                <!-- Bouton like -->
-                                <div>
-                                    <button data-book-id="{{ book.id }}" class="btn btn-outline-dark">
-                                        <i class="fa-solid fa-heart"></i>
-                                    </button>
-                                    <span id="likes-count" class="ms-2">{{ book.getLikedByUsers()|length }}</span>
+                                        <!-- Bouton like -->
+                                        <div>
+                                            <button data-book-id="{{ book.id }}" class="btn btn-outline-dark">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <span id="likes-count" class="ms-2">{{ book.getLikedByUsers()|length }}</span>
+                                        </div>
+                                    </div>
+
+                                    <p class="card-text">{{ book.publicationYear }}</p>
+                                    <p>{{ book.summary }}</p>
+                                    
+                                <div class="mb-3">
+                                    {% for category in book.category %}
+                                        <a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark">{{ category.name }}</a>
+                                    {% endfor %}
+                                </div>
                                 </div>
                             </div>
-
-                            <p class="card-text">{{ book.publicationYear }}</p>
-                            <p>{{ book.summary }}</p>
-                            
-                        <div class="mb-3">
-                            {% for category in book.category %}
-                                <a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark">{{ category.name }}</a>
-                            {% endfor %}
-                        </div>
                         </div>
                     </div>
+
+                    
+
+                    {# <!-- Suggestions dans la même catégorie -->
+                    <h4 class="mt-4">In the same category...</h4>
+                    <div class="card mb-4 p-3 shadow-sm" style="background-color: #E9D7FF;">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+                                <img src="{{ asset('/assets/images/books/' ~ relatedBook.coverImage) }}" class="img-fluid rounded" alt="{{ relatedBook.title }}">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h5 class="card-title fs-5">{{ relatedBook.title }}</h5>
+                                    <p class="text-muted">{{ relatedBook.author.firstname }} {{ relatedBook.author.lastname }}</p>
+                                    <div class="mb-3">
+                                        <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-tree"></i> Adventure</span>
+                                        <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-dragon"></i> Fantasy</span>
+                                    </div>
+                                    <p>{{ relatedBook.description }}</p>
+                                    <button data-book-id="{{ relatedBook.id }}" class="btn btn-outline-dark like-button">
+                                        <i class="fa-solid fa-heart"></i> {{ relatedBook.getLikedByUsers()|length }} likes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  #}
                 </div>
             </div>
-
-            
-
-            {# <!-- Suggestions dans la même catégorie -->
-             <h4 class="mt-4">In the same category...</h4>
-            <div class="card mb-4 p-3 shadow-sm" style="background-color: #E9D7FF;">
-                <div class="row no-gutters">
-                    <div class="col-md-3">
-                        <img src="{{ asset('/assets/images/books/' ~ relatedBook.coverImage) }}" class="img-fluid rounded" alt="{{ relatedBook.title }}">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card-body">
-                            <h5 class="card-title fs-5">{{ relatedBook.title }}</h5>
-                            <p class="text-muted">{{ relatedBook.author.firstname }} {{ relatedBook.author.lastname }}</p>
-                            <div class="mb-3">
-                                <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-tree"></i> Adventure</span>
-                                <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-dragon"></i> Fantasy</span>
-                            </div>
-                            <p>{{ relatedBook.description }}</p>
-                            <button data-book-id="{{ relatedBook.id }}" class="btn btn-outline-dark like-button">
-                                <i class="fa-solid fa-heart"></i> {{ relatedBook.getLikedByUsers()|length }} likes
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>  #}
         </div>
-    </div>
-</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -95,17 +96,18 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Request error');
+                return response.json().then(data => {
+                // Affiche le message d'erreur dans l'élément HTML
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.textContent = data.error;
+                errorMessage.style.display = 'block';
+            });
             }
             return response.json();
         })
         .then(data => {
             // Mettre à jour le nombre de likes
             likesCountSpan.textContent = data.likes;
-            
-            // Optionnel : changer l'apparence du bouton
-            this.classList.toggle('btn-outline-dark');
-            this.classList.toggle('btn-dark');
         })
         .catch(error => console.error('Error:', error));
     });

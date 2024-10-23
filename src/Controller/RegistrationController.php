@@ -41,13 +41,19 @@ class RegistrationController extends AbstractController
             // Vérifier si les champs ne sont pas vides || = OU
             if (empty($firstname) || empty($lastname) || empty($email) || empty($plainPassword)) {
                 // Message d'erreur si des champs sont manquants
-                $this->addFlash('error', 'Tous les champs doivent être remplis.');
+                $this->addFlash('error', 'All fields must be filled in.');
+                return $this->render('registration/registration.html.twig');
+            }
+
+            // Vérifier si l'email existe déjà
+            if ($entityManager->getRepository(User::class)->findOneBy(['email' => $email])) {
+                $this->addFlash('error', 'This email address is already in use. Please choose another one.');
                 return $this->render('registration/registration.html.twig');
             }
 
             // Validation simple de l'email (verifier si le format est valide)
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $this->addFlash('error', 'Veuillez entrer une adresse email valide.');
+                $this->addFlash('error', 'Please enter a valid email address.');
                 return $this->render('registration/registration.html.twig');
             }
 
@@ -84,7 +90,7 @@ class RegistrationController extends AbstractController
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager->flush();
-                $this->addFlash('success', 'Profil mis à jour avec succès');
+                $this->addFlash('success', 'Profile updated successfully');
                 return $this->redirectToRoute('app_home');
             }
 
@@ -94,6 +100,7 @@ class RegistrationController extends AbstractController
                 'randomBooks' => $randomBooks,
                 'popularBooks' => $popularBooks,
                 'form' => $form->createView(),
+                'user' => $user,
             ]);
         }
 

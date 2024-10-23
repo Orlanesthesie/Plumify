@@ -38,7 +38,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $this->addFlash('success', 'Profil mis à jour avec succès');
+            $this->addFlash('success', 'Profile updated successfully');
             return $this->redirectToRoute('app_home');
         }
 
