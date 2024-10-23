@@ -6052,14 +6052,6 @@
         <argument>!Debug</argument>
       </call>
       <call method="addPath">
-        <argument>C:\dev\Plumify/templates/bundles/TwigBundle</argument>
-        <argument>Twig</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\dev\Plumify/templates/bundles/TwigBundle</argument>
-        <argument>!Twig</argument>
-      </call>
-      <call method="addPath">
         <argument>C:\dev\Plumify\vendor\symfony\web-profiler-bundle/Resources/views</argument>
         <argument>WebProfiler</argument>
       </call>
