@@ -210,8 +210,6 @@ body {
     object-fit: cover;
     width: 100%;
 }
-/* RESPONSIVE */
-/* Largeur par défaut pour les grands écrans */
 .left-column {
     width: 280px;
 }
@@ -237,19 +235,21 @@ body {
         margin-left: 200px;
         margin-right: 200px;
     }
-}
+} 
 
-/* Responsive pour smartphones */
-@media (max-width: 768px) {
 
-    .left-column,
-    .right-column {
-        width: 2px;
+@media (max-width: 767px) {
+    .search-container{
+        display: none !important;
     }
-
+    .left-column,
+    .right-column{
+        display: none !important;
+    }
     .main-content {
-        margin-left: 100px;
-        margin-right: 100px;
+        width: 100%; /* Prendre toute la largeur */
+        margin: 0; /* Supprimer les marges */
+        padding: 20px; /* Gardez le padding si nécessaire */
     }
 }
 
