@@ -20,10 +20,10 @@ class LoanCrudController extends AbstractCrudController
         return [
             AssociationField::new('book', 'Book'),
             AssociationField::new('user', 'User'),
-            DateTimeField::new('startDate', 'Date de prêt')
-            ->setFormat('d/m/Y H:i')
-            // DateTimeField::new('expectedReturnDate', 'Date de retour prévue'),
-            // DateTimeField::new('returnDate', 'Date de rendu')
+            // DateTimeField::new('startDate', 'Loan date')
+            // ->setFormat('d/m/Y H:i')
+            // DateTimeField::new('expectedReturnDate', 'Expected return date'),
+            // DateTimeField::new('returnDate', 'Return date')
             //     ->setFormTypeOption('required', false),
         ];
     }

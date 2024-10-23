@@ -62,8 +62,6 @@ class BookController extends AbstractController
         $category = $book->getCategory();
         // dd($book->getLikedByUsers());
         // $relatedBooks; 
-        $user = $this->getUser();
-
 
         // Modale update profile
         $user = $this->getUser();
@@ -74,6 +72,7 @@ class BookController extends AbstractController
             $this->addFlash('success', 'Profile updated successfully');
             return $this->redirectToRoute('app_home');
         }
+
 
         return $this->render('book/show.html.twig', [
             'categories' => $categories,

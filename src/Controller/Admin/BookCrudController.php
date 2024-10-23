@@ -9,9 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use phpDocumentor\Reflection\Types\Integer;
 
 class BookCrudController extends AbstractCrudController
 {
@@ -30,8 +28,8 @@ class BookCrudController extends AbstractCrudController
             BooleanField::new('available', 'Available'),
             TextField::new('description'),
             ImageField::new('cover_image')
-                ->setUploadDir('public/assets/images/books') // Spécifie le répertoire de téléchargement
-                ->setBasePath('/assets/images/books') // Chemin d'accès aux images
+                ->setUploadDir('public/assets/images/books')
+                ->setBasePath('/assets/images/books')
         ];
     }
 }
