@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\LoanRepository;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,9 +15,6 @@ class Loan
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'loan', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Book $book = null;
 
     #[ORM\ManyToOne(inversedBy: 'loans')]
     #[ORM\JoinColumn(nullable: false)]
@@ -31,6 +29,10 @@ class Loan
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $returnDate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'loans')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Book $book = null;
+
     public function __construct()
     {
         $this->startDate = new \DateTime();
@@ -41,18 +43,6 @@ class Loan
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getBook(): ?Book
-    {
-        return $this->book;
-    }
-
-    public function setBook(Book $book): static
-    {
-        $this->book = $book;
-
-        return $this;
     }
 
     public function getUser(): ?User
@@ -67,9 +57,9 @@ class Loan
         return $this;
     }
 
-    public function getFormattedStartDate(): string
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->startDate->format('Y-m-d H:i:s');
+        return $this->startDate;
     }
     
 
@@ -100,6 +90,18 @@ class Loan
     public function setReturnDate(?\DateTimeInterface $returnDate): static
     {
         $this->returnDate = $returnDate;
+
+        return $this;
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->book;
+    }
+
+    public function setBook(?Book $book): static
+    {
+        $this->book = $book;
 
         return $this;
     }

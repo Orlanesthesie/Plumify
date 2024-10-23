@@ -104,6 +104,7 @@ class LoanController extends AbstractController
 
         // Récupérer tous les prêts en cours (où returnDate est null)
         $activeloans = $loanRepository->findBy(['returnDate' => null]);
+        // dd($activeloans);
 
         // Récupérer tous les prêts terminés (où returnDate n'est pas null)
         $pastloans = $loanRepository->findCompletedLoans();

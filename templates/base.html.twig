@@ -97,6 +97,14 @@
                 </form>
             </div>
 
+            {% for label, messages in app.flashes %}
+			<div class="alert alert-{{ label }}">
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			</div>
+		{% endfor %}
+
             {% block body %}{% endblock %}
         </div>
 
@@ -228,6 +236,15 @@
         </div>
     </div>
         {% endif %}
+
+        <!-- Navbar pour mobile -->
+    <nav class="navbar fixed-bottom navbar-dark bg-dark d-md-none">
+        <div class="container-fluid justify-content-around">
+            <a href="#" class="nav-link text-light"><i class="bi bi-person"></i></a>
+            <a href="#" class="nav-link text-light"><i class="bi bi-search"></i></a>
+            <a href="#" class="nav-link text-light"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+    </nav>
 
 
 

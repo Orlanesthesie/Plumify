@@ -52,7 +52,7 @@ class BookController extends AbstractController
     }
 
 
-    #[Route('/book/{id}', name: 'book_show', methods: ['GET'])]
+    #[Route('/book/{id}', name: 'book_show', methods: ['GET','POST'])]
     public function show(Book $book, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager, BookRepository $bookRepository, Request $request): Response
     {
         $categories = $categoryRepository->findAll();
@@ -61,7 +61,7 @@ class BookController extends AbstractController
         $randomBooks = array_slice($randomBooks, 0, 5);
         $category = $book->getCategory();
         // dd($book->getLikedByUsers());
-        // $relatedBooks; 
+
 
         // Modale update profile
         $user = $this->getUser();
@@ -70,16 +70,13 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
             $this->addFlash('success', 'Profile updated successfully');
-            return $this->redirectToRoute('app_home');
         }
-
 
         return $this->render('book/show.html.twig', [
             'categories' => $categories,
             'book' => $book,
             'randomBooks' => $randomBooks,
             'form' => $form->createView(),
-            // 'relatedBooks' => $relatedBooks,
             'user' => $user,
 
         ]);

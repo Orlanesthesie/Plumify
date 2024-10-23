@@ -27,9 +27,6 @@ class Book
     #[ORM\JoinColumn(nullable: false)]
     private ?Author $author = null;
 
-    #[ORM\OneToOne(mappedBy: 'book', cascade: ['persist', 'remove'])]
-    private ?Loan $loan = null;
-
     #[ORM\Column]
     private ?int $publicationYear = null;
     
@@ -54,10 +51,17 @@ class Book
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likedBooks')]
     private Collection $likedByUsers;
 
+    /**
+     * @var Collection<int, Loan>
+     */
+    #[ORM\OneToMany(targetEntity: Loan::class, mappedBy: 'book', orphanRemoval: true)]
+    private Collection $loans;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
         $this->likedByUsers = new ArrayCollection();
+        $this->loans = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -102,23 +106,6 @@ class Book
     public function setAuthor(?Author $author): static
     {
         $this->author = $author;
-
-        return $this;
-    }
-
-    public function getLoan(): ?Loan
-    {
-        return $this->loan;
-    }
-
-    public function setLoan(Loan $loan): static
-    {
-        // set the owning side of the relation if necessary
-        if ($loan->getBook() !== $this) {
-            $loan->setBook($this);
-        }
-
-        $this->loan = $loan;
 
         return $this;
     }
@@ -222,6 +209,36 @@ class Book
     public function isLikedByUser(User $user): bool
     {
         return $this->likedByUsers->contains($user);
+    }
+
+    /**
+     * @return Collection<int, Loan>
+     */
+    public function getLoans(): Collection
+    {
+        return $this->loans;
+    }
+
+    public function addLoan(Loan $loan): static
+    {
+        if (!$this->loans->contains($loan)) {
+            $this->loans->add($loan);
+            $loan->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoan(Loan $loan): static
+    {
+        if ($this->loans->removeElement($loan)) {
+            // set the owning side to null (unless already changed)
+            if ($loan->getBook() === $this) {
+                $loan->setBook(null);
+            }
+        }
+
+        return $this;
     }
 
 }
