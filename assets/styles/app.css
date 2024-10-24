@@ -232,6 +232,7 @@ body {
 .book-cover{
     height: auto;
     width: 100%;
+    padding: 5px;
 }
 
 
@@ -269,15 +270,18 @@ body {
         display: block; /* afficher le logo "titre" */
     }
 
-    /*  BOOK SHOW */
+    /*  BOOK SHOW + CATEGORY SHOW */
     .book-cover-container{
         display: flex;  
         justify-content: center;
         width: 100%;  
     }
-    .book-cover{
-        height: 100%;
+    .book-cover {
+        height: 500px;
         width: auto;
+    }
+    .card-body{
+        text-align: center;
     }
 
 }

@@ -9,9 +9,11 @@
         {% for book in books %}
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <a href="{{ path('book_show', { 'id': book.id }) }}">
-                        <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="card-img-top img-fixed" alt="{{ book.title }}">
-                    </a>
+                    <div class="book-cover-container">
+                        <a href="{{ path('book_show', { 'id': book.id }) }}">
+                            <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="card-img-top img-fixed book-cover" alt="{{ book.title }}">
+                        </a>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title quando">{{ book.title }}</h5>
                         <p class="text-muted">{{ book.author }}</p>
