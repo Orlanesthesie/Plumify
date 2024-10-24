@@ -223,6 +223,18 @@ body {
     width: 20%;
 }
 
+.logo-container {
+    text-align: center;
+    padding-top: 20px; 
+    display:none;
+}
+
+.book-cover{
+    height: auto;
+    width: 100%;
+}
+
+
 /* Responsive pour tablettes */
 @media (max-width: 1024px) {
 
@@ -234,23 +246,40 @@ body {
     .main-content {
         margin-left: 200px;
         margin-right: 200px;
+        /* background-color: #B57CFF; */
     }
 } 
 
-
+/* Responsive pour smartphones */
 @media (max-width: 767px) {
     .search-container{
-        display: none !important;
+        display: none !important; /* cacher la barre de recherche */
     }
     .left-column,
     .right-column{
-        display: none !important;
+        display: none !important; /* cacher les colonnes latérales */
     }
     .main-content {
-        width: 100%; /* Prendre toute la largeur */
-        margin: 0; /* Supprimer les marges */
-        padding: 20px; /* Gardez le padding si nécessaire */
+        width: 100%;
+        margin: 0;
+        padding: 200px; /* contenu prend la largeur de l'ecran */
+        /* background-color: red; */
     }
+    .logo-container{
+        display: block; /* afficher le logo "titre" */
+    }
+
+    /*  BOOK SHOW */
+    .book-cover-container{
+        display: flex;  
+        justify-content: center;
+        width: 100%;  
+    }
+    .book-cover{
+        height: 100%;
+        width: auto;
+    }
+
 }
 
 /* FIN RESPONSIVE */

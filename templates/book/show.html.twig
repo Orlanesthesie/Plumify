@@ -6,6 +6,7 @@
 
 {% block body %}
     <div id="error-message" class="alert alert-danger mt-2" style="display: none;"></div>
+
         <div class="container mt-2">
             <div class="row">
                 <!-- Détails du livre -->
@@ -13,10 +14,11 @@
                     <div class="card mb-4 p-2 shadow-sm rounded rounded-5" style="background-color: #E9D7FF;">
                         <div class="row no-gutters">
                             <div class="col-md-3" style="position: relative;">
-                                <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" 
-                                    class="img-fluid p-4" 
-                                    alt="{{ book.title }}" 
-                                    style="width: 100%; height: auto;">
+                                <div class="book-cover-container">
+                                    <img class="book-cover" src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" 
+                                        class="img-fluid p-4" 
+                                        alt="{{ book.title }}" >
+                                </div>
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">

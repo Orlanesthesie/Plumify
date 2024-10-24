@@ -5,17 +5,17 @@
 
 {% block body %}
 	<section id="popular" class="mb-5">
-            <h2 class="quando">Popular Books</h2>
-            <div class="row d-flex justify-content-around">
-                {% for book in popularBooks %}
-                    <div class="col-md-2 ">
-                        <a href="{{ path('book_show', { id: book.id }) }}">
+		<h2 class="quando">Popular Books</h2>        		
+				<div class="row d-flex justify-content-around">
+					{% for book in popularBooks %}
+						<div class="col-md-2 ">
+							<a href="{{ path('book_show', { id: book.id }) }}">
 								<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
 							</a>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+						</div>
+					{% endfor %}
+				</div>	
+	</section>
 		
 
 	<section id="newest">
