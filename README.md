@@ -35,3 +35,6 @@ Base de données : PhpMyAdmin (MySQL)
 
 ## Utilisation
 Une fois le serveur en cours d'exécution, vous pouvez accéder à Plumify en naviguant vers [http://localhost:3000](http://localhost:3000)
+
+## Compte administrateur
+Seuls les utilisateurs ayant un compte administrateur peuvent gérer les emprunts de livres.
