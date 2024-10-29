@@ -16,6 +16,11 @@ L'objectif de Plumify est de créer un site web moderne qui facilite l'accès au
 * Connexion, inscription, et gestion de profil.
 * Affichage des livres par genre.
 
+## Technologies utilisées
+Framework Backend : Symfony (PHP)
+Frontend : Twig, HTML, CSS, Bootstrap
+Base de données : PhpMyAdmin (MySQL)
+
 ## Installation
 * Clonez le dépôt GitHub:
   #### `git clone git@github.com:Orlanesthesie/Plumify.git`
@@ -25,3 +30,8 @@ L'objectif de Plumify est de créer un site web moderne qui facilite l'accès au
 * Chargez la base de données avec les commandes suivantes:
     #### `php bin/console doctrine:database:create`   
     #### `php bin/console doctrine:migrations:migrate`
+* Lancez le serveur Symfony :
+    #### `symfony server:start`
+
+## Utilisation
+Une fois le serveur en cours d'exécution, vous pouvez accéder à Plumify en naviguant vers [http://localhost:3000](http://localhost:3000)
