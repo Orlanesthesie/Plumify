@@ -17,8 +17,11 @@ L'objectif de Plumify est de créer un site web moderne qui facilite l'accès au
 * Affichage des livres par genre.
 
 ## Installation
-* Clonez le dépôt GitHub: `git clone git@github.com:Orlanesthesie/Plumify.git`
-* Intaller les dépendances: `composer install`
+* Clonez le dépôt GitHub:
+  #### `git clone git@github.com:Orlanesthesie/Plumify.git`
+* Installer les dépendances:
+  #### `composer install`
 * Configurez votre environnement en dupliquant `.env` et en remplissant les informations nécessaires (base de données, etc.).
-* Chargez la base de données avec les commandes suivantes: `php bin/console doctrine:database:create`
-`php bin/console doctrine:migrations:migrate`
+* Chargez la base de données avec les commandes suivantes:
+    #### `php bin/console doctrine:database:create`   
+    #### `php bin/console doctrine:migrations:migrate`
