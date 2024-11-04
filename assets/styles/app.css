@@ -26,7 +26,6 @@ a{
     border-color: #b57cff;
 }
   
-
 .main-color {
     color: #B57CFF;
 }
@@ -94,7 +93,6 @@ a{
 .search-input::placeholder {
     color: #888;
 }
-
 /* FIN SEARCHBAR */
 
 
@@ -233,6 +231,24 @@ body {
     height: auto;
     width: 100%;
     padding: 5px;
+}
+
+.custom-navbar {
+    position: fixed;
+    bottom: 20px; /* Ajuster la distance par rapport au bas */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000; /* Fond noir */
+    border-radius: 30px; /* Coins arrondis */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    width: 80%; /* Ajuster la largeur selon vos besoins */
+    max-width: 400px;
+}
+
+.search-container-show{
+    display:none;
 }
 
 

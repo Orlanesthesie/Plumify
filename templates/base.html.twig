@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        {% block title %}prout{% endblock %}
+        {% block title %}Plumify{% endblock %}
     </title>
     <link rel="icon" href="{{ asset('images/logos/icon.png') }}">
     {% block stylesheets %}
@@ -28,7 +28,7 @@
     {# COLONNE DE GAUCHE - FIXE #}
         <div class="left-column d-flex flex-column flex-shrink-0 p-3 border-end position-fixed" style="height: 100vh; overflow-y: auto;">
             <a href="/" class="d-flex align-items-center mb-2 justify-content-center">
-                <img src="{{ asset('images/logos/logo2.png') }}" style="height: 5vh;">
+                <img src="{{ asset('images/logos/logo1.png') }}" alt="logo" style="height: 10vh;">
             </a>
             <hr>
             <div class="categories">
@@ -100,7 +100,9 @@
                 </form>
             </div>
             <div class=" logo-container">
+            <a href="/">
                 <img src="{{ asset('images/logos/logo2.png') }}" class="text-center" alt="logo" style="height: 8vh; ">
+            </a>        
                     <hr>
             </div>
 
@@ -171,7 +173,7 @@
     </div>
         {% if app.user %}
             <!-- Modal -->
-                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background-color: #B57CFF;">
@@ -247,9 +249,11 @@
         <!-- Navbar pour mobile -->
     <nav class="navbar fixed-bottom navbar-dark bg-dark d-md-none">
         <div class="container-fluid justify-content-around">
-            <a href="#" class="nav-link text-light"><i class="bi bi-person"></i></a>
-            <a href="#" class="nav-link text-light"><i class="bi bi-search"></i></a>
-            <a href="#" class="nav-link text-light"><i class="bi bi-box-arrow-right"></i></a>
+            <a href="{{ path('app_home') }}" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
+            <a href="{{ path('book_search') }}" class="nav-link text-light"><i class="fa-solid fa-magnifying-glass" style="color: #B197FC;"></i></a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link text-light"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_logout') }}" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
         </div>
     </nav>
 

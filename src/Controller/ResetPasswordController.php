@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,10 +16,13 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
+use Twig\Environment;
 
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
@@ -35,22 +39,58 @@ class ResetPasswordController extends AbstractController
     /**
      * Display & process form to request a password reset.
      */
-    #[Route('', name: 'app_forgot_password_request')]
-    public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
-    {
+    #[Route('/forgot-password', name: 'app_forgot_password', methods: ['GET', 'POST'])]
+    public function forgotPassword( Request $request, UserRepository $userRepository, TokenGeneratorInterface $tokenGenerator, MailerInterface $mailer, EntityManagerInterface $entityManager, 
+    Environment $twig) : Response {
+        echo"coucou";
+        // if ($request->isMethod('POST')) {
+            $email = $request->request->get('email');
+            $user = $userRepository->findOneBy(['email' => $email]);
+
+            if (!$user) {
+                // Ajouter un message flash en cas d'email invalide
+                $this->addFlash('error', 'Aucun utilisateur trouvé avec cet email.');
+                return $this->redirectToRoute('app_forgot_password');
+            }
+
+            // Générer un token de réinitialisation
+            $resetToken = $tokenGenerator->generateToken();
+            $user->setResetToken($resetToken);
+            $entityManager->flush();
+
+        //     // Créer l'URL de réinitialisation
+        //     $resetUrl = $this->generateUrl('app_user_set_password', ['token' => $resetToken], UrlGeneratorInterface::ABSOLUTE_URL);
+
+        //     // Rendre le contenu de l'email depuis le template Twig
+        //     $emailContent = $twig->render('reset_password/forgot_password.html.twig', [
+        //         'user' => $user,
+        //         'resetUrl' => $resetUrl
+        //     ]);
+
+        //     // Créer l'email en utilisant le contenu rendu par Twig
+        //     $email = (new Email())
+        //         ->from('noreply@yourdomain.com')
+        //         ->to($user->getEmail())
+        //         ->subject('Réinitialisation de votre mot de passe')
+        //         ->html($emailContent);
+
+        //     // Envoyer l'email
+        //     $mailer->send($email);
+
+        //     // Ajouter un message flash pour informer l'utilisateur que l'email a été envoyé
+        //     $this->addFlash('success', 'Un e-mail de réinitialisation de mot de passe a été envoyé.');
+
+        //     return $this->redirectToRoute('app_login',[
+        //             'user' => $user,
+        //     ]);
+        // // }
+        // // else{
+        //     dd('pas dans le if');
+    // }
         $form = $this->createForm(ResetPasswordRequestFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->processSendingPasswordResetEmail(
-                $form->get('email')->getData(),
-                $mailer,
-                $translator
-            );
-        }
-
         return $this->render('reset_password/request.html.twig', [
-            'requestForm' => $form,
+            'form' => $form->createView(),
+            'token' => $resetToken,
         ]);
     }
 
@@ -74,8 +114,9 @@ class ResetPasswordController extends AbstractController
      * Validates and process the reset URL that the user clicked in their email.
      */
     #[Route('/reset/{token}', name: 'app_reset_password')]
-    public function reset(Request $request, UserPasswordHasherInterface $passwordHasher, TranslatorInterface $translator, ?string $token = null): Response
+    public function reset(Request $request, TokenGeneratorInterface $tokenGenerator, UserPasswordHasherInterface $passwordHasher, TranslatorInterface $translator, ?string $token = null): Response
     {
+        $token = $tokenGenerator->generateToken();
         if ($token) {
             // We store the token in session and remove it from the URL, to avoid the URL being
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
@@ -133,11 +174,12 @@ class ResetPasswordController extends AbstractController
 
     private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer, TranslatorInterface $translator): RedirectResponse
     {
+        // Chercher si l'adresse mail existe
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
             'email' => $emailFormData,
         ]);
 
-        // Do not reveal whether a user account was found or not.
+        // Ne pas révéler si un compte utilisateur a été trouvé ou non.
         if (!$user) {
             return $this->redirectToRoute('app_check_email');
         }
@@ -158,28 +200,15 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_check_email');
         }
 
-        // $email = (new TemplatedEmail())
-        //     ->from(new Address('mailer@plumify.com', 'Plumify Mail Bot'))
-        //     ->to($user->getEmail())
-        //     ->subject('Your password reset request')
-        //     ->htmlTemplate('reset_password/email.html.twig')
-        //     ->context([
-        //         'resetToken' => $resetToken,
-        //     ])
-        // ;
-
-        // $mailer->send($email);
-
+        // Créer l'email
         $email = (new Email())
         ->from('mailer@plumify.com')
         ->to($user->getEmail())
-        //->cc('cc@example.com')
-        //->bcc('bcc@example.com')
-        //->replyTo('fabien@example.com')
-        //->priority(Email::PRIORITY_HIGH)
-        ->subject('Time for Symfony Mailer!')
-        ->text('Sending emails is fun again!')
-        ->html('<p>See Twig integration for better HTML integration!</p>');
+        ->subject('Reset Password')
+        ->text('To reset your password, please click the following link : ' . 
+            $this->resetPasswordHelper->generateResetToken($user))
+        ->html('<p>To reset your password, please click the following link : <a href="' . 
+            $this->resetPasswordHelper->generateResetToken($user) . '">Reset Password</a></p>');
 
     $mailer->send($email);
 

@@ -39,12 +39,17 @@
         <div class="text-body-secondary mb-3">
              Please enter your email to reset the password.
         </div>
-
-        {{ form_start(requestForm) }}
-            {{ form_row(requestForm.email) }}
-                 <button type="submit" class="btn btn-login btn-block mt-3"><strong>Reset password</strong></button>
-        {{ form_end(requestForm) }}
-
+         <form action="{{ path('app_reset_password') }}" method="post">
+                <div class="form-group">
+                    <label for="username">Email:</label>
+                    <input type="text" class="form-control" id="username" name="_username" required>
+                </div>
+                <button type="submit" class="btn btn-login btn-block"><strong>Reset</strong></button>
+            </form>
+        {# {{ form_start(form) }}
+            {{ form_row(form.email) }}
+            <button type="submit" class="btn btn-login btn-block mt-3"><strong>Reset password</strong></button>
+        {{ form_end(form) }} #}
             <div class="register-link text-center mt-3">
                 <p>New member? <a href="{{ path('app_registration') }}">Register here</a></p>
             </div>
