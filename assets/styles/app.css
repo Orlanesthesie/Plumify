@@ -228,22 +228,22 @@ body {
 }
 
 .book-cover{
-    height: auto;
+    height: 450px;
     width: 100%;
     padding: 5px;
 }
 
 .custom-navbar {
     position: fixed;
-    bottom: 20px; /* Ajuster la distance par rapport au bas */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #000; /* Fond noir */
-    border-radius: 30px; /* Coins arrondis */
+    background-color: #000; 
+    border-radius: 30px; 
     padding: 10px 20px;
     display: flex;
     justify-content: space-around;
-    width: 80%; /* Ajuster la largeur selon vos besoins */
+    width: 80%;
     max-width: 400px;
 }
 
@@ -253,7 +253,7 @@ body {
 
 
 /* Responsive pour tablettes */
-@media (max-width: 1024px) {
+@media (max-width: 1270px) {
 
     .left-column,
     .right-column {
@@ -268,23 +268,23 @@ body {
 } 
 
 /* Responsive pour smartphones */
-@media (max-width: 767px) {
+@media (max-width: 670px) {
     .search-container{
-        display: none !important; /* cacher la barre de recherche */
+        display: none !important;
     }
     .left-column,
     .right-column{
-        display: none !important; /* cacher les colonnes latérales */
+        display: none !important;
     }
     .main-content {
         width: 100%;
         margin: 0;
-        padding: 200px; /* contenu prend la largeur de l'ecran */
-        /* background-color: red; */
+        padding: 200px;
     }
     .logo-container{
         display: block; /* afficher le logo "titre" */
     }
+
 
     /*  BOOK SHOW + CATEGORY SHOW */
     .book-cover-container{
@@ -293,8 +293,8 @@ body {
         width: 100%;  
     }
     .book-cover {
-        height: 500px;
-        width: auto;
+        height: 400px;
+        width: 100%;
     }
     .card-body{
         text-align: center;

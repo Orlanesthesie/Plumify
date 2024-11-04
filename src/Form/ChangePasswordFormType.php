@@ -1,5 +1,7 @@
 <?php
 
+// Cette page permet à un utilisateur déjà connecté de changer son mot de passe
+
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;

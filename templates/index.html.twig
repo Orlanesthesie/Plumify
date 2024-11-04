@@ -7,14 +7,19 @@
 	<section id="popular" class="mb-5">
 		<h2 class="quando">Popular Books</h2>        		
 				<div class="row d-flex justify-content-around">
-					{% for book in popularBooks %}
-						<div class="col-md-2 ">
-							<a href="{{ path('book_show', { id: book.id }) }}">
-								<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
-							</a>
+					<div class="swiper mySwiper">
+						<div class="swiper-wrapper">
+										{% for book in popularBooks %}
+											<div class="swiper-slide">
+												<a href="{{ path('book_show', { id: book.id }) }}">
+													<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
+												</a>
+											</div>
+										{% endfor %}
 						</div>
-					{% endfor %}
-				</div>	
+					</div>
+				</div>
+				
 	</section>
 		
 
@@ -22,11 +27,11 @@
 		<h2 class="quando">Newest</h2>
 			<div id="books-news" class="px-5">
 			{% for book in newBooks %}
-				<div class="card mb-5 second-color d-flex flex-column rounded rounded-5">
+				<div class="card mb-5 second-color d-flex flex-column rounded rounded-5 book-card">
 					<div class="row g-0 flex-grow-1">
 						<div class="col-md-4">
-							<a href="{{ path('book_show', { id: book.id }) }}">
-								<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
+							<a href="{{ path('book_show', { id: book.id }) }}" title={{book.title}}>
+								<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5 "  alt="Couverture de {{ book.title }}" style="float:left; width:200px; height:300px;">
 							</a>
 						</div>
 						<div class="col-md-8 d-flex flex-column">
@@ -59,8 +64,33 @@
 			</div>
 	</section>
 
-	<h3>FOOTER</h3>
+	<h6 class="text-center">Plumify, 2024</h6>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 5,
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+		breakpoints: {
+		320: {
+		slidesPerView: 2,
+		spaceBetween: 10
+		},
+		670: {
+		slidesPerView: 3,
+		spaceBetween: 30
+		},
+		1270: {
+		slidesPerView: 4,
+		spaceBetween: 40
+		}}
+    });
+  </script>
 
 {% endblock %}
 

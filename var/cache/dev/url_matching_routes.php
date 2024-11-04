@@ -24,7 +24,7 @@ return [
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\RegistrationController::registration'], null, null, null, false, false, null]],
-        '/reset-password/forgot-password' => [[['_route' => 'app_forgot_password', '_controller' => 'App\\Controller\\ResetPasswordController::forgotPassword'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/user' => [[['_route' => 'app_user', '_controller' => 'App\\Controller\\UserController::index'], null, null, null, false, false, null]],
         '/download-json' => [[['_route' => 'api_download_json', '_controller' => 'App\\Controller\\ApiController::downloadJson'], null, null, null, false, false, null]],

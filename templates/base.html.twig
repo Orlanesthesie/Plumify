@@ -20,6 +20,8 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('styles/modale.css') }}" media="screen,projection"/>
     <!-- Import Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
 {% endblock %}
 </head>
 <body>
@@ -89,7 +91,7 @@
 
 
     {# COLONNE CENTRALE - DÉFILANTE #}
-        <div class="main-content flex-grow-1 p-3" style="overflow-y: auto; height: 100vh;">
+        <div class="main-content flex-grow-1 p-0 w-100" style="overflow-y: auto;">
             {# SEARCHBAR #}
             <div class="search-container d-flex align-items-center mx-auto">
                 <form action="{{ path('book_search') }}" method="get" class="d-flex w-100">
@@ -99,10 +101,10 @@
                     </button>
                 </form>
             </div>
-            <div class=" logo-container">
-            <a href="/">
-                <img src="{{ asset('images/logos/logo2.png') }}" class="text-center" alt="logo" style="height: 8vh; ">
-            </a>        
+            <div class=" logo-container w-100 bg-white">
+                <a href="/">
+                    <img src="{{ asset('images/logos/logo2.png') }}" class="align-center" alt="logo" style="height: 8vh;">
+                </a>        
                     <hr>
             </div>
 
@@ -249,11 +251,23 @@
         <!-- Navbar pour mobile -->
     <nav class="navbar fixed-bottom navbar-dark bg-dark d-md-none">
         <div class="container-fluid justify-content-around">
-            <a href="{{ path('app_home') }}" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
-            <a href="{{ path('book_search') }}" class="nav-link text-light"><i class="fa-solid fa-magnifying-glass" style="color: #B197FC;"></i></a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link text-light"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
-            <a href="{{ path('app_logout') }}" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
-            <a href="{{ path('category_list') }}" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="#" data-bs-toggle="modal" title="profile" data-bs-target="#exampleModal" class="nav-link text-light"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
+            <a href="{{ path('admin_loan_list') }}" title="loans" class="nav-link text-light"><i class="fa-solid fa-book" style="color: #B197FC;"></i></a>
+            <a href="/admin" title="admin" class="nav-link text-light"><i class="fa-solid fa-toolbox" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_logout') }}" title="logout" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
+        {% elseif app.user %}
+            <a href="#" data-bs-toggle="modal" title="profile" data-bs-target="#exampleModal" class="nav-link text-light text-center"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_home') }}" title="home" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_logout') }}" title="logout" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
+        {% else %}
+            <a href="{{ path('book_search') }}" title="search" class="nav-link text-light"><i class="fa-solid fa-magnifying-glass" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_login') }}" title="login" class="nav-link text-light"><i class="fa-solid fa-arrow-right-to-bracket" style="color: #B197FC;"></i></a>
+        {% endif %}
+
         </div>
     </nav>
 
