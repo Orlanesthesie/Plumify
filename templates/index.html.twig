@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home
-{% endblock %}
+{% block title %} Home {% endblock %}
 
 {% block body %}
 	<section id="popular" class="mb-5">
@@ -9,13 +8,13 @@
 				<div class="row d-flex justify-content-around">
 					<div class="swiper mySwiper">
 						<div class="swiper-wrapper">
-										{% for book in popularBooks %}
-											<div class="swiper-slide">
-												<a href="{{ path('book_show', { id: book.id }) }}">
-													<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
-												</a>
-											</div>
-										{% endfor %}
+							{% for book in popularBooks %}
+								<div class="swiper-slide">
+									<a href="{{ path('book_show', { id: book.id }) }}" title="{{ book.title }}">
+										<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
+									</a>
+								</div>
+							{% endfor %}
 						</div>
 					</div>
 				</div>
@@ -30,7 +29,7 @@
 				<div class="card mb-5 second-color d-flex flex-column rounded rounded-5 book-card">
 					<div class="row g-0 flex-grow-1">
 						<div class="col-md-4">
-							<a href="{{ path('book_show', { id: book.id }) }}" title={{book.title}}>
+							<a href="{{ path('book_show', { id: book.id }) }}" title="{{book.title}}">
 								<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5 "  alt="Couverture de {{ book.title }}" style="float:left; width:200px; height:300px;">
 							</a>
 						</div>
@@ -40,13 +39,13 @@
 									<small class="text-body-secondary">
 										{{ book.author.firstname }} {{ book.author.lastname }}
 									</small>
-									<a href="{{ path('book_show', { id: book.id }) }}">
+									<a href="{{ path('book_show', { id: book.id }) }}" title="{{ book.title }}">
 									<h3 class="card-title mt-2 quando">{{ book.title }}</h3>
 									</a>
 									<p class="card-text mt-2">{{ book.description }}</p>
 									<div class="mt-auto">
 										{% for category in book.category %}
-											<a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark mx-2">{{ category.name }}</a>
+											<a href="{{ path('category_show', { 'id': category.id }) }}" title="{{ category.name }}" class=" btn btn-outline-dark mx-2">{{ category.name }}</a>
 										{% endfor %}
 									</div>
 								</div>
@@ -64,7 +63,6 @@
 			</div>
 	</section>
 
-	<h6 class="text-center">Plumify, 2024</h6>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 

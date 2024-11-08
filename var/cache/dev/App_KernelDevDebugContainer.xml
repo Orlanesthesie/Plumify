@@ -546,7 +546,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.Ia.tPa9"/>
+      <argument type="service" id=".service_locator.9GLW0g."/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3524,7 +3524,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.Ia.tPa9"/>
+      <argument type="service" id=".service_locator.9GLW0g."/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8469,7 +8469,7 @@
         <argument key="translator" type="service_closure" id="translator.data_collector"/>
       </argument>
     </service>
-    <service id=".service_locator.Ia.tPa9" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.9GLW0g." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AuthorCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
@@ -8578,6 +8578,7 @@
         <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\BookController::cgu" type="service_closure" id=".service_locator.3UJ2Lxl"/>
         <argument key="App\Controller\BookController::index" type="service_closure" id=".service_locator.qEeeB4v"/>
         <argument key="App\Controller\BookController::like" type="service_closure" id=".service_locator.LG7ntvO"/>
         <argument key="App\Controller\BookController::search" type="service_closure" id=".service_locator.3UJ2Lxl"/>
@@ -8701,6 +8702,7 @@
         <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\BookController:cgu" type="service_closure" id=".service_locator.3UJ2Lxl"/>
         <argument key="App\Controller\BookController:index" type="service_closure" id=".service_locator.qEeeB4v"/>
         <argument key="App\Controller\BookController:like" type="service_closure" id=".service_locator.LG7ntvO"/>
         <argument key="App\Controller\BookController:search" type="service_closure" id=".service_locator.3UJ2Lxl"/>
@@ -11195,7 +11197,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Ia.tPa9"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.9GLW0g."/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11230,7 +11232,7 @@
     <service id=".service_locator.6FuogHj" alias=".service_locator.El7aJCj"/>
     <service id=".service_locator.gYxkH8_" alias=".service_locator.IOosIe9"/>
     <service id=".service_locator.GwjYG1e" alias=".service_locator.5HKoiFC"/>
-    <service id=".service_locator.2t_vrew" alias=".service_locator.Ia.tPa9"/>
+    <service id=".service_locator._B8w9DF" alias=".service_locator.9GLW0g."/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.ee5SO.5" alias=".service_locator.dshTaJy"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>

@@ -82,8 +82,12 @@ a{
 }
 
 .search-btn i {
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 16px;
+}
+
+.search-btn hover {
+    background-color: #000 !important;
 }
 
 .search-container:focus-within {
@@ -229,7 +233,6 @@ body {
 
 .book-cover{
     height: 450px;
-    width: 100%;
     padding: 5px;
 }
 
@@ -250,6 +253,10 @@ body {
 .search-container-show{
     display:none;
 }
+.show{
+    display: none;
+}
+
 
 
 /* Responsive pour tablettes */
@@ -269,9 +276,9 @@ body {
 
 /* Responsive pour smartphones */
 @media (max-width: 670px) {
-    .search-container{
-        display: none !important;
-    }
+    /* .search-container{
+        display: none !important; 
+    } */
     .left-column,
     .right-column{
         display: none !important;
@@ -284,6 +291,9 @@ body {
     .logo-container{
         display: block; /* afficher le logo "titre" */
     }
+    .show{
+        display: flex;
+    }
 
 
     /*  BOOK SHOW + CATEGORY SHOW */
@@ -294,10 +304,14 @@ body {
     }
     .book-cover {
         height: 400px;
-        width: 100%;
     }
     .card-body{
         text-align: center;
+    }
+
+    /* SEARCH RESULTS */
+    .hide {
+        display:none;
     }
 
 }

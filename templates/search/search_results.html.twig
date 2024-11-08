@@ -2,11 +2,14 @@
 
 {% block title %}Search Results{% endblock %}
 
-{% block body %}     
-	<h2 class="quando">Results for <strong>"{{ searchTerm }}"</strong></h2>
+{% block body %}   
+	<div class="d-flex">
+        <a href="javascript:history.back()" class="show p-3" title="back" style="text-decoration: none;"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2 class="quando">Results for <strong>"{{ searchTerm }}"</strong></h2>
+    </div>
 
 	{% if books is empty %}
-		<p>Aucun livre trouvé.</p>
+		<p>No book found.</p>
 	{% else %}
 		<table class="table">
 			<thead>
@@ -16,8 +19,8 @@
 					<th class="quando text-center">Title</th>
 					<th class="quando text-center">Author</th>
 					<th class="quando text-center">Category</th>
-					<th class="quando text-center">Publication Year</th>
-					<th class="quando text-center">Likes</th>
+					<th class="quando text-center hide">Publication Year</th>
+					<th class="quando text-center hide">Likes</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -29,7 +32,7 @@
 
 						</td>
 						<td class="text-center">
-							<a href="{{ path('book_show', { id: book.id }) }}">
+							<a href="{{ path('book_show', { id: book.id }) }}" title="{{ book.title }}">
 							<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" alt="{{ book.title }}" style="width: 50px; height: 75px;">
 							</a>
 						</td>
@@ -43,19 +46,19 @@
 						<td class="text-center align-middle">
 							{% for category in book.category %}
 							<!-- Condition qui vérifie si l'itération actuelle n'est pas la dernière de la boucle, si non on va a la ligne -->
-                                <a href="{{ path('category_show', { 'id': category.id }) }}"{{ category.name }}</a>
-								{{ category.name }}{% if not loop.last %} <br> {% endif %}
+                                <a href="{{ path('category_show', { 'id': category.id }) }}" title="{{ category.name }}">{{ category.name }}</a>
+								{% if not loop.last %} <br> {% endif %}
 								 
                             
 							{% endfor %}
 						</td>
-						<td class="text-center align-middle">{{ book.publicationYear }}</td>
-						<td class="text-center align-middle">
+						<td class="text-center align-middle hide">{{ book.publicationYear }}</td>
+						<td class="text-center align-middle hide">
 							<i class="fa fa-heart" style="color: #b57cff;"></i> {{ book.likes|default(0) }}
 						</td>
 						
 						<!-- Bouton de prévisualisation -->
-						<td class="text-center align-middle">
+						<td class="text-center align-middle hide">
 							<a href="{{ path('book_show', { id: book.id }) }}" class="btn btn-outline-custom quando">Preview</a>
 						</td>
 					</tr>

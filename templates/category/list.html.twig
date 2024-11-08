@@ -34,14 +34,17 @@
 </div>
 
 <div class="container mt-4">
-    <h2 class="mb-4 quando">Book Categories</h2>
+	<div class="d-flex">
+        <a href="javascript:history.back()" class="show p-3" title="back" style="text-decoration: none;"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2 class="mb-4 quando">Book Categories</h2>
+    </div>
     <div class="row">
         {% for category in categories %}
             <div class="col-md-4 mb-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-outiline-custom">{{ category.name }}</a>
+                            <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-outiline-custom" title="{{ category.name }}">{{ category.name }}</a>
                         </h5>
                     </div>
                 </div>
@@ -57,12 +60,23 @@
 </div>
         <!-- Navbar pour mobile -->
     <nav class="navbar fixed-bottom navbar-dark bg-dark d-md-none">
-        <div class="container-fluid justify-content-around">
-            <a href="{{ path('app_home') }}" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
-            <a href="{{ path('book_search') }}" class="nav-link text-light"><i class="fa-solid fa-magnifying-glass" style="color: #B197FC;"></i></a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link text-light"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
-            <a href="{{ path('app_logout') }}" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
-            <a href="{{ path('category_list') }}" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+        <div class="container-fluid justify-content-around ">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="#" data-bs-toggle="modal" title="profile" data-bs-target="#exampleModal" class="nav-link text-light"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
+            <a href="{{ path('admin_loan_list') }}" title="loans" class="nav-link text-light"><i class="fa-solid fa-book" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+            <a href="/admin" title="admin" class="nav-link text-light"><i class="fa-solid fa-toolbox" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_logout') }}" title="logout" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
+        {% elseif app.user %}
+            <a href="{{ path('app_home') }}" title="home" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+            <a href="#" data-bs-toggle="modal" title="profile" data-bs-target="#exampleModal" class="nav-link text-light text-center"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_logout') }}" title="logout" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
+        {% else %}
+            <a href="{{ path('app_home') }}" title="home" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_login') }}" title="login" class="nav-link text-light"><i class="fa-solid fa-arrow-right-to-bracket" style="color: #B197FC;"></i></a>
+        {% endif %}
         </div>
     </nav>
 {% endblock %}

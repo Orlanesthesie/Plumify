@@ -90,8 +90,7 @@ class BookController extends AbstractController
         // Vérifie si l'utilisateur est connecté
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return new JsonResponse([
-                'error' => "You must be logged in to like a book. Please sign up or log in."], 403);
-            
+                'error' => "You must be logged in to like a book. Please sign up or log in."], 403); 
         }
 
         // Si l'utilisateur a déjà liké ce livre, on enlève le like
@@ -130,7 +129,6 @@ class BookController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        
         // Rechercher dans la base de données par titre
         $books = $entityManager->getRepository(Book::class)->createQueryBuilder('b')
         ->where('b.title LIKE :searchTerm')
@@ -143,6 +141,34 @@ class BookController extends AbstractController
             'categories' => $categories,
             'books' => $books,
             'searchTerm' => $searchTerm,
+            'randomBooks' => $randomBooks,
+            'form' => $form->createView(),
+            'user' => $user,
+
+        ]);
+    }
+
+    #[Route('/terms', name: 'terms')]
+    public function cgu(Request $request, EntityManagerInterface $entityManager, BookRepository $bookRepository, CategoryRepository $categoryRepository): Response
+    {
+        $categories = $categoryRepository->findAll();
+        $randomBooks = $bookRepository->findAll();
+        shuffle($randomBooks);
+        $randomBooks = array_slice($randomBooks, 0, 5);
+        $user = $this->getUser();
+
+        // Modale update profile
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Profile updated successfully');
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('other/terms.html.twig', [
+            'categories' => $categories,
             'randomBooks' => $randomBooks,
             'form' => $form->createView(),
             'user' => $user,

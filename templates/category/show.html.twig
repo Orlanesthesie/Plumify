@@ -3,14 +3,17 @@
 {% block title %}Books in {{ category.name }}{% endblock %}
 
 {% block body %}
-    <h1 class="quando mt-3">{{ category.name }}</h1>
-
+<div class="container mt-4">
+	<div class="d-flex">
+        <a href="javascript:history.back()" class="show p-3" title="back" style="text-decoration: none;"><i class="fa-solid fa-arrow-left"></i></a>
+        <h1 class="quando mt-3">{{ category.name }}</h1>
+    </div>
     <div class="row mt-5">
         {% for book in books %}
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
                     <div class="book-cover-container">
-                        <a href="{{ path('book_show', { 'id': book.id }) }}">
+                        <a href="{{ path('book_show', { 'id': book.id }) }}" title="{{ book.title }}">
                             <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="card-img-top img-fixed book-cover" alt="{{ book.title }}">
                         </a>
                     </div>
@@ -26,5 +29,6 @@
             <p>No books found in this category.</p>
         {% endfor %}
     </div>
+</div>    
 
 {% endblock %}

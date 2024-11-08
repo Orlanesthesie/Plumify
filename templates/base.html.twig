@@ -18,10 +18,10 @@
     <!-- Custom styles -->
     <link type="text/css" rel="stylesheet" href="{{ asset('styles/app.css') }}" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('styles/modale.css') }}" media="screen,projection"/>
-    <!-- Import Font Awesome-->
+    <!-- Import Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Import Swiper -->
     <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
 {% endblock %}
 </head>
 <body>
@@ -29,10 +29,13 @@
     <div class="d-flex flex-nowrap">
     {# COLONNE DE GAUCHE - FIXE #}
         <div class="left-column d-flex flex-column flex-shrink-0 p-3 border-end position-fixed" style="height: 100vh; overflow-y: auto;">
+            {#  LOGO #}
             <a href="/" class="d-flex align-items-center mb-2 justify-content-center">
                 <img src="{{ asset('images/logos/logo1.png') }}" alt="logo" style="height: 10vh;">
             </a>
             <hr>
+
+            {# CATEGORIES - NEWEST + POPULAR BOOKS #}
             <div class="categories">
                 <div class="category-title">Categories</div>
                 <ul class="nav nav-pills flex-column mb-auto">
@@ -51,6 +54,8 @@
                 </ul>
             </div>
             <hr>
+
+            {# ADMIN -> SYSTEME DE PRET #}
             <div class="categories">
                 {% if is_granted('ROLE_ADMIN') %}
                     <div class="category-title">Admin</div>
@@ -62,6 +67,7 @@
                         </li>
                     </ul>
                 {% else %}
+                {# AFFICHER LA LISTE DES GENRES #}
                     <div class="category-title">Genres</div>
                     <ul class="nav nav-pills flex-column mb-auto">
                         {% for category in categories|slice(0, 5) %}
@@ -92,22 +98,26 @@
 
     {# COLONNE CENTRALE - DÉFILANTE #}
         <div class="main-content flex-grow-1 p-0 w-100" style="overflow-y: auto;">
-            {# SEARCHBAR #}
-            <div class="search-container d-flex align-items-center mx-auto">
-                <form action="{{ path('book_search') }}" method="get" class="d-flex w-100">
-                    <input type="text" name="query" class="form-control search-input" placeholder="Search a book here..." style="flex: 1;">
-                    <button class="btn search-btn" type="submit" style="margin-left: 10px;">
-                        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                    </button>
-                </form>
-            </div>
+
+            {# LOGO PLUMIFY TELEPHONE #}
             <div class=" logo-container w-100 bg-white">
-                <a href="/">
+                <a href="/" title="home">
                     <img src="{{ asset('images/logos/logo2.png') }}" class="align-center" alt="logo" style="height: 8vh;">
                 </a>        
                     <hr>
             </div>
 
+            {# SEARCHBAR #}
+            <div class="search-container d-flex align-items-center mx-auto">
+                <form action="{{ path('book_search') }}" method="get" class="d-flex w-100">
+                    <input type="text" name="query" class="form-control search-input" placeholder="Search a book here..." style="flex: 1;">
+                    <button class="search-btn" type="submit" style="margin-left: 10px;" title="search">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                    </button>
+                </form>
+            </div>
+
+            {#  MESSAGES ERREURS OU REUSSITES #}
             {% for label, messages in app.flashes %}
 			<div class="alert alert-{{ label }}">
 				{% for message in messages %}
@@ -117,6 +127,29 @@
 		{% endfor %}
 
             {% block body %}{% endblock %}
+            <footer class="footer  py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-2 mb-md-0">&copy; 2024 Plumify - All rights reserved</p>
+        
+        <nav class="footer-links mb-2 mb-md-0">
+            <a href="/terms" class="text-decoration-none mx-2" title="terms">Terms and Conditions of Use</a>
+            <a href="/terms" class="text-decoration-none mx-2" title="privacy">Privacy Policy</a>
+            <a href="/terms" class="text-decoration-none  mx-2" title="contact">Contact</a>
+        </nav>
+
+        <div class="social-media">
+            <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook" class="text-decoration-none mx-2" title="Facebook">
+                <i class="fa-brands fa-facebook fa-lg" style="color: #B197FC;"></i>
+            </a>
+            <a href="https://www.twitter.com/" target="_blank" aria-label="Twitter" class="text-decoration-none mx-2" title="Twitter">
+                <i class="fa-brands fa-twitter fa-lg" style="color: #B197FC;"></i>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram" class="text-decoration-none mx-2" title="Instagram">
+                <i class="fa-brands fa-instagram fa-lg" style="color: #B197FC;"></i>
+            </a>
+        </div>
+    </div>
+</footer>
         </div>
 
     {# COLONNE DE DROITE - FIXE #}
@@ -139,7 +172,7 @@
                             </a>
                             {% endif %}
 
-                            <!-- Logout Button -->
+                            {# BOUTON LOGOUT #}
                             <a href="{{ path('app_logout') }}" class="logout-btn me-2">
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
@@ -150,6 +183,7 @@
                     <p>You can <a href="{{ path('app_login') }}">login here</a></p>
                 {% endif %}
 
+                {# RANDOM BOOKS #}
                 <h4>Suggestions</h4>
                 <div id="random-books">
                     {% for book in randomBooks %}
@@ -174,7 +208,7 @@
         </div>
     </div>
         {% if app.user %}
-            <!-- Modal -->
+            {# MODAL DE PROFILE #}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -234,14 +268,13 @@
                    <div id="updateForm" style="display: none;">
                         {{ form_start(form) }}
                             {{ form_widget(form) }}
-                            <button type="submit" class="btn btn-outline-custom mt-2">Save Changes</button>
+                            <button type="submit" class="btn btn-outline-custom mt-2" title="Save changes">Save Changes</button>
                         {{ form_end(form) }}  
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button id="updateButton" type="button" class="btn btn-custom">Update</button>
-                    <button id="backButton" type="button" class="btn btn-secondary" style="display: none;">Back</button>
+                    <button id="updateButton" type="button" class="btn btn-custom" title="Update">Update</button>
                 </div>
             </div>
         </div>
@@ -250,20 +283,21 @@
 
         <!-- Navbar pour mobile -->
     <nav class="navbar fixed-bottom navbar-dark bg-dark d-md-none">
-        <div class="container-fluid justify-content-around">
+        <div class="container-fluid justify-content-around ">
 
         {% if is_granted('ROLE_ADMIN') %}
             <a href="#" data-bs-toggle="modal" title="profile" data-bs-target="#exampleModal" class="nav-link text-light"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
             <a href="{{ path('admin_loan_list') }}" title="loans" class="nav-link text-light"><i class="fa-solid fa-book" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
             <a href="/admin" title="admin" class="nav-link text-light"><i class="fa-solid fa-toolbox" style="color: #B197FC;"></i></a>
             <a href="{{ path('app_logout') }}" title="logout" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
         {% elseif app.user %}
-            <a href="#" data-bs-toggle="modal" title="profile" data-bs-target="#exampleModal" class="nav-link text-light text-center"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
-            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
             <a href="{{ path('app_home') }}" title="home" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
+            <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
+            <a href="#" data-bs-toggle="modal" title="profile" data-bs-target="#exampleModal" class="nav-link text-light text-center"><i class="fa-solid fa-user" style="color: #B197FC;"></i></a>
             <a href="{{ path('app_logout') }}" title="logout" class="nav-link text-light"><i class="fa-solid fa-right-from-bracket" style="color: #B197FC;"></i></a>
         {% else %}
-            <a href="{{ path('book_search') }}" title="search" class="nav-link text-light"><i class="fa-solid fa-magnifying-glass" style="color: #B197FC;"></i></a>
+            <a href="{{ path('app_home') }}" title="home" class="nav-link"><i class="fa-solid fa-house" style="color: #B197FC;"></i></a>
             <a href="{{ path('category_list') }}" title="category" class="nav-link text-light"><i class="fa-solid fa-list" style="color: #B197FC;"></i></a>
             <a href="{{ path('app_login') }}" title="login" class="nav-link text-light"><i class="fa-solid fa-arrow-right-to-bracket" style="color: #B197FC;"></i></a>
         {% endif %}
@@ -276,31 +310,27 @@
     {% block javascripts %}
         <!-- Import Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var updateButton = document.getElementById('updateButton');
-            var backButton = document.getElementById('backButton');
-            var profileDetails = document.getElementById('profileDetails');
-            var updateForm = document.getElementById('updateForm');
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var updateButton = document.getElementById('updateButton');
+                var profileDetails = document.getElementById('profileDetails');
+                var updateForm = document.getElementById('updateForm');
 
-            function showUpdateForm() {
-                profileDetails.style.display = 'none';
-                updateForm.style.display = 'block';
-                updateButton.style.display = 'none';
-                backButton.style.display = 'inline-block';
-            }
+                function showUpdateForm() {
+                    profileDetails.style.display = 'none';
+                    updateForm.style.display = 'block';
+                    updateButton.style.display = 'none';
+                }
 
-            function showProfileDetails() {
-                profileDetails.style.display = 'block';
-                updateForm.style.display = 'none';
-                updateButton.style.display = 'inline-block';
-                backButton.style.display = 'none';
-            }
+                function showProfileDetails() {
+                    profileDetails.style.display = 'block';
+                    updateForm.style.display = 'none';
+                    updateButton.style.display = 'inline-block';
+                }
 
-            updateButton.addEventListener('click', showUpdateForm);
-            backButton.addEventListener('click', showProfileDetails);
-        });
-    </script>
+                updateButton.addEventListener('click', showUpdateForm);
+            });
+        </script>
         {% block importmap %}{% endblock %}
         
     {% endblock %}

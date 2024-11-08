@@ -52,7 +52,6 @@ class LoanController extends AbstractController
                 $loan = new Loan();
                 $loan->setBook($book);
                 $loan->setUser($user);
-                // $loan->setStartDate(new \DateTime());
 
                 // Marquer le livre comme non disponible
                 $book->setAvailable(false);

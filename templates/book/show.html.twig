@@ -14,7 +14,9 @@
                     <div class="card mb-4 p-2 shadow-sm rounded rounded-5" style="background-color: #E9D7FF;">
                         <div class="row no-gutters">
                             <div class="col-md-3" style="position: relative;">
+                                <a href="javascript:history.back()" class="show" title="back" style="text-decoration: none;"><i class="fa-solid fa-arrow-left"></i></a>
                                 <div class="book-cover-container">
+                                
                                     <img class="book-cover" src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" 
                                         class="img-fluid p-4" 
                                         alt="{{ book.title }}" >
@@ -33,54 +35,28 @@
 
                                         <!-- Bouton like -->
                                         <div>
-                                            <button data-book-id="{{ book.id }}" class="btn btn-outline-dark">
+                                            <button data-book-id="{{ book.id }}" class="btn btn-outline-dark" title="like">
                                                 <i class="fa-solid fa-heart"></i>
                                             </button>
                                             <span id="likes-count" class="ms-2">{{ book.getLikedByUsers()|length }}</span>
                                         </div>
                                     </div>
-
                                     <p class="card-text">{{ book.publicationYear }}</p>
                                     <p>{{ book.summary }}</p>
-                                    
-                                <div class="mb-3">
-                                    {% for category in book.category %}
-                                        <a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark">{{ category.name }}</a>
-                                    {% endfor %}
-                                </div>
+                                    <div class="mb-3">
+                                        {% for category in book.category %}
+                                            <a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark" title="{{ category.name }}">{{ category.name }}</a>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    
-
-                    {# <!-- Suggestions dans la même catégorie -->
-                    <h4 class="mt-4">In the same category...</h4>
-                    <div class="card mb-4 p-3 shadow-sm" style="background-color: #E9D7FF;">
-                        <div class="row no-gutters">
-                            <div class="col-md-3">
-                                <img src="{{ asset('/assets/images/books/' ~ relatedBook.coverImage) }}" class="img-fluid rounded" alt="{{ relatedBook.title }}">
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title fs-5">{{ relatedBook.title }}</h5>
-                                    <p class="text-muted">{{ relatedBook.author.firstname }} {{ relatedBook.author.lastname }}</p>
-                                    <div class="mb-3">
-                                        <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-tree"></i> Adventure</span>
-                                        <span class="badge rounded-pill bg-light text-dark"><i class="fa-solid fa-dragon"></i> Fantasy</span>
-                                    </div>
-                                    <p>{{ relatedBook.description }}</p>
-                                    <button data-book-id="{{ relatedBook.id }}" class="btn btn-outline-dark like-button">
-                                        <i class="fa-solid fa-heart"></i> {{ relatedBook.getLikedByUsers()|length }} likes
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  #}
                 </div>
             </div>
         </div>
+
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
