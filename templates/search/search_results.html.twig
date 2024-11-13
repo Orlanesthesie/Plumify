@@ -19,8 +19,8 @@
 					<th class="quando text-center">Title</th>
 					<th class="quando text-center">Author</th>
 					<th class="quando text-center">Category</th>
-					<th class="quando text-center hide">Publication Year</th>
-					<th class="quando text-center hide">Likes</th>
+					<th class="quando text-center hide-p">Publication Year</th>
+					<th class="quando text-center hide-p">Likes</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -52,13 +52,13 @@
                             
 							{% endfor %}
 						</td>
-						<td class="text-center align-middle hide">{{ book.publicationYear }}</td>
-						<td class="text-center align-middle hide">
+						<td class="text-center align-middle hide-p">{{ book.publicationYear }}</td>
+						<td class="text-center align-middle hide-p">
 							<i class="fa fa-heart" style="color: #b57cff;"></i> {{ book.likes|default(0) }}
 						</td>
 						
 						<!-- Bouton de prévisualisation -->
-						<td class="text-center align-middle hide">
+						<td class="text-center align-middle hide-p">
 							<a href="{{ path('book_show', { id: book.id }) }}" class="btn btn-outline-custom quando">Preview</a>
 						</td>
 					</tr>

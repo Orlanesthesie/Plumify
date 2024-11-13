@@ -3,13 +3,13 @@
 {% block title %} Home {% endblock %}
 
 {% block body %}
-	<section id="popular" class="mb-5">
+	<section id="popular" class="mb-5 p-1">
 		<h2 class="quando">Popular Books</h2>        		
 				<div class="row d-flex justify-content-around">
 					<div class="swiper mySwiper">
 						<div class="swiper-wrapper">
 							{% for book in popularBooks %}
-								<div class="swiper-slide">
+								<div class="swiper-slide p-1">
 									<a href="{{ path('book_show', { id: book.id }) }}" title="{{ book.title }}">
 										<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
 									</a>
@@ -22,7 +22,7 @@
 	</section>
 		
 
-	<section id="newest">
+	<section id="newest" class="p-1">
 		<h2 class="quando">Newest</h2>
 			<div id="books-news" class="px-5">
 			{% for book in newBooks %}

@@ -57,15 +57,18 @@
         </div>
 
 
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // récupère le bouton
     const likeButton = document.querySelector('[data-book-id="{{ book.id }}"]');
+    // récupère le compte des likes
     const likesCountSpan = document.getElementById('likes-count');
 
     likeButton.addEventListener('click', function () {
         const bookId = this.getAttribute('data-book-id');
+        // lance la fonction like
         fetch(`/book/${bookId}/like`, {
+            // envoi l'id en POST
             method: 'POST',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
@@ -75,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             if (!response.ok) {
                 return response.json().then(data => {
-                // Affiche le message d'erreur dans l'élément HTML
+                // affiche un message d'erreur
                 const errorMessage = document.getElementById('error-message');
                 errorMessage.textContent = data.error;
                 errorMessage.style.display = 'block';
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            // Mettre à jour le nombre de likes
+            // met à jour le nombre de like
             likesCountSpan.textContent = data.likes;
         })
         .catch(error => console.error('Error:', error));

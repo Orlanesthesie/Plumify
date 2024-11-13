@@ -3,7 +3,8 @@
 {% block title %}Loan and return{% endblock %}
 
 {% block body %}
-    <h2 class="quando">New Loan</h2>
+<div class="container p-1">
+    <h2 class="quando mt-2">New Loan</h2>
 
     <form action="{{ path('admin_loan_new') }}" method="post">
         <div class="form-group">
@@ -26,6 +27,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-custom mt-4">Create the Loan</button>
+        <button type="submit" class="btn btn-custom mt-4" title="create">Create the Loan</button>
     </form>
+</div>   
 {% endblock %}

@@ -45,7 +45,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Plumify Admin')
+            ->setTitle('<a href="/" style="text-decoration: none; color: inherit;">Plumify Admin</a>')
             ->setFaviconPath('/images/logos/icon.png')
             ->renderContentMaximized();
     }       

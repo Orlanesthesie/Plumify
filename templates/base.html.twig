@@ -159,9 +159,11 @@
                 {% if app.user %}
                     <div class="container mt-4">
                         <div class="profile-container">
-                            <h4 class="quando py-3">
+                        
+                            <h4 class="quando py-3 hide-t">
                                 Hi, {{ app.user.firstname }} !
                             </h4>
+                        
                             {% if is_granted('ROLE_ADMIN') %}
                             <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <img src="{{ asset('images/avatar/bulle.jpg') }}" alt="Profile Picture" class="rounded-circle"> 
@@ -194,7 +196,7 @@
                                         <img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-3" alt="Couverture de {{ book.title }}" style="width:90px; height:130px;">
                                     </a>
                                 </div>
-                                <div class="col-md-8 d-flex flex-column">
+                                <div class="col-md-8 d-flex flex-column hide-t">
                                     <div class="card-body d-flex flex-column flex-grow-1">
                                         <small class="text-body-secondary">{{ book.author.firstname }} {{ book.author.lastname }}</small>
                                         <h6 class="card-title quando">{{ book.title }}</h6>
