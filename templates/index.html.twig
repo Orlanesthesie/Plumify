@@ -42,10 +42,10 @@
 									<a href="{{ path('book_show', { id: book.id }) }}" title="{{ book.title }}" style="text-decoration: none;">
 										<h3 class="card-title mt-4 mb-0 quando">{{ book.title }}</h3>
 									</a>
-									<p class="card-text mt-4 hide">{{ book.summary }}</p>
+									<p class="card-text mt-4 hide text-truncate-multiline">{{ book.summary }}</p>
 									<div class="mt-4 hide">
 										{% for category in book.category %}
-											<a href="{{ path('category_show', { 'id': category.id }) }}" title="{{ category.name }}" class=" btn btn-light mx-2">{{ category.name }}</a>
+											<a href="{{ path('category_show', { 'id': category.id }) }}" title="{{ category.name }}" class=" btn btn-light mx-2">{{category.icon}} {{ category.name }}</a>
 										{% endfor %}
 									</div>
 								</div>

@@ -28,6 +28,9 @@ class Category
     #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'category')]
     private Collection $books;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $icon = null;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
@@ -73,6 +76,18 @@ class Category
         if ($this->books->removeElement($book)) {
             $book->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): static
+    {
+        $this->icon = $icon;
 
         return $this;
     }

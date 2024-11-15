@@ -276,6 +276,22 @@ body {
     align-items: center;
 }
 
+.text-truncate-multiline {
+    display: -webkit-box;
+    /* activer la troncature avec Webkit */
+    -webkit-line-clamp: 3;
+    /* tronque après 3 lignes */
+    -webkit-box-orient: vertical;
+    /* troncature multi-lignes */
+    overflow: hidden;
+    /* masque le texte en trop */
+    text-overflow: ellipsis;
+    /* affiche les ... */
+    line-height: 1.5em;
+    /* ajuste l'interligne */
+    max-height: 4.5em;
+}
+
 /* Responsive pour tablettes */
 @media (max-width: 1270px) {
 

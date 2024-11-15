@@ -20,8 +20,8 @@ class BookController extends AbstractController
      Request $request, EntityManagerInterface $entityManager): Response
     {
         $newBooks = $bookRepository->findBy([], ['publicationYear' => 'DESC'], 5, 0);
-        // dd($newBooks);
         $categories = $categoryRepository->findAll();
+        // dd($categories);
 
         $randomBooks = $bookRepository->findAll();
         shuffle($randomBooks);
