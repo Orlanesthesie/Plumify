@@ -186,14 +186,14 @@
                         </div>
                     </div>
                 {% else %}
-                    <p>You can <a href="{{ path('app_login') }}">login here</a></p>
+                    <h5 class="p-5 text-center">You can <a href="{{ path('app_login') }}" class="main-color" title="login">login here !</a></h5>
                 {% endif %}
 
                 {# RANDOM BOOKS #}
-                <h4>Suggestions</h4>
+                <h4 class="">Suggestions</h4>
                 <div id="random-books">
                     {% for book in randomBooks %}
-                        <div class="card mb-1 second-color d-flex flex-column rounded rounded-3">
+                        <div class="card mb-1 second-color d-flex flex-column rounded rounded-3 m-3">
                             <div class="row g-0 flex-grow-1">
                                 <div class="col-md-4">
                                     <a href="{{ path('book_show', { id: book.id }) }}">
