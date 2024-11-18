@@ -26,6 +26,7 @@ class BookController extends AbstractController
         $randomBooks = $bookRepository->findAll();
         shuffle($randomBooks);
         $randomBooks = array_slice($randomBooks, 0, 5);
+        
 
         $popularBooks = $bookRepository->findPopularBooks();
 

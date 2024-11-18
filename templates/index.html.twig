@@ -11,7 +11,7 @@
 							{% for book in popularBooks %}
 								<div class="swiper-slide p-1">
 									<a href="{{ path('book_show', { id: book.id }) }}" title="{{ book.title }}">
-										<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
+										<img src="{{ asset('images/books/' ~ book.coverImage) }}" class="" alt="Couverture de {{ book.title }}" style="width:200px; height:300px;">
 									</a>
 								</div>
 							{% endfor %}
@@ -30,7 +30,7 @@
 					<div class="row g-0 flex-grow-1">
 						<div class="col-md-3">
 							<a href="{{ path('book_show', { id: book.id }) }}" title="{{book.title}}">
-								<img src="{{ asset('/assets/images/books/' ~ book.coverImage) }}" class="rounded rounded-5 "  alt="Couverture de {{ book.title }}" style="float:left; width:200px; height:fit content;">
+								<img src="{{ asset('images/books/' ~ book.coverImage) }}" class="rounded rounded-5 "  alt="Couverture de {{ book.title }}" style="float:left; width:200px; height:fit content;">
 							</a>
 						</div>
 						<div class="col-md-8 d-flex flex-column">

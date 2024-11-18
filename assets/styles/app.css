@@ -350,6 +350,7 @@ body {
 
     .book-cover {
         height: 400px;
+        margin: auto;
     }
 
     .card-body {
