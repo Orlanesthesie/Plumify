@@ -45,7 +45,7 @@
                                     <p>{{ book.summary }}</p>
                                     <div class="mb-3">
                                         {% for category in book.category %}
-                                            <a href="{{ path('category_show', { 'id': category.id }) }}" class=" btn btn-outline-dark" title="{{ category.name }}">{{category.icon}} {{ category.name }}</a>
+                                            <a href="{{ path('category_show', { 'id': category.id }) }}" class="btn btn-light" title="{{ category.name }}">{{category.icon}} {{ category.name }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>

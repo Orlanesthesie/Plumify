@@ -28,8 +28,8 @@ class BookCrudController extends AbstractCrudController
             BooleanField::new('available', 'Available'),
             TextField::new('description'),
             ImageField::new('cover_image')
-                ->setUploadDir('public/assets/images/books')
-                ->setBasePath('/assets/images/books')
+                ->setUploadDir('/images/books')
+                ->setBasePath('/images/books')
         ];
     }
 }

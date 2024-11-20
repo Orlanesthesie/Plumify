@@ -238,6 +238,7 @@ body {
     height: 450px;
     padding: 5px;
     border-radius: 30px;
+    width:300px;
 }
 
 .custom-navbar {

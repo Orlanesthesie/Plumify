@@ -26,8 +26,8 @@ class AuthorCrudController extends AbstractCrudController
             IntegerField::new('Birthyear'),
             TextareaField::new('Biography'),
             ImageField::new('Image')
-                ->setUploadDir('public/assets/images/books')
-                ->setBasePath('/assets/images/books'),
+                ->setUploadDir('images/books')
+                ->setBasePath('images/books'),
         ];
     }
     
