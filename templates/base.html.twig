@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover Plumify, a modern library website that allows you to search for, borrow, and manage your favorite books with ease.">
+    <meta name="keywords" content="bibliothèque, emprunt de livres, Plumify, recherche de livres">
+    <meta name="author" content="Orlanesthesie">
+    <meta name="robots" content="index, follow">
     <title>
-        {% block title %}Plumify{% endblock %}
+        {% block title %}Plumify - Your Modern and Accessible Library{% endblock %}
     </title>
-    <link rel="icon" href="{{ asset('images/logos/icon.png') }}">
+    <link rel="icon" href="{{ asset('images/logos/icon.png') }}" alt="logo of Plumify">
     {% block stylesheets %}
     <!-- Import Google Icon Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -186,7 +191,7 @@
                         </div>
                     </div>
                 {% else %}
-                    <h5 class="p-5 text-center">You can <a href="{{ path('app_login') }}" class="main-color" title="login">login here !</a></h5>
+                    <h5 class="p-5 text-center quando">You can <a href="{{ path('app_login') }}" class="main-color" title="login">login here !</a></h5>
                 {% endif %}
 
                 {# RANDOM BOOKS #}

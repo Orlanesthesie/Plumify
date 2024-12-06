@@ -241,6 +241,10 @@ body {
     width:300px;
 }
 
+.book-cover-category{
+    height: 450px;
+}
+
 .custom-navbar {
     position: fixed;
     bottom: 20px;

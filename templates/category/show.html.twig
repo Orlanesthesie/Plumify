@@ -14,7 +14,7 @@
                 <div class="card h-100">
                     <div class="book-cover-container">
                         <a href="{{ path('book_show', { 'id': book.id }) }}" title="{{ book.title }}">
-                            <img src="{{ asset('images/books/' ~ book.coverImage) }}" class="card-img-top img-fixed book-cover" alt="{{ book.title }}">
+                            <img src="{{ asset('images/books/' ~ book.coverImage) }}" class="card-img-top img-fixed book-cover-category " alt="{{ book.title }}">
                         </a>
                     </div>
                     <div class="card-body">
